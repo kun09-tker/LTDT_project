@@ -58,6 +58,17 @@
             this.button6 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lienthong_kt = new System.Windows.Forms.Button();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.Dijsktra_di = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.Dijstra_den = new System.Windows.Forms.ComboBox();
+            this.button8 = new System.Windows.Forms.Button();
+            this.thoi_kiemlienthong = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -66,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -119,7 +131,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(20, 91);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(123, 323);
+            this.groupBox1.Size = new System.Drawing.Size(123, 358);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Đỉnh";
@@ -128,9 +140,9 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 22;
-            this.listBox1.Location = new System.Drawing.Point(7, 24);
+            this.listBox1.Location = new System.Drawing.Point(7, 29);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(110, 290);
+            this.listBox1.Size = new System.Drawing.Size(110, 312);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -140,7 +152,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(149, 203);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(244, 211);
+            this.groupBox2.Size = new System.Drawing.Size(244, 246);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cạnh";
@@ -156,7 +168,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(6, 24);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(233, 176);
+            this.listView1.Size = new System.Drawing.Size(233, 209);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -228,9 +240,9 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(762, 33);
+            this.button4.Location = new System.Drawing.Point(781, 33);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(123, 25);
+            this.button4.Size = new System.Drawing.Size(104, 25);
             this.button4.TabIndex = 13;
             this.button4.Text = "Đổi đẳng cấu";
             this.button4.UseVisualStyleBackColor = true;
@@ -361,7 +373,7 @@
             this.groupBox6.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(399, 352);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(200, 62);
+            this.groupBox6.Size = new System.Drawing.Size(136, 97);
             this.groupBox6.TabIndex = 18;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Xét liên thông";
@@ -369,19 +381,136 @@
             // lienthong_kt
             // 
             this.lienthong_kt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lienthong_kt.Location = new System.Drawing.Point(27, 26);
+            this.lienthong_kt.Location = new System.Drawing.Point(14, 26);
             this.lienthong_kt.Name = "lienthong_kt";
-            this.lienthong_kt.Size = new System.Drawing.Size(141, 25);
+            this.lienthong_kt.Size = new System.Drawing.Size(99, 58);
             this.lienthong_kt.TabIndex = 19;
             this.lienthong_kt.Text = "Kiểm tra";
             this.lienthong_kt.UseVisualStyleBackColor = true;
             this.lienthong_kt.Click += new System.EventHandler(this.lienthong_kt_Click);
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label9);
+            this.groupBox7.Controls.Add(this.textBox2);
+            this.groupBox7.Controls.Add(this.label8);
+            this.groupBox7.Controls.Add(this.richTextBox1);
+            this.groupBox7.Controls.Add(this.Dijsktra_di);
+            this.groupBox7.Controls.Add(this.label7);
+            this.groupBox7.Controls.Add(this.label6);
+            this.groupBox7.Controls.Add(this.Dijstra_den);
+            this.groupBox7.Controls.Add(this.button8);
+            this.groupBox7.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox7.Location = new System.Drawing.Point(541, 352);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(662, 97);
+            this.groupBox7.TabIndex = 21;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Dijsktra";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(336, 60);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(299, 24);
+            this.richTextBox1.TabIndex = 25;
+            this.richTextBox1.Text = "";
+            // 
+            // Dijsktra_di
+            // 
+            this.Dijsktra_di.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Dijsktra_di.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dijsktra_di.FormattingEnabled = true;
+            this.Dijsktra_di.Location = new System.Drawing.Point(55, 29);
+            this.Dijsktra_di.Name = "Dijsktra_di";
+            this.Dijsktra_di.Size = new System.Drawing.Size(98, 24);
+            this.Dijsktra_di.TabIndex = 24;
+            this.Dijsktra_di.SelectedValueChanged += new System.EventHandler(this.Dijsktra_di_SelectedValueChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(5, 59);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 22);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Đến :";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(5, 29);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 22);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Từ :";
+            // 
+            // Dijstra_den
+            // 
+            this.Dijstra_den.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Dijstra_den.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dijstra_den.FormattingEnabled = true;
+            this.Dijstra_den.Location = new System.Drawing.Point(55, 59);
+            this.Dijstra_den.Name = "Dijstra_den";
+            this.Dijstra_den.Size = new System.Drawing.Size(98, 24);
+            this.Dijstra_den.TabIndex = 21;
+            // 
+            // button8
+            // 
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.Location = new System.Drawing.Point(161, 27);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(86, 57);
+            this.button8.TabIndex = 19;
+            this.button8.Text = "Tìm đường đi";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // thoi_kiemlienthong
+            // 
+            this.thoi_kiemlienthong.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.thoi_kiemlienthong.Image = global::LTDT_project.Properties.Resources.undoarrow_undo_11053;
+            this.thoi_kiemlienthong.Location = new System.Drawing.Point(733, 29);
+            this.thoi_kiemlienthong.Name = "thoi_kiemlienthong";
+            this.thoi_kiemlienthong.Size = new System.Drawing.Size(41, 32);
+            this.thoi_kiemlienthong.TabIndex = 20;
+            this.thoi_kiemlienthong.UseVisualStyleBackColor = true;
+            this.thoi_kiemlienthong.Click += new System.EventHandler(this.thoi_kiemlienthong_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(332, 35);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(80, 22);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Tứ tự đi :";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(254, 61);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(64, 22);
+            this.textBox2.TabIndex = 27;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(250, 36);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 22);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Chi phí:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1218, 427);
+            this.ClientSize = new System.Drawing.Size(1218, 460);
+            this.Controls.Add(this.thoi_kiemlienthong);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.groupBox5);
@@ -409,6 +538,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -446,6 +577,17 @@
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button lienthong_kt;
+        private System.Windows.Forms.Button thoi_kiemlienthong;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ComboBox Dijsktra_di;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox Dijstra_den;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label8;
     }
 }
 

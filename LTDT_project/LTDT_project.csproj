@@ -56,6 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dijsktra.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +78,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -111,6 +113,18 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset_undo_arrow_icon_149006.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset_undo_arrow_icon_149006 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Undo_icon-icons.com_73701.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\undoarrow_undo_11053.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
