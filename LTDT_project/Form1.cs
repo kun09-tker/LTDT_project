@@ -31,16 +31,18 @@ namespace LTDT_project
         };
         LienThong_Paint[] paint = new LienThong_Paint[100] ;
         Point[] Dinh = new Point[100];
+        Color color = Color.Black;
         string[] tenDinh = new string[100];
         int iDinh = 0;
         int SoDinhLienThong = 0;
-        int SoMienLT = 0;
+        int tmp = 0;
         int[,] Matran = new int [100,100];
         bool[,] luuVetcanh = new bool[100, 100];
         bool[] luuVetdinh = new bool[100];
         bool vertex = false;
         bool edge = false;
         bool dij = false;
+        bool OnlyPath = false;
         string di="";
         string den="";
         string path="";
@@ -160,9 +162,9 @@ namespace LTDT_project
                     luuVetcanh[i, j] = false;
                 }
             }
-            iDinh = SoDinhLienThong = SoMienLT = 0;
+            iDinh = SoDinhLienThong = tmp = 0;
             di = den = path = "";
-            vertex = edge = dij = false;
+            vertex = edge = dij = OnlyPath = false;
             pictureBox1.Refresh();
             HienThiMaTran();
         }
@@ -192,26 +194,19 @@ namespace LTDT_project
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (textBox1.Text=="")
-            {
-                
+            {   
                 button3.Enabled = false;
             }
             else
-            {
-                
+            {       
                 button3.Enabled = true;
             }
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
            
             button3.Enabled = false;
         }
-
-
-
-
         private void button3_Click(object sender, EventArgs e)
         {
             if (vertex)
@@ -451,43 +446,51 @@ namespace LTDT_project
             }
             if (dij)
             {
-                for(int i = 0; i < SoDinhLienThong-1; i++)
+                for (int i = 0; i < SoDinhLienThong - 1; i++)
                 {
                     SolidBrush maulienthong = new SolidBrush(Color.FromArgb(paint[i].r, paint[i].b, paint[i].g));
-                    richTextBox1.Text += tenDinh[paint[i].index] + " -> ";
+                    color = Color.FromArgb(paint[i].r, paint[i].b, paint[i].g);
+                    richTextBox1.SelectionColor = Color.FromArgb(paint[i].r, paint[i].b, paint[i].g);
+                    richTextBox1.SelectedText = tenDinh[paint[i].index];
+                    richTextBox1.SelectionColor = color;
+                    richTextBox1.SelectedText = " -> ";
                     luuVetdinh[paint[i].index] = true;
-                    luuVetcanh[paint[i].index, paint[i+1].index] = luuVetcanh[paint[i+1].index, paint[i].index] = true;
+                    luuVetcanh[paint[i].index, paint[i + 1].index] = luuVetcanh[paint[i + 1].index, paint[i].index] = true;
                     g.FillEllipse(maulienthong, Dinh[paint[i].index].X - 5, Dinh[paint[i].index].Y - 5, 10, 10);
                     g.DrawString(tenDinh[paint[i].index], f2, mauchuDinh, Dinh[paint[i].index].X - 5, Dinh[paint[i].index].Y - 5);
                     Pen paintLienThong = new Pen(maulienthong);
-                    g.DrawLine(paintLienThong, Dinh[paint[i].index], Dinh[paint[i+1].index]);
-                    g.FillEllipse(khoangtrong, (Dinh[paint[i].index].X + Dinh[paint[i+1].index].X) / 2 - 5, (Dinh[paint[i].index].Y + Dinh[paint[i+1].index].Y) / 2 - 5, 10, 10);
-                    g.DrawString(Matran[paint[i].index, paint[i+1].index].ToString(), f2, maulienthong, (Dinh[paint[i].index].X + Dinh[paint[i+1].index].X) / 2 - 5, (Dinh[paint[i].index].Y + Dinh[paint[i+1].index].Y) / 2 - 5);
+                    g.DrawLine(paintLienThong, Dinh[paint[i].index], Dinh[paint[i + 1].index]);
+                    g.FillEllipse(khoangtrong, (Dinh[paint[i].index].X + Dinh[paint[i + 1].index].X) / 2 - 5, (Dinh[paint[i].index].Y + Dinh[paint[i + 1].index].Y) / 2 - 5, 10, 10);
+                    g.DrawString(Matran[paint[i].index, paint[i + 1].index].ToString(), f2, maulienthong, (Dinh[paint[i].index].X + Dinh[paint[i + 1].index].X) / 2 - 5, (Dinh[paint[i].index].Y + Dinh[paint[i + 1].index].Y) / 2 - 5);
                 }
-                luuVetdinh[paint[SoDinhLienThong-1].index] = true;
-                richTextBox1.Text += tenDinh[paint[SoDinhLienThong - 1].index];
-                SolidBrush  mau = new SolidBrush(Color.FromArgb(paint[SoDinhLienThong - 1].r, paint[SoDinhLienThong - 1].b, paint[SoDinhLienThong - 1].g));
+                luuVetdinh[paint[SoDinhLienThong - 1].index] = true;
+                richTextBox1.SelectionColor = Color.FromArgb(paint[SoDinhLienThong - 1].r, paint[SoDinhLienThong - 1].b, paint[SoDinhLienThong - 1].g);
+                richTextBox1.SelectedText = tenDinh[paint[SoDinhLienThong - 1].index];
+                SolidBrush mau = new SolidBrush(Color.FromArgb(paint[SoDinhLienThong - 1].r, paint[SoDinhLienThong - 1].b, paint[SoDinhLienThong - 1].g));
                 g.FillEllipse(mau, Dinh[paint[SoDinhLienThong - 1].index].X - 5, Dinh[paint[SoDinhLienThong - 1].index].Y - 5, 10, 10);
                 g.DrawString(tenDinh[paint[SoDinhLienThong - 1].index], f2, mauchuDinh, Dinh[paint[SoDinhLienThong - 1].index].X - 5, Dinh[paint[SoDinhLienThong - 1].index].Y - 5);
-                for (int i = 0; i < iDinh; i++)
+                if (OnlyPath == false)
                 {
-                    if (!luuVetdinh[i])
+                    for (int i = 0; i < iDinh; i++)
                     {
-                        g.FillEllipse(maunenDinh, Dinh[i].X - 5, Dinh[i].Y - 5, 10, 10);
-                        g.DrawString(tenDinh[i], f2, mauchuDinh, Dinh[i].X - 5, Dinh[i].Y - 5);
-                        //  MessageBox.Show($"{tenDinh[i]} , {Dinh[i].X} , {Dinh[i].Y}");
-                    }
-                }
-                for (int i = 0; i < iDinh; i++)
-                {
-                    for (int j = 0; j <= i; j++)
-                    {
-                        if (Matran[i, j] != 0&&!luuVetcanh[i,j])
+                        if (!luuVetdinh[i])
                         {
-                            g.DrawLine(line, Dinh[i], Dinh[j]);
-                            g.FillEllipse(khoangtrong, (Dinh[i].X + Dinh[j].X) / 2 - 5, (Dinh[i].Y + Dinh[j].Y) / 2 - 5, 10, 10);
-                            g.DrawString(Matran[i, j].ToString(), f2, mauchuDinh, (Dinh[i].X + Dinh[j].X) / 2 - 5, (Dinh[i].Y + Dinh[j].Y) / 2 - 5);
-                            //  g.DrawLine(line,(Dinh[i].X + Dinh[j].X) / 2 + 5, (Dinh[i].Y + Dinh[j].Y) / 2 + 5,Dinh[j].X,Dinh[j].Y);
+                            g.FillEllipse(maunenDinh, Dinh[i].X - 5, Dinh[i].Y - 5, 10, 10);
+                            g.DrawString(tenDinh[i], f2, mauchuDinh, Dinh[i].X - 5, Dinh[i].Y - 5);
+                            //  MessageBox.Show($"{tenDinh[i]} , {Dinh[i].X} , {Dinh[i].Y}");
+                        }
+                    }
+                    for (int i = 0; i < iDinh; i++)
+                    {
+                        for (int j = 0; j <= i; j++)
+                        {
+                            if (Matran[i, j] != 0 && !luuVetcanh[i, j])
+                            {
+                                g.DrawLine(line, Dinh[i], Dinh[j]);
+                                g.FillEllipse(khoangtrong, (Dinh[i].X + Dinh[j].X) / 2 - 5, (Dinh[i].Y + Dinh[j].Y) / 2 - 5, 10, 10);
+                                g.DrawString(Matran[i, j].ToString(), f2, mauchuDinh, (Dinh[i].X + Dinh[j].X) / 2 - 5, (Dinh[i].Y + Dinh[j].Y) / 2 - 5);
+                                //  g.DrawLine(line,(Dinh[i].X + Dinh[j].X) / 2 + 5, (Dinh[i].Y + Dinh[j].Y) / 2 + 5,Dinh[j].X,Dinh[j].Y);
+                            }
                         }
                     }
                 }
@@ -601,7 +604,7 @@ namespace LTDT_project
             doThi.iSoDinh = iDinh;
             tp_lienThong = x.xuatMienLienThong(doThi);
             //MessageBox.Show(string.Join("\n",tp_lienThong));
-            SoMienLT = int.Parse(tp_lienThong[0]);
+            int SoMienLT = int.Parse(tp_lienThong[0]);
             for (int i = 1;i <= SoMienLT; i++)
             {
                 Random rnd = new Random();
@@ -701,6 +704,7 @@ namespace LTDT_project
                             else continue;
                         }
                     }
+                    tmp = SoDinhLienThong;
                     pictureBox1.Refresh();
                    // sdd += tenDinh[duongdi[2]];
                   //  richTextBox1.Text = sdd;
@@ -710,6 +714,16 @@ namespace LTDT_project
                 }
                 else MessageBox.Show("Không timg thấy đường đi", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text= "";
+            SoDinhLienThong = tmp;
+            dij = OnlyPath = true;
+            pictureBox1.Refresh();
+            dij = OnlyPath = false;
+            SoDinhLienThong = 0;
         }
     }
 }

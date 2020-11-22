@@ -59,6 +59,10 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lienthong_kt = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.Dijsktra_di = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -66,9 +70,6 @@
             this.Dijstra_den = new System.Windows.Forms.ComboBox();
             this.button8 = new System.Windows.Forms.Button();
             this.thoi_kiemlienthong = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -391,6 +392,7 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.button7);
             this.groupBox7.Controls.Add(this.label9);
             this.groupBox7.Controls.Add(this.textBox2);
             this.groupBox7.Controls.Add(this.label8);
@@ -408,10 +410,49 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Dijsktra";
             // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Location = new System.Drawing.Point(509, 32);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(126, 25);
+            this.button7.TabIndex = 22;
+            this.button7.Text = "Chỉ hiện đường đi";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(250, 36);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 22);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "Chi phí:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(254, 61);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(64, 22);
+            this.textBox2.TabIndex = 27;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(332, 35);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(80, 22);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Tứ tự đi :";
+            // 
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(336, 60);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(299, 24);
             this.richTextBox1.TabIndex = 25;
             this.richTextBox1.Text = "";
@@ -476,33 +517,6 @@
             this.thoi_kiemlienthong.TabIndex = 20;
             this.thoi_kiemlienthong.UseVisualStyleBackColor = true;
             this.thoi_kiemlienthong.Click += new System.EventHandler(this.thoi_kiemlienthong_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(332, 35);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(80, 22);
-            this.label8.TabIndex = 26;
-            this.label8.Text = "Tứ tự đi :";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(254, 61);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(64, 22);
-            this.textBox2.TabIndex = 27;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(250, 36);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 22);
-            this.label9.TabIndex = 28;
-            this.label9.Text = "Chi phí:";
             // 
             // Form1
             // 
@@ -588,6 +602,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button7;
     }
 }
 
