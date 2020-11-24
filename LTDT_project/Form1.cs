@@ -772,19 +772,26 @@ namespace LTDT_project
 
         private void DoitenDinh_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text[0] == 'Đ')
+            try
             {
-                string rename = Interaction.InputBox("Nhập tên mới", "Đổi tên đỉnh");
-                string name = textBox1.Text.Substring(6);
-                tenDinh[indexDinh(name)] = rename;
-                CapNhatDS_dinhdi();
-                HienThiMaTran();
-                DocCanhMaTran(iDinh);
-                pictureBox1.Refresh();
+                if (textBox1.Text[0] == 'Đ')
+                {
+                    string rename = Interaction.InputBox("Nhập tên mới", "Đổi tên đỉnh");
+                    string name = textBox1.Text.Substring(6);
+                    tenDinh[indexDinh(name)] = rename;
+                    CapNhatDS_dinhdi();
+                    HienThiMaTran();
+                    DocCanhMaTran(iDinh);
+                    pictureBox1.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show("Chỉ được đổi tên của đối tượng đỉnh", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("Chỉ được đổi tên của đối tượng đỉnh", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
     }
