@@ -1,0 +1,17 @@
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\bin\Debug\LTDT_project.exe.config
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\bin\Debug\LTDT_project.exe
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\bin\Debug\LTDT_project.pdb
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csprojAssemblyReference.cache
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Form1.resources
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Properties.Resources.resources
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.GenerateResource.cache
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.CoreCompileInputs.cache
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.exe
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.pdb
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\bin\Debug\itextsharp.dll
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\bin\Debug\WebDriver.dll
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\bin\Debug\itextsharp.xml
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\bin\Debug\WebDriver.xml
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.ResolveComReference.cache
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.CopyComplete

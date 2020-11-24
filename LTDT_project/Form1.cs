@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -61,21 +62,24 @@ namespace LTDT_project
         }
         bool KtMau(int r,int b,int g)
         {
-            if (LechMau(219, r) == true || LechMau(219, b) == true || LechMau(219, g) == true) return false;
+            int dem = 0;
+            if (SoDinhLienThong==0) return true;
             for (int i = 0; i < SoDinhLienThong; i++)
             {
-                if (LechMau(paint[i].r, r)==true || LechMau(paint[i].b,b)==true || LechMau(paint[i].g,g)==true) return false;
+                if (LechMau(paint[i].r, r)==false || LechMau(paint[i].b,b)==false || LechMau(paint[i].g,g)==false) dem++;
             }
-            return true;
+            return dem==SoDinhLienThong;
         }
         void CapNhatDS_dinhdi()
         {
+            listBox1.Items.Clear();
             comboBox1.Items.Clear();
             Dijsktra_di.Items.Clear();
-            foreach(string i in listBox1.Items)
+            for(int i = 0;i<iDinh;i++)
             {
-                comboBox1.Items.Add(i);
-                Dijsktra_di.Items.Add(i);
+                listBox1.Items.Add(tenDinh[i]);
+                comboBox1.Items.Add(tenDinh[i]);
+                Dijsktra_di.Items.Add(tenDinh[i]);
             }
             comboBox1.Items.Add("");
             Dijsktra_di.Items.Add("");
@@ -299,13 +303,7 @@ namespace LTDT_project
                 string[] line = File.ReadAllLines(path);
                 int soDinh = int.Parse(line[0].Trim());
               //  iDinh = soDinh;
-                for(int j =0;j < soDinh; j++)
-                {
-                    listBox1.Items.Add("L"+j.ToString());
-                    //comboBox1.Items.Add("L" + j.ToString());
-                    TaoDinhAuto("L"+j.ToString());
-                    //pictureBox1.Refresh();
-                }
+              
                 //string[] weight;
                 for(int i = 0;i < soDinh; i++)
                 {
@@ -314,6 +312,22 @@ namespace LTDT_project
                     {
                         Matran[i, j] = int.Parse(weight[j]);
                     }
+                }
+                for (int j = 0; j < soDinh; j++)
+                {
+                    string ten;
+                    try
+                    {
+                        ten = line[soDinh + 1 + j].Trim();
+                    }
+                    catch
+                    {
+                        ten = $"L{j}";
+                    }
+                    listBox1.Items.Add(ten);
+                    //comboBox1.Items.Add("L" + j.ToString());
+                    TaoDinhAuto(ten);
+                    //pictureBox1.Refresh();
                 }
             }
             XetDoThiHopLe xet = new XetDoThiHopLe();
@@ -603,7 +617,7 @@ namespace LTDT_project
             doThi.iMaTran = Matran;
             doThi.iSoDinh = iDinh;
             tp_lienThong = x.xuatMienLienThong(doThi);
-            //MessageBox.Show(string.Join("\n",tp_lienThong));
+            //MessageBox.Show(tenDinh[10].ToString());
             int SoMienLT = int.Parse(tp_lienThong[0]);
             for (int i = 1;i <= SoMienLT; i++)
             {
@@ -615,18 +629,21 @@ namespace LTDT_project
                     int  g = rnd.Next(0, 256);
                     if (r != b && r != g && g != r && KtMau(r, b, g) == true)
                     {
-                        foreach (char dinhlienthong in tp_lienThong[i])
+                        string[] tachtp = tp_lienThong[i].Split(' ');
+                       // MessageBox.Show(string.Join("\n",tachtp));
+                        foreach (string dinhlienthong in tachtp)
                         {
-                            if (dinhlienthong != ' ')
+                            if (dinhlienthong != "")
                             {
-                                paint[SoDinhLienThong].index = dinhlienthong - '0';
+                                // int a = int.Parse(dinhlienthong);
+                                //MessageBox.Show(dinhlienthong);
+                                paint[SoDinhLienThong].index = int.Parse(dinhlienthong);
                                 //MessageBox.Show($"{(dinhlienthong - '0').ToString()}");
                                 paint[SoDinhLienThong].r = r;
                                 paint[SoDinhLienThong].b = b;
                                 paint[SoDinhLienThong].g = g;
                                 SoDinhLienThong++;
                             }
-
                         }
                         break;
                     }
@@ -674,17 +691,19 @@ namespace LTDT_project
                 Dijsktra dijsktra = new Dijsktra();
                 x.sodinh = iDinh;
                 x.mt = Matran;
-                x.di = indexDinh(Dijsktra_di.Text);
-                x.den = indexDinh(Dijstra_den.Text);
+                x.di = indexDinh(Dijsktra_di.Text)+1;
+                x.den = indexDinh(Dijstra_den.Text)+1;
+               // MessageBox.Show(x.den.ToString());
                 duongdi = dijsktra.TimDuong(x);
                 int n = duongdi[0];
-                // MessageBox.Show(duongdi[0].ToString());
+                // MessageBox.Show(string.Join("\n",duongdi));
                 if (n > 0)
                 {
                     dij = true;
                     SoDinhLienThong = 0;
                     for (int i = n - 1; i > 1; i--)
                     {
+                     //   MessageBox.Show((duongdi[i] - 1).ToString());
                         Random rnd = new Random();
                         while (true)
                         {
@@ -693,26 +712,24 @@ namespace LTDT_project
                             int g = rnd.Next(0, 256);
                             if (r != b && r != g && g != r && KtMau(r, b, g) == true)
                             {
-                                paint[SoDinhLienThong].index = duongdi[i];
-                                //MessageBox.Show($"{(dinhlienthong - '0').ToString()}");
+                                paint[SoDinhLienThong].index = duongdi[i]-1;
+                               // MessageBox.Show($"{(duongdi[i] - 1)}");
                                 paint[SoDinhLienThong].r = r;
                                 paint[SoDinhLienThong].b = b;
                                 paint[SoDinhLienThong].g = g;
                                 SoDinhLienThong++;
                                 break;
                             }
-                            else continue;
+                           // else continue;
                         }
                     }
                     tmp = SoDinhLienThong;
-                    pictureBox1.Refresh();
-                   // sdd += tenDinh[duongdi[2]];
-                  //  richTextBox1.Text = sdd;
+                     pictureBox1.Refresh();
                     textBox2.Text = duongdi[1].ToString();
                     dij = false;
                     SoDinhLienThong = 0;
                 }
-                else MessageBox.Show("Không timg thấy đường đi", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else MessageBox.Show("Không tìm thấy đường đi", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -724,6 +741,51 @@ namespace LTDT_project
             pictureBox1.Refresh();
             dij = OnlyPath = false;
             SoDinhLienThong = 0;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (listBox1.Items.Count != 0)
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string save = iDinh.ToString() + "\n";
+                    for(int i = 0; i < iDinh; i++)
+                    {
+                        for(int j = 0; j < iDinh; j++)
+                        {
+                            save += Matran[i, j].ToString() + " ";
+                        }
+                        save += "\n";
+                    }
+                    for(int i = 0; i < iDinh; i++)
+                    {
+                        save+=tenDinh[i];
+                        if (i < iDinh - 1) save += "\n";
+                    }
+                    StreamWriter stream = new StreamWriter(saveFileDialog1.FileName);
+                    stream.WriteLine(save);
+                    stream.Close();
+                }
+            }
+        }
+
+        private void DoitenDinh_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text[0] == 'Đ')
+            {
+                string rename = Interaction.InputBox("Nhập tên mới", "Đổi tên đỉnh");
+                string name = textBox1.Text.Substring(6);
+                tenDinh[indexDinh(name)] = rename;
+                CapNhatDS_dinhdi();
+                HienThiMaTran();
+                DocCanhMaTran(iDinh);
+                pictureBox1.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Chỉ được đổi tên của đối tượng đỉnh", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

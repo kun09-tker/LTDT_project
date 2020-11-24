@@ -70,6 +70,8 @@
             this.Dijstra_den = new System.Windows.Forms.ComboBox();
             this.button8 = new System.Windows.Forms.Button();
             this.thoi_kiemlienthong = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.DoitenDinh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -96,16 +98,16 @@
             this.textBox1.Location = new System.Drawing.Point(16, 33);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(225, 20);
+            this.textBox1.Size = new System.Drawing.Size(141, 20);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(16, 56);
+            this.button3.Location = new System.Drawing.Point(16, 60);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(114, 28);
+            this.button3.Size = new System.Drawing.Size(141, 24);
             this.button3.TabIndex = 5;
             this.button3.Text = "Xóa";
             this.button3.UseVisualStyleBackColor = true;
@@ -114,9 +116,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(247, 33);
+            this.button2.Location = new System.Drawing.Point(279, 33);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(127, 25);
+            this.button2.Size = new System.Drawing.Size(95, 25);
             this.button2.TabIndex = 4;
             this.button2.Text = "Đọc file";
             this.button2.UseVisualStyleBackColor = true;
@@ -219,9 +221,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(136, 57);
+            this.button1.Location = new System.Drawing.Point(163, 59);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 28);
+            this.button1.Size = new System.Drawing.Size(114, 25);
             this.button1.TabIndex = 11;
             this.button1.Text = "Làm mới";
             this.button1.UseVisualStyleBackColor = true;
@@ -361,12 +363,13 @@
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(247, 60);
+            this.button6.Location = new System.Drawing.Point(279, 60);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(127, 25);
+            this.button6.Size = new System.Drawing.Size(95, 25);
             this.button6.TabIndex = 17;
             this.button6.Text = "Lưu file";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // groupBox6
             // 
@@ -518,11 +521,23 @@
             this.thoi_kiemlienthong.UseVisualStyleBackColor = true;
             this.thoi_kiemlienthong.Click += new System.EventHandler(this.thoi_kiemlienthong_Click);
             // 
+            // DoitenDinh
+            // 
+            this.DoitenDinh.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DoitenDinh.Location = new System.Drawing.Point(164, 31);
+            this.DoitenDinh.Name = "DoitenDinh";
+            this.DoitenDinh.Size = new System.Drawing.Size(112, 23);
+            this.DoitenDinh.TabIndex = 22;
+            this.DoitenDinh.Text = "Đổi tên đỉnh";
+            this.DoitenDinh.UseVisualStyleBackColor = true;
+            this.DoitenDinh.Click += new System.EventHandler(this.DoitenDinh_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1218, 460);
+            this.Controls.Add(this.DoitenDinh);
             this.Controls.Add(this.thoi_kiemlienthong);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
@@ -603,6 +618,8 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button DoitenDinh;
     }
 }
 
