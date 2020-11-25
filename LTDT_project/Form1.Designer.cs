@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -59,6 +60,8 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.lienthong_kt = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.button7 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -205,7 +208,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(108)))), ((int)(((byte)(108)))));
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(3, 25);
@@ -343,7 +346,7 @@
             this.groupBox5.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(892, 33);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(316, 316);
+            this.groupBox5.Size = new System.Drawing.Size(424, 242);
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Ma trận kề";
@@ -355,7 +358,7 @@
             this.listView2.HideSelection = false;
             this.listView2.Location = new System.Drawing.Point(7, 24);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(304, 283);
+            this.listView2.Size = new System.Drawing.Size(411, 211);
             this.listView2.TabIndex = 0;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.Details;
@@ -395,6 +398,8 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.radioButton2);
+            this.groupBox7.Controls.Add(this.radioButton1);
             this.groupBox7.Controls.Add(this.button7);
             this.groupBox7.Controls.Add(this.label9);
             this.groupBox7.Controls.Add(this.textBox2);
@@ -408,17 +413,41 @@
             this.groupBox7.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.Location = new System.Drawing.Point(541, 352);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(662, 97);
+            this.groupBox7.Size = new System.Drawing.Size(775, 97);
             this.groupBox7.TabIndex = 21;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Dijsktra";
+            this.groupBox7.Text = "Tìm đường đi";
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton2.Location = new System.Drawing.Point(263, 30);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(78, 22);
+            this.radioButton2.TabIndex = 30;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Dài nhất";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(163, 30);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(90, 22);
+            this.radioButton1.TabIndex = 29;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Ngắn nhất";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(509, 32);
+            this.button7.Location = new System.Drawing.Point(430, 42);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(126, 25);
+            this.button7.Size = new System.Drawing.Size(86, 48);
             this.button7.TabIndex = 22;
             this.button7.Text = "Chỉ hiện đường đi";
             this.button7.UseVisualStyleBackColor = true;
@@ -427,7 +456,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(250, 36);
+            this.label9.Location = new System.Drawing.Point(350, 30);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 22);
             this.label9.TabIndex = 28;
@@ -436,7 +465,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(254, 61);
+            this.textBox2.Location = new System.Drawing.Point(351, 61);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(64, 22);
@@ -445,18 +474,20 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(332, 35);
+            this.label8.Location = new System.Drawing.Point(426, 17);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(80, 22);
+            this.label8.Size = new System.Drawing.Size(90, 22);
             this.label8.TabIndex = 26;
-            this.label8.Text = "Tứ tự đi :";
+            this.label8.Text = "Thứ tự đi :";
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(336, 60);
+            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.richTextBox1.ForeColor = System.Drawing.SystemColors.Menu;
+            this.richTextBox1.Location = new System.Drawing.Point(522, 17);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(299, 24);
+            this.richTextBox1.Size = new System.Drawing.Size(247, 73);
             this.richTextBox1.TabIndex = 25;
             this.richTextBox1.Text = "";
             // 
@@ -502,9 +533,9 @@
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(161, 27);
+            this.button8.Location = new System.Drawing.Point(161, 59);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(86, 57);
+            this.button8.Size = new System.Drawing.Size(180, 25);
             this.button8.TabIndex = 19;
             this.button8.Text = "Tìm đường đi";
             this.button8.UseVisualStyleBackColor = true;
@@ -536,7 +567,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1218, 460);
+            this.ClientSize = new System.Drawing.Size(1322, 460);
             this.Controls.Add(this.DoitenDinh);
             this.Controls.Add(this.thoi_kiemlienthong);
             this.Controls.Add(this.groupBox7);
@@ -555,6 +586,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -620,6 +652,8 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button DoitenDinh;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
 

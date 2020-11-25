@@ -208,7 +208,8 @@ namespace LTDT_project
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+            radioButton1.Checked = true;
+            radioButton2.Checked = false;
             button3.Enabled = false;
         }
         private void button3_Click(object sender, EventArgs e)
@@ -403,7 +404,7 @@ namespace LTDT_project
             Graphics g;
             SolidBrush maunenDinh = new SolidBrush(Color.Aqua);
             SolidBrush mauchuDinh = new SolidBrush(Color.Black);
-            SolidBrush khoangtrong = new SolidBrush(Color.FromArgb(219, 219, 219));
+            SolidBrush khoangtrong = new SolidBrush(Color.FromArgb(108, 108, 108));
             Pen line = new Pen(mauchuDinh);
             g = e.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
@@ -678,23 +679,38 @@ namespace LTDT_project
             textBox2.Text = "";
             if (Dijstra_den.Text != "" && Dijsktra_di.Text != "")
             {
-                for(int i = 0; i < iDinh; i++)
+                for (int i = 0; i < iDinh; i++)
                 {
                     luuVetdinh[i] = false;
-                    for(int j = 0; j < iDinh; j++)
+                    for (int j = 0; j < iDinh; j++)
                     {
                         luuVetcanh[i, j] = false;
                     }
                 }
                 int[] duongdi;
-                Dijsktra.DuLieu x = new Dijsktra.DuLieu();
-                Dijsktra dijsktra = new Dijsktra();
-                x.sodinh = iDinh;
-                x.mt = Matran;
-                x.di = indexDinh(Dijsktra_di.Text)+1;
-                x.den = indexDinh(Dijstra_den.Text)+1;
-               // MessageBox.Show(x.den.ToString());
-                duongdi = dijsktra.TimDuong(x);
+                if (radioButton1.Checked)
+                {
+                    Dijsktra.DuLieu x = new Dijsktra.DuLieu();
+                    Dijsktra dijsktra = new Dijsktra();
+                    x.sodinh = iDinh;
+                    x.mt = Matran;
+                    x.di = indexDinh(Dijsktra_di.Text) + 1;
+                    x.den = indexDinh(Dijstra_den.Text) + 1;
+                    // MessageBox.Show(x.den.ToString());
+                    duongdi = dijsktra.TimDuong(x);
+                }
+                else
+                {
+                    DijsktraDao.DuLieu x = new DijsktraDao.DuLieu();
+                    DijsktraDao dijsktraDao = new DijsktraDao();
+                    x.sodinh = iDinh;
+                    x.mt = Matran;
+                    x.di = indexDinh(Dijsktra_di.Text)+1;
+                    x.den = indexDinh(Dijstra_den.Text)+1;
+                    // MessageBox.Show(x.den.ToString());
+                    duongdi = dijsktraDao.TimDuong(x);
+                    Array.Reverse(duongdi, 2, duongdi[0]-2);
+                }
                 int n = duongdi[0];
                 // MessageBox.Show(string.Join("\n",duongdi));
                 if (n > 0)
@@ -703,7 +719,7 @@ namespace LTDT_project
                     SoDinhLienThong = 0;
                     for (int i = n - 1; i > 1; i--)
                     {
-                     //   MessageBox.Show((duongdi[i] - 1).ToString());
+                        //   MessageBox.Show((duongdi[i] - 1).ToString());
                         Random rnd = new Random();
                         while (true)
                         {
@@ -713,18 +729,18 @@ namespace LTDT_project
                             if (r != b && r != g && g != r && KtMau(r, b, g) == true)
                             {
                                 paint[SoDinhLienThong].index = duongdi[i]-1;
-                               // MessageBox.Show($"{(duongdi[i] - 1)}");
+                                // MessageBox.Show($"{(duongdi[i] - 1)}");
                                 paint[SoDinhLienThong].r = r;
                                 paint[SoDinhLienThong].b = b;
                                 paint[SoDinhLienThong].g = g;
                                 SoDinhLienThong++;
                                 break;
                             }
-                           // else continue;
+                            // else continue;
                         }
                     }
                     tmp = SoDinhLienThong;
-                     pictureBox1.Refresh();
+                    pictureBox1.Refresh();
                     textBox2.Text = duongdi[1].ToString();
                     dij = false;
                     SoDinhLienThong = 0;
@@ -735,12 +751,15 @@ namespace LTDT_project
 
         private void button7_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text= "";
-            SoDinhLienThong = tmp;
-            dij = OnlyPath = true;
-            pictureBox1.Refresh();
-            dij = OnlyPath = false;
-            SoDinhLienThong = 0;
+            if (tmp > 0)
+            {
+                richTextBox1.Text = "";
+                SoDinhLienThong = tmp;
+                dij = OnlyPath = true;
+                pictureBox1.Refresh();
+                dij = OnlyPath = false;
+                SoDinhLienThong = 0;
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
