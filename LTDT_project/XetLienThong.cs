@@ -31,7 +31,7 @@ namespace LTDT_project
 				//cout << i <<endl;
 				for (int j = 0; j < g.iSoDinh; j++)
 				{
-					if ((visited[j] == 0) && (g.iMaTran[x,j] != 0))
+					if ((visited[j] == 0) && (g.iMaTran[x,j] != int.MinValue))
 					{
 						//cout << j <<endl;
 						q[q_count]=j;

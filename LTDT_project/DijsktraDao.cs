@@ -28,7 +28,7 @@ namespace LTDT_project
             {
                 for(int j = 0; j < x.sodinh; j++)
                 {
-                    mts[i + 1, j + 1] = x.mt[i, j];
+                     mts[i + 1, j + 1] = x.mt[i, j];
                 }
             }
             Dijkstra(x.di, x.den, x.sodinh, ref totalLength, LastV, mts);
@@ -65,7 +65,7 @@ namespace LTDT_project
             {
                 for (int k = 1; k <= soDinh; k++)
                 {
-                    if (MaTran[v, k] != 0 && ThuocT[k] == true && (Length[k] == -1 || Length[k] < Length[v] + MaTran[v, k]))
+                    if (MaTran[v, k] != int.MinValue && ThuocT[k] == true && (Length[k] == -1 || Length[k] < Length[v] + MaTran[v, k]))
                     {
                         Length[k] = Length[v] + MaTran[v, k];
                         Last[k] = v;

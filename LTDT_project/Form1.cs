@@ -37,6 +37,7 @@ namespace LTDT_project
         int iDinh = 0;
         int SoDinhLienThong = 0;
         int tmp = 0;
+        int imin = int.MinValue;
         int[,] Matran = new int [100,100];
         bool[,] luuVetcanh = new bool[100, 100];
         bool[] luuVetdinh = new bool[100];
@@ -52,23 +53,27 @@ namespace LTDT_project
         {
             for(int i = 0; i < iDinh; i++)
             {
-                Matran[i, i] = 0;
+                Matran[i, i] = int.MinValue;
             }
         }
         bool LechMau(int m1,int m2)
         {
-            if (Math.Abs(m1 - m2) < 30) return true;
+            if (Math.Abs(m1 - m2) < 50) return true;
             return false;
         }
         bool KtMau(int r,int b,int g)
         {
             int dem = 0;
-            if (SoDinhLienThong==0) return true;
-            for (int i = 0; i < SoDinhLienThong; i++)
+            if (r+g+b <=370)
             {
-                if (LechMau(paint[i].r, r)==false || LechMau(paint[i].b,b)==false || LechMau(paint[i].g,g)==false) dem++;
+                if (SoDinhLienThong == 0) return true;
+                for (int i = 0; i < SoDinhLienThong; i++)
+                {
+                    if (LechMau(paint[i].r, r) == false || LechMau(paint[i].b, b) == false || LechMau(paint[i].g, g) == false) dem++;
+                }
+                return dem == SoDinhLienThong;
             }
-            return dem==SoDinhLienThong;
+            return false;
         }
         void CapNhatDS_dinhdi()
         {
@@ -83,30 +88,6 @@ namespace LTDT_project
             }
             comboBox1.Items.Add("");
             Dijsktra_di.Items.Add("");
-        }
-        void HienThiMaTran()
-        {
-            listView2.Items.Clear();
-            listView2.Columns.Clear();
-            listView2.Columns.Add("*");
-            for(int i = 0; i < iDinh; i++)
-            {
-                listView2.Columns.Add(tenDinh[i]);
-               // listView2.Columns[i].Width = 30;
-            }
-            ListViewItem matran;
-            string[] a = new string[iDinh + 1];
-            for(int i = 0; i < iDinh; i++)
-            {
-                a[0] = tenDinh[i];
-                for(int j = 0;j < iDinh; j++)
-                {
-                    if (Matran[i, j] == 0) a[j + 1] = "∞";
-                    else a[j + 1] = Matran[i, j].ToString();
-                }
-                matran = new ListViewItem(a);
-                listView2.Items.Add(matran);
-            }
         }
         bool khoangcachDinh(int x,int y)
         {
@@ -123,8 +104,8 @@ namespace LTDT_project
             Random rnd = new Random();
             int randomX, randomY;
             while (true){
-                randomX = rnd.Next(30, 461);
-                randomY = rnd.Next(5, 251);
+                randomX = rnd.Next(12, 885);
+                randomY = rnd.Next(12, 400);
                 if (!khoangcachDinh(randomX, randomY))
                 {
                     Dinh[iDinh] = new Point(randomX, randomY);
@@ -162,7 +143,7 @@ namespace LTDT_project
                 luuVetdinh[i] = false;
                 for(int j = 0; j < iDinh; j++)
                 {
-                    Matran[i, j] = 0;
+                    Matran[i, j] = int.MinValue;
                     luuVetcanh[i, j] = false;
                 }
             }
@@ -170,7 +151,7 @@ namespace LTDT_project
             di = den = path = "";
             vertex = edge = dij = OnlyPath = false;
             pictureBox1.Refresh();
-            HienThiMaTran();
+             
         }
         void DocCanhMaTran(int soDinh)
         {
@@ -181,7 +162,7 @@ namespace LTDT_project
             {
                 for(int j= 0; j < soDinh; j++)
                 {
-                    if (Matran[i, j] != 0)
+                    if (Matran[i, j] != int.MinValue)
                     {
                         a[0] = tenDinh[i];
                         a[1] = tenDinh[j];
@@ -210,90 +191,9 @@ namespace LTDT_project
         {
             radioButton1.Checked = true;
             radioButton2.Checked = false;
-            button3.Enabled = false;
+           // button3.Enabled = false;
+            //MessageBox.Show(int.MinValue.ToString());
         }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (vertex)
-            {
-                var confirmation = MessageBox.Show(
-                        "Bạn chắc rằng muốn xóa ?", "Hệ thống", MessageBoxButtons.YesNo, MessageBoxIcon.Question
-                    );
-                if (confirmation == DialogResult.Yes)
-                {
-                    bool duplicate = false;
-                    foreach (var node in listBox1.Items)
-                    {
-                        if (node.ToString() == textBox1.Text.Substring(6))
-                        {
-                            int index = indexDinh(textBox1.Text.Substring(6));
-                           // MessageBox.Show(index.ToString());
-                            // MessageBox.Show(index.ToString());
-                            duplicate = true;
-                            for (int i = index; i < iDinh - 1; i++)
-                            {
-                                Dinh[i] = Dinh[i + 1];
-                                tenDinh[i] = tenDinh[i + 1];
-                            }
-                            for(int i=index;i < iDinh; i++)
-                            {
-                                for(int j = 0; j < iDinh; j++)
-                                {
-                                    Matran[i, j] = Matran[i + 1, j];
-                                    Matran[j, i] = Matran[j, i + 1];
-                                }
-                            }
-                            iDinh--;
-                            listBox1.Items.Remove(node);
-                            break;
-                        }
-                    }
-                    if (!duplicate)
-                    {
-                        MessageBox.Show("Đỉnh này không tìm thấy để xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Xóa thất bại rồi :( ", "Hệ thống",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (edge)
-            {
-                if (listView1.SelectedItems != null)
-                {
-                    var confirmation = MessageBox.Show(
-                        "Bạn chắc rằng muốn xóa ?","Hệ thống", MessageBoxButtons.YesNo, MessageBoxIcon.Question
-                    );
-
-                    if (confirmation == DialogResult.Yes)
-                    {
-                        for (int i = 0; i < listView1.Items.Count; i++)
-                        {
-                            if (listView1.Items[i].Selected)
-                            {
-                                listView1.Items[i].Remove();
-                                Matran[indexDinh(di), indexDinh(den)] = 0;
-                                Matran[indexDinh(den), indexDinh(di)] = 0;
-                                i--;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Xóa thất bại rồi :( ", "Hệ thống",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            DinhDangLaiMaTran();
-            pictureBox1.Refresh();
-            DocCanhMaTran(iDinh);
-            CapNhatDS_dinhdi();
-            HienThiMaTran();
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             LamMoi();
@@ -311,7 +211,9 @@ namespace LTDT_project
                     string[] weight = line[i + 1].Split(' ');
                     for(int j = 0;j< soDinh; j++)
                     {
-                        Matran[i, j] = int.Parse(weight[j]);
+                        if (weight[j] == "∞") Matran[i, j] = int.MinValue;
+                       // else if (int.Parse(weight[j]) == 0) Matran[i, j] = int.MinValue;
+                        else Matran[i, j] = int.Parse(weight[j]);
                     }
                 }
                 for (int j = 0; j < soDinh; j++)
@@ -340,7 +242,7 @@ namespace LTDT_project
                 pictureBox1.Refresh();
                 //LamMoi();
                 DocCanhMaTran(iDinh);
-                HienThiMaTran();
+                 
             }
             else
             {
@@ -369,14 +271,16 @@ namespace LTDT_project
                 {
                     if (!kc)
                     {
+
                         tenDinh[iDinh] = ten;
+                        MessageBox.Show($"{e.X} {e.Y}");
                         Dinh[iDinh] = new Point(e.X, e.Y);
                         listBox1.Items.Add(ten);
-                        iDinh++;
-                        for(int k = 0; k < iDinh; k++)
+                        for(int k = 0; k <=iDinh; k++)
                         {
-                            Matran[iDinh, k] = Matran[k, iDinh] = 0;
+                            Matran[iDinh, k] = Matran[k, iDinh] = imin;
                         }
+                        iDinh++;
                     }
                     else
                     {
@@ -389,23 +293,19 @@ namespace LTDT_project
                     MessageBox.Show("Đỉnh này đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
-            {
-                MessageBox.Show("Vui lòng nhập tên đỉnh", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             DinhDangLaiMaTran();
             CapNhatDS_dinhdi();
             pictureBox1.Refresh();
-            HienThiMaTran();
+             
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g;
-            SolidBrush maunenDinh = new SolidBrush(Color.Aqua);
+            SolidBrush maunenDinh = new SolidBrush(Color.BurlyWood);
             SolidBrush mauchuDinh = new SolidBrush(Color.Black);
-            SolidBrush khoangtrong = new SolidBrush(Color.FromArgb(108, 108, 108));
-            Pen line = new Pen(mauchuDinh);
+            SolidBrush khoangtrong = new SolidBrush(Color.FromArgb(224, 224, 224));
+            Pen line = new Pen(maunenDinh);
             g = e.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
             iTextSharp.text.Font f1 = FontFactory.GetFont(iTextSharp.text.Font.FontFamily.TIMES_ROMAN.ToString(), 25, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLUE);
@@ -426,7 +326,7 @@ namespace LTDT_project
                 {
                     for (int j = 0; j <= i; j++)
                     {
-                        if (Matran[i, j] != 0)
+                        if (Matran[i, j] != int.MinValue)
                         {
                             g.DrawLine(line, Dinh[i], Dinh[j]);
                             g.FillEllipse(khoangtrong, (Dinh[i].X + Dinh[j].X) / 2 - 5, (Dinh[i].Y + Dinh[j].Y) / 2 - 5, 10, 10);
@@ -448,7 +348,7 @@ namespace LTDT_project
                     g.DrawString(tenDinh[paint[i].index], f2, mauchuDinh, Dinh[paint[i].index].X - 5, Dinh[paint[i].index].Y - 5);
                     for (int j = 0; j < SoDinhLienThong; j++)
                     {
-                        if (paint[i].r == paint[j].r && paint[i].b == paint[j].b && paint[i].g == paint[j].g&&Matran[paint[i].index, paint[j].index] !=0)
+                        if (paint[i].r == paint[j].r && paint[i].b == paint[j].b && paint[i].g == paint[j].g&&Matran[paint[i].index, paint[j].index] !=int.MinValue)
                         {
                             maulienthong = new SolidBrush(Color.FromArgb(paint[i].r, paint[i].b, paint[i].g));
                             Pen paintLienThong = new Pen(maulienthong);
@@ -499,7 +399,7 @@ namespace LTDT_project
                     {
                         for (int j = 0; j <= i; j++)
                         {
-                            if (Matran[i, j] != 0 && !luuVetcanh[i, j])
+                            if (Matran[i, j] != int.MinValue && !luuVetcanh[i, j])
                             {
                                 g.DrawLine(line, Dinh[i], Dinh[j]);
                                 g.FillEllipse(khoangtrong, (Dinh[i].X + Dinh[j].X) / 2 - 5, (Dinh[i].Y + Dinh[j].Y) / 2 - 5, 10, 10);
@@ -568,8 +468,8 @@ namespace LTDT_project
                 int randomX, randomY;
                 while (true)
                 {
-                    randomX = rnd.Next(30, 461);
-                    randomY = rnd.Next(5, 251);
+                    randomX = rnd.Next(12,885 );
+                    randomY = rnd.Next(12, 400);
                     if (!khoangcachDinh(randomX, randomY))
                     {
                         Dinh[i].X = randomX;
@@ -607,7 +507,7 @@ namespace LTDT_project
             }
             pictureBox1.Refresh();
             DocCanhMaTran(iDinh);
-            HienThiMaTran();
+             
         }
 
         private void lienthong_kt_Click(object sender, EventArgs e)
@@ -705,11 +605,11 @@ namespace LTDT_project
                     DijsktraDao dijsktraDao = new DijsktraDao();
                     x.sodinh = iDinh;
                     x.mt = Matran;
-                    x.di = indexDinh(Dijsktra_di.Text)+1;
-                    x.den = indexDinh(Dijstra_den.Text)+1;
+                    x.di = indexDinh(Dijsktra_di.Text) + 1;
+                    x.den = indexDinh(Dijstra_den.Text) + 1;
                     // MessageBox.Show(x.den.ToString());
                     duongdi = dijsktraDao.TimDuong(x);
-                    Array.Reverse(duongdi, 2, duongdi[0]-2);
+                    Array.Reverse(duongdi, 2, duongdi[0] - 2);
                 }
                 int n = duongdi[0];
                 // MessageBox.Show(string.Join("\n",duongdi));
@@ -728,7 +628,7 @@ namespace LTDT_project
                             int g = rnd.Next(0, 256);
                             if (r != b && r != g && g != r && KtMau(r, b, g) == true)
                             {
-                                paint[SoDinhLienThong].index = duongdi[i]-1;
+                                paint[SoDinhLienThong].index = duongdi[i] - 1;
                                 // MessageBox.Show($"{(duongdi[i] - 1)}");
                                 paint[SoDinhLienThong].r = r;
                                 paint[SoDinhLienThong].b = b;
@@ -747,6 +647,7 @@ namespace LTDT_project
                 }
                 else MessageBox.Show("Không tìm thấy đường đi", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else pictureBox1.Refresh();
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -773,7 +674,8 @@ namespace LTDT_project
                     {
                         for(int j = 0; j < iDinh; j++)
                         {
-                            save += Matran[i, j].ToString() + " ";
+                            if (Matran[i, j] == int.MinValue) save += "∞ ";
+                            else save += Matran[i, j].ToString() + " ";
                         }
                         save += "\n";
                     }
@@ -789,7 +691,91 @@ namespace LTDT_project
             }
         }
 
-        private void DoitenDinh_Click(object sender, EventArgs e)
+
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            if (vertex)
+            {
+                var confirmation = MessageBox.Show(
+                        "Bạn chắc rằng muốn xóa ?", "Hệ thống", MessageBoxButtons.YesNo, MessageBoxIcon.Question
+                    );
+                if (confirmation == DialogResult.Yes)
+                {
+                    bool duplicate = false;
+                    foreach (var node in listBox1.Items)
+                    {
+                        if (node.ToString() == textBox1.Text.Substring(6))
+                        {
+                            int index = indexDinh(textBox1.Text.Substring(6));
+                            // MessageBox.Show(index.ToString());
+                            // MessageBox.Show(index.ToString());
+                            duplicate = true;
+                            for (int i = index; i < iDinh - 1; i++)
+                            {
+                                Dinh[i] = Dinh[i + 1];
+                                tenDinh[i] = tenDinh[i + 1];
+                            }
+                            for (int i = index; i < iDinh; i++)
+                            {
+                                for (int j = 0; j < iDinh; j++)
+                                {
+                                    Matran[i, j] = Matran[i + 1, j];
+                                    Matran[j, i] = Matran[j, i + 1];
+                                }
+                            }
+                            iDinh--;
+                            listBox1.Items.Remove(node);
+                            break;
+                        }
+                    }
+                    if (!duplicate)
+                    {
+                        MessageBox.Show("Đỉnh này không tìm thấy để xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thất bại rồi :( ", "Hệ thống",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (edge)
+            {
+                if (listView1.SelectedItems != null)
+                {
+                    var confirmation = MessageBox.Show(
+                        "Bạn chắc rằng muốn xóa ?", "Hệ thống", MessageBoxButtons.YesNo, MessageBoxIcon.Question
+                    );
+
+                    if (confirmation == DialogResult.Yes)
+                    {
+                        for (int i = 0; i < listView1.Items.Count; i++)
+                        {
+                            if (listView1.Items[i].Selected)
+                            {
+                                listView1.Items[i].Remove();
+                                Matran[indexDinh(di), indexDinh(den)] = int.MinValue;
+                                Matran[indexDinh(den), indexDinh(di)] = int.MinValue;
+                                i--;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thất bại rồi :( ", "Hệ thống",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            DinhDangLaiMaTran();
+            pictureBox1.Refresh();
+            DocCanhMaTran(iDinh);
+            CapNhatDS_dinhdi();
+             
+        }
+
+        private void DoitenDinh_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -799,7 +785,7 @@ namespace LTDT_project
                     string name = textBox1.Text.Substring(6);
                     tenDinh[indexDinh(name)] = rename;
                     CapNhatDS_dinhdi();
-                    HienThiMaTran();
+                     
                     DocCanhMaTran(iDinh);
                     pictureBox1.Refresh();
                 }
@@ -812,6 +798,16 @@ namespace LTDT_project
             {
 
             }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            XuatMatranKe matranKe = new XuatMatranKe();
+            matranKe.mt = Matran;
+            matranKe.sodinh = iDinh;
+            matranKe.tenDinh = tenDinh;
+            //MessageBox.Show(tenDinh[2].Length.ToString());
+            matranKe.ShowDialog();
         }
     }
 }

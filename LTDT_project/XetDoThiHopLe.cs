@@ -18,7 +18,7 @@ namespace LTDT_project
 			for (int i = 0; i < dt.iSodinh; i++)
 			{
 				for (int j = 0; j < dt.iSodinh; j++)
-					if (dt.iMaTran[i,i] != 0) return false;
+					if (dt.iMaTran[i,i] != int.MinValue) return false;
 			}
 			return true;
 		}

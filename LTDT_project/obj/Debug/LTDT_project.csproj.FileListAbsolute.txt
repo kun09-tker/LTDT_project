@@ -15,3 +15,4 @@ C:\Users\kun\source\repos\LTDT_project\LTDT_project\bin\Debug\itextsharp.xml
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\bin\Debug\WebDriver.xml
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.ResolveComReference.cache
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.CopyComplete
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.XuatMatranKe.resources
