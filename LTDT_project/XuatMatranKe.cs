@@ -32,11 +32,11 @@ namespace LTDT_project
             {
                 tmp += " ";
             } 
-            Size size = new Size((max)*(sodinh)*9,(max)*(sodinh)*9);
+           // Size size = new Size((max)*(sodinh)*9,(max)*(sodinh)*9);
             /// listView1.Size = size;
             //this.Size = sizeForm;
-            listView1.Size = size;
-            this.AutoSize = true;
+          //  listView1.Size = size;
+           // this.AutoSize = true;
             listView1.Items.Clear();
             listView1.Columns.Clear();
             listView1.Columns.Add("*"+tmp);
@@ -58,7 +58,20 @@ namespace LTDT_project
                 matran = new ListViewItem(a);
                 listView1.Items.Add(matran);
             }
-            listView1.ShowItemToolTips = true;
+            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            int headerSize = 0;
+            foreach (ColumnHeader header in listView1.Columns)
+            {
+                headerSize += header.Width;
+            }
+            listView1.Width = headerSize + 7;
+            int height = 22;
+            for (int n = 0; n < listView1.Items.Count; n++)
+            {
+                height += listView1.GetItemRect(n).Height;
+            }
+            listView1.Height = height + 7;
+            this.AutoSize = true;
         }
     }
 }
