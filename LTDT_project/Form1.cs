@@ -49,6 +49,39 @@ namespace LTDT_project
         string den="";
         string path="";
         //====================================Bổ trợ=======================
+        void Mess(string title, string text, System.Drawing.Image anh, Icon icon)
+        {
+            PictureBox pictureE = new PictureBox();
+            pictureE.Image = anh;
+            pictureE.Location = new Point(12, 12);
+            pictureE.SizeMode = PictureBoxSizeMode.AutoSize;
+            Label labelLoi = new Label();
+            labelLoi.Font = new System.Drawing.Font("Palatino Linotype", 10, FontStyle.Bold);
+            labelLoi.Text = title;
+            labelLoi.Location = new Point(100, 60);
+            labelLoi.AutoSize = true;
+            Form Loi = new Form();
+            Loi.Text = text;
+            Loi.Icon = icon;
+            Loi.Controls.Add(pictureE);
+            Loi.Controls.Add(labelLoi);
+            Loi.BackColor = Color.White;
+            Loi.Height = 180;
+            Loi.AutoSize = true;
+            Loi.StartPosition = FormStartPosition.CenterScreen;
+            Loi.MinimizeBox = false;
+            Loi.MaximizeBox = false;
+            Button OkLoi = new Button();
+            OkLoi.Text = "OK";
+            OkLoi.TextAlign = ContentAlignment.MiddleCenter;
+            OkLoi.Location = new Point(Loi.Width - (Loi.Width / 3), 100);
+            Loi.Controls.Add(OkLoi);
+            Loi.Show();
+            OkLoi.Click += (sen, args) =>
+            {
+                Loi.Close();
+            };
+        }
         void DinhDangLaiMaTran()
         {
             for(int i = 0; i < iDinh; i++)
@@ -242,11 +275,18 @@ namespace LTDT_project
                 pictureBox1.Refresh();
                 //LamMoi();
                 DocCanhMaTran(iDinh);
-                 
+                if (path != "")
+                {
+                    System.Media.SystemSounds.Asterisk.Play();
+                    Mess("Đọc file thành công", "Hệ thống", global::LTDT_project.Properties.Resources._6885574_preview, System.Drawing.SystemIcons.Information);
+                }
             }
             else
             {
-                MessageBox.Show("Chỉ đọc được đồ thị đơn vô hướng", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Chỉ đọc được đồ thị đơn vô hướng", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                System.Media.SystemSounds.Hand.Play();
+                Mess("Chỉ đọc được đồ thị đơn vô hướng thôi !!! ", "Hệ thống", global::LTDT_project.Properties.Resources.gian, System.Drawing.SystemIcons.Error);
+                
             }
         }
 
@@ -273,7 +313,7 @@ namespace LTDT_project
                     {
 
                         tenDinh[iDinh] = ten;
-                        MessageBox.Show($"{e.X} {e.Y}");
+                        //MessageBox.Show($"{e.X} {e.Y}");
                         Dinh[iDinh] = new Point(e.X, e.Y);
                         listBox1.Items.Add(ten);
                         for(int k = 0; k <=iDinh; k++)
@@ -284,13 +324,16 @@ namespace LTDT_project
                     }
                     else
                     {
-                        MessageBox.Show("Quá gần !!!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        System.Media.SystemSounds.Exclamation.Play();
+                        Mess("Quá gần !!!", "Thông báo",global::LTDT_project.Properties.Resources.Chibi_characters_P3_720x1002,SystemIcons.Warning);
 
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Đỉnh này đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // MessageBox.Show("Đỉnh này đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Media.SystemSounds.Hand.Play();
+                    Mess("Đỉnh này đã tồn tại", "Hệ thống", global::LTDT_project.Properties.Resources.EurekaLoi1,SystemIcons.Error);
                 }
             }
             DinhDangLaiMaTran();
@@ -609,7 +652,7 @@ namespace LTDT_project
                     x.den = indexDinh(Dijstra_den.Text) + 1;
                     // MessageBox.Show(x.den.ToString());
                     duongdi = dijsktraDao.TimDuong(x);
-                    Array.Reverse(duongdi, 2, duongdi[0] - 2);
+                    if(duongdi[0]!= -1) Array.Reverse(duongdi, 2, duongdi[0] - 2);
                 }
                 int n = duongdi[0];
                 // MessageBox.Show(string.Join("\n",duongdi));
@@ -645,7 +688,12 @@ namespace LTDT_project
                     dij = false;
                     SoDinhLienThong = 0;
                 }
-                else MessageBox.Show("Không tìm thấy đường đi", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                else
+                {
+                    System.Media.SystemSounds.Hand.Play();
+                    Mess("Hmm... Chắc không tìm thấy đường đi đâu", "Hệ thống", global::LTDT_project.Properties.Resources.shinichi, SystemIcons.Error);
+                }
             }
             else pictureBox1.Refresh();
         }
@@ -687,6 +735,8 @@ namespace LTDT_project
                     StreamWriter stream = new StreamWriter(saveFileDialog1.FileName);
                     stream.WriteLine(save);
                     stream.Close();
+                    System.Media.SystemSounds.Asterisk.Play();
+                    Mess("Lưu file thành công", "Hệ thống", global::LTDT_project.Properties.Resources._6885574_preview, System.Drawing.SystemIcons.Information);
                 }
             }
         }
@@ -695,12 +745,51 @@ namespace LTDT_project
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            if (vertex)
+            if (textBox1.Text != "")
             {
-                var confirmation = MessageBox.Show(
-                        "Bạn chắc rằng muốn xóa ?", "Hệ thống", MessageBoxButtons.YesNo, MessageBoxIcon.Question
-                    );
-                if (confirmation == DialogResult.Yes)
+                if (vertex)
+                {
+                    System.Media.SystemSounds.Question.Play();
+                    PictureBox pictureE = new PictureBox();
+                    pictureE.Image = global::LTDT_project.Properties.Resources._133_1334519_sticker_emyjvc_kanna_kamui_question_wtf_hein_gne__1_;
+                    pictureE.Location = new Point(12, 12);
+                    pictureE.SizeMode = PictureBoxSizeMode.AutoSize;
+                    Label labelLoi = new Label();
+                    labelLoi.Font = new System.Drawing.Font("Palatino Linotype", 10, FontStyle.Bold);
+                    labelLoi.Text = "Bạn có chắc muốn xóa ?";
+                    labelLoi.Location = new Point(100, 60);
+                    labelLoi.AutoSize = true;
+                    Form Loi = new Form();
+                    Loi.Text = "Hệ thống";
+                    Loi.Icon = SystemIcons.Question;
+                    Loi.Controls.Add(pictureE);
+                    Loi.Controls.Add(labelLoi);
+                    Loi.BackColor = Color.White;
+                    Loi.Height = 180;
+                    Loi.StartPosition = FormStartPosition.CenterScreen;
+                    Loi.MinimizeBox = false;
+                    Loi.MaximizeBox = false;
+                    Button OkLoi = new Button();
+                    OkLoi.Text = "Yes";
+                    OkLoi.TextAlign = ContentAlignment.MiddleCenter;
+                    OkLoi.Location = new Point(100, 100);
+                    Button OkLoino = new Button();
+                    OkLoino.Text = "No";
+                    OkLoino.TextAlign = ContentAlignment.MiddleCenter;
+                    OkLoino.Location = new Point(200, 100);
+                    Loi.Controls.Add(OkLoi);
+                    Loi.Controls.Add(OkLoino);
+                    Loi.Show();
+                    OkLoino.Click += (sen, args) =>
+                    {
+                        DinhDangLaiMaTran();
+                        pictureBox1.Refresh();
+                        DocCanhMaTran(iDinh);
+                        CapNhatDS_dinhdi();
+
+                        Loi.Close();
+                    };
+                    OkLoi.Click += (sen, args) =>
                 {
                     bool duplicate = false;
                     foreach (var node in listBox1.Items)
@@ -733,22 +822,59 @@ namespace LTDT_project
                     {
                         MessageBox.Show("Đỉnh này không tìm thấy để xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Xóa thất bại rồi :( ", "Hệ thống",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (edge)
-            {
-                if (listView1.SelectedItems != null)
-                {
-                    var confirmation = MessageBox.Show(
-                        "Bạn chắc rằng muốn xóa ?", "Hệ thống", MessageBoxButtons.YesNo, MessageBoxIcon.Question
-                    );
+                    DinhDangLaiMaTran();
+                    pictureBox1.Refresh();
+                    DocCanhMaTran(iDinh);
+                    CapNhatDS_dinhdi();
 
-                    if (confirmation == DialogResult.Yes)
+                    Loi.Close();
+                };
+                }
+                else if (edge)
+                {
+                    System.Media.SystemSounds.Question.Play();
+                    PictureBox pictureE = new PictureBox();
+                    pictureE.Image = global::LTDT_project.Properties.Resources._133_1334519_sticker_emyjvc_kanna_kamui_question_wtf_hein_gne__1_;
+                    pictureE.Location = new Point(12, 12);
+                    pictureE.SizeMode = PictureBoxSizeMode.AutoSize;
+                    Label labelLoi = new Label();
+                    labelLoi.Font = new System.Drawing.Font("Palatino Linotype", 10, FontStyle.Bold);
+                    labelLoi.Text = "Bạn có chắc muốn xóa ?";
+                    labelLoi.Location = new Point(100, 60);
+                    labelLoi.AutoSize = true;
+                    Form Loi = new Form();
+                    Loi.Text = "Hệ thống";
+                    Loi.Icon = SystemIcons.Question;
+                    Loi.Controls.Add(pictureE);
+                    Loi.Controls.Add(labelLoi);
+                    Loi.BackColor = Color.White;
+                    Loi.Height = 180;
+                    Loi.StartPosition = FormStartPosition.CenterScreen;
+                    Loi.MinimizeBox = false;
+                    Loi.MaximizeBox = false;
+                    Button OkLoi = new Button();
+                    OkLoi.Text = "Yes";
+                    OkLoi.TextAlign = ContentAlignment.MiddleCenter;
+                    OkLoi.Location = new Point(100, 100);
+                    Button OkLoino = new Button();
+                    OkLoino.Text = "No";
+                    OkLoino.TextAlign = ContentAlignment.MiddleCenter;
+                    OkLoino.Location = new Point(200, 100);
+                    Loi.Controls.Add(OkLoi);
+                    Loi.Controls.Add(OkLoino);
+                    Loi.Show();
+                    OkLoino.Click += (sen, args) =>
+                    {
+                        DinhDangLaiMaTran();
+                        pictureBox1.Refresh();
+                        DocCanhMaTran(iDinh);
+                        CapNhatDS_dinhdi();
+
+                        Loi.Close();
+                    };
+                    OkLoi.Click += (sen, args) =>
+                    {
+                    try
                     {
                         for (int i = 0; i < listView1.Items.Count; i++)
                         {
@@ -761,18 +887,20 @@ namespace LTDT_project
                             }
                         }
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Xóa thất bại rồi :( ", "Hệ thống",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    catch
+                    {
+                        
+                    }
+                    DinhDangLaiMaTran();
+                    pictureBox1.Refresh();
+                    DocCanhMaTran(iDinh);
+                    CapNhatDS_dinhdi();
+
+                    Loi.Close();
+                    };
                 }
             }
-            DinhDangLaiMaTran();
-            pictureBox1.Refresh();
-            DocCanhMaTran(iDinh);
-            CapNhatDS_dinhdi();
-             
+           
         }
 
         private void DoitenDinh_Click_1(object sender, EventArgs e)
@@ -783,15 +911,29 @@ namespace LTDT_project
                 {
                     string rename = Interaction.InputBox("Nhập tên mới", "Đổi tên đỉnh");
                     string name = textBox1.Text.Substring(6);
-                    tenDinh[indexDinh(name)] = rename;
-                    CapNhatDS_dinhdi();
-                     
+                    rename = rename.Trim();
+                    bool duyet = false;
+                    foreach(var node in listBox1.Items)
+                    {
+                        if (rename == node.ToString()) duyet = true;
+                    }
+                    if (!duyet)
+                    {
+                        tenDinh[indexDinh(name)] = rename;
+                    }
+                    else
+                    {
+                        System.Media.SystemSounds.Hand.Play();
+                        Mess("Đỉnh này đã tồn tại", "Hệ thống", global::LTDT_project.Properties.Resources.EurekaLoi1, SystemIcons.Error);
+                    }
+                    CapNhatDS_dinhdi(); 
                     DocCanhMaTran(iDinh);
                     pictureBox1.Refresh();
                 }
                 else
                 {
-                    MessageBox.Show("Chỉ được đổi tên của đối tượng đỉnh", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    System.Media.SystemSounds.Hand.Play();
+                    Mess("Chỉ được đổi tên của đối tượng đỉnh thôi !!!", "Hệ thống", global::LTDT_project.Properties.Resources.gian, SystemIcons.Error);
                 }
             }
             catch

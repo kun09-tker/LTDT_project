@@ -32,8 +32,9 @@ namespace LTDT_project
                 }
             }
             Dijkstra(x.di, x.den, x.sodinh, ref totalLength, LastV, mts);
-            handle(x.di, x.den, ref count, LastV, data);
-            data[0] = count+3;
+            if(totalLength!=int.MinValue) handle(x.di, x.den, ref count, LastV, data);
+            if (totalLength == int.MinValue) data[0] = -1;
+            else data[0] = count + 3;
             data[1] = totalLength;
 
             return data;
@@ -94,8 +95,16 @@ namespace LTDT_project
 
             while (v != x)
             {
-                totalLength += MaTran[v, Last[v]];
-                v = Last[v];
+                try
+                {
+                    totalLength += MaTran[v, Last[v]];
+                    v = Last[v];
+                }
+                catch
+                {
+                    totalLength = int.MinValue;
+                    break;
+                }
             }
         }
 

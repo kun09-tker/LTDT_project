@@ -63,6 +63,66 @@ namespace LTDT_project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _133_1334519_sticker_emyjvc_kanna_kamui_question_wtf_hein_gne__1_ {
+            get {
+                object obj = ResourceManager.GetObject("133-1334519_sticker-emyjvc-kanna-kamui-question-wtf-hein-gne (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _6885574_preview {
+            get {
+                object obj = ResourceManager.GetObject("6885574_preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Chibi_characters_P3_720x1002 {
+            get {
+                object obj = ResourceManager.GetObject("Chibi-characters_P3_720x1002", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EurekaLoi {
+            get {
+                object obj = ResourceManager.GetObject("EurekaLoi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EurekaLoi1 {
+            get {
+                object obj = ResourceManager.GetObject("EurekaLoi1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gian {
+            get {
+                object obj = ResourceManager.GetObject("gian", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap reset_undo_arrow_icon_149006 {
             get {
                 object obj = ResourceManager.GetObject("reset_undo_arrow_icon_149006", resourceCulture);
@@ -76,6 +136,16 @@ namespace LTDT_project.Properties {
         internal static System.Drawing.Bitmap reset_undo_arrow_icon_149006__1_ {
             get {
                 object obj = ResourceManager.GetObject("reset_undo_arrow_icon_149006 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap shinichi {
+            get {
+                object obj = ResourceManager.GetObject("shinichi", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

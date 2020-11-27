@@ -136,5 +136,26 @@
   <ItemGroup>
     <None Include="Resources\undoarrow_undo_11053.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EurekaLoi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EurekaLoi.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\133-1334519_sticker-emyjvc-kanna-kamui-question-wtf-hein-gne %281%29.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chibi-characters_P3_720x1002.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6885574_preview.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shinichi.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gian.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

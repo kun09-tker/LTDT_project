@@ -44,6 +44,7 @@ namespace LTDT_project
             {
                 listView1.Columns.Add(tenDinh[i]);
                 listView1.Columns[i].Width = -2;
+                listView1.Columns[i].TextAlign = HorizontalAlignment.Center;
             }
             ListViewItem matran;
             string[] a = new string[sodinh + 1];
