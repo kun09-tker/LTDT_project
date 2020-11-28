@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Dijsktra.cs" />
     <Compile Include="DijsktraDao.cs" />
+    <Compile Include="DuyetCay.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

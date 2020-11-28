@@ -16,3 +16,12 @@ C:\Users\kun\source\repos\LTDT_project\LTDT_project\bin\Debug\WebDriver.xml
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.ResolveComReference.cache
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.CopyComplete
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.XuatMatranKe.resources
+D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csprojAssemblyReference.cache
+D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.ResolveComReference.cache
+D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Form1.resources
+D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Properties.Resources.resources
+D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.XuatMatranKe.resources
+D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.GenerateResource.cache
+D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.CoreCompileInputs.cache
+D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.exe
+D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.pdb
