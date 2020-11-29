@@ -42,6 +42,7 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +57,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cập nhật trọng số.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cập nhật trọng số.Designer.cs">
+      <DependentUpon>Cập nhật trọng số.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dijsktra.cs" />
     <Compile Include="DijsktraDao.cs" />
     <Compile Include="Form1.cs">
@@ -63,6 +70,18 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Timduongdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Timduongdi.Designer.cs">
+      <DependentUpon>Timduongdi.cs</DependentUpon>
     </Compile>
     <Compile Include="XuatMatranKe.cs">
       <SubType>Form</SubType>
@@ -74,8 +93,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XetDoThiHopLe.cs" />
     <Compile Include="XetLienThong.cs" />
+    <EmbeddedResource Include="Cập nhật trọng số.resx">
+      <DependentUpon>Cập nhật trọng số.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -87,6 +112,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Timduongdi.resx">
+      <DependentUpon>Timduongdi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="XuatMatranKe.resx">
       <DependentUpon>XuatMatranKe.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,6 +184,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\gian.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\muiten.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

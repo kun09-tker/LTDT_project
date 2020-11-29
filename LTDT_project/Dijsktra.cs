@@ -46,7 +46,7 @@ namespace LTDT_project
             {
                 for(int i = 1; i <= x.sodinh; i++)
                 {
-                    if (mts[vet, i] > 0 && kq[vet] + mts[vet, i] < kq[i] && nhan[i] == 0)
+                    if (mts[vet, i] >= 0 && kq[vet] + mts[vet, i] < kq[i] && nhan[i] == 0)
                     {
                         kq[i] = kq[vet] + mts[vet, i];
                         daDuyet[i] = vet;

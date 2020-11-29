@@ -16,3 +16,6 @@ C:\Users\kun\source\repos\LTDT_project\LTDT_project\bin\Debug\WebDriver.xml
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.ResolveComReference.cache
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.CopyComplete
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.XuatMatranKe.resources
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Form2.resources
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Cập_nhật_trọng_số.resources
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Timduongdi.resources
