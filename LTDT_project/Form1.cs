@@ -34,14 +34,14 @@ namespace LTDT_project
         Point[] Dinh = new Point[100];
         Color color = Color.Black;
         string[] tenDinh = new string[100];
-        int iDinh = 0;
+        public int iDinh = 0;
         int SoDinhLienThong = 0;
         int tmp = 0;
         int demNode = 0;
         int demTim = 0;
         int imin = int.MinValue;
         int x = -1, y = -1;
-        int[,] Matran = new int [100,100];
+        public int[,] Matran = new int [100,100];
         bool[,] luuVetcanh = new bool[100, 100];
         bool[] luuVetdinh = new bool[100];
         bool[] luuVetdinh1 = new bool[100];
@@ -294,7 +294,7 @@ namespace LTDT_project
                     }
                     catch
                     {
-                        ten = $"L{j}";
+                        ten = $"N{j}";
                     }
                     listBox1.Items.Add(ten);
                     //comboBox1.Items.Add("L" + j.ToString());
@@ -327,7 +327,8 @@ namespace LTDT_project
         }
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            
+            tmp = 0;
+            richTextBox1.Text = "";
             switch (e.Button)
             {
                 case MouseButtons.Left:
@@ -681,6 +682,8 @@ namespace LTDT_project
 
         private void lienthong_kt_Click(object sender, EventArgs e)
         {
+            tmp = 0;
+            richTextBox1.Text = "";
             string[] tp_lienThong = new string[100];
             XetLienThong x = new XetLienThong();
             XetLienThong.DoThi doThi = new XetLienThong.DoThi();
@@ -782,6 +785,8 @@ namespace LTDT_project
 
         private void button3_Click_1(object sender, EventArgs e)
         {
+            tmp = 0;
+            richTextBox1.Text = "";
             if (textBox1.Text != "")
             {
                 if (vertex)
@@ -942,6 +947,8 @@ namespace LTDT_project
 
         private void DoitenDinh_Click_1(object sender, EventArgs e)
         {
+            tmp = 0;
+            richTextBox1.Text = "";
             try
             {
                 if (textBox1.Text[0] == 'Đ')
@@ -991,12 +998,29 @@ namespace LTDT_project
 
         private void button10_Click(object sender, EventArgs e)
         {
+            LamMoi();
             Form2 form2 = new Form2();
             form2.ShowDialog();
+            iDinh = form2.Sodinh;
+            Matran = form2.mt;
+            int sodinh = iDinh;
+            iDinh = 0;
+            for(int i = 0; i < sodinh; i++)
+            {
+                tenDinh[i] = $"N{i}";
+                TaoDinhAuto(tenDinh[i]);
+            }
+            
+            pictureBox1.Refresh();
+            CapNhatDS_dinhdi();
+            DocCanhMaTran(iDinh);
+            DinhDangLaiMaTran();
         }
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            tmp = 0;
+            richTextBox1.Text = "";
             bool duplicate = false;
             bool kc = false;
             string ten = Interaction.InputBox("Nhập tên đỉnh", "Nhập liệu");

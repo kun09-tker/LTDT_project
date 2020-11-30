@@ -40,6 +40,11 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dich = new System.Windows.Forms.Label();
+            this.xuatphat = new System.Windows.Forms.Label();
+            this.vt2 = new System.Windows.Forms.Label();
+            this.vt1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -60,19 +65,14 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.xuatphat = new System.Windows.Forms.Label();
-            this.dich = new System.Windows.Forms.Label();
-            this.vt2 = new System.Windows.Forms.Label();
-            this.vt1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
@@ -169,6 +169,72 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Đồ thị";
             // 
+            // dich
+            // 
+            this.dich.AutoEllipsis = true;
+            this.dich.AutoSize = true;
+            this.dich.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.dich.Font = new System.Drawing.Font("Palatino Linotype", 7.5F, System.Drawing.FontStyle.Bold);
+            this.dich.ForeColor = System.Drawing.Color.Red;
+            this.dich.Location = new System.Drawing.Point(53, 44);
+            this.dich.Name = "dich";
+            this.dich.Size = new System.Drawing.Size(49, 15);
+            this.dich.TabIndex = 4;
+            this.dich.Text = "Đích đến";
+            // 
+            // xuatphat
+            // 
+            this.xuatphat.AutoEllipsis = true;
+            this.xuatphat.AutoSize = true;
+            this.xuatphat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.xuatphat.Font = new System.Drawing.Font("Palatino Linotype", 7.5F, System.Drawing.FontStyle.Bold);
+            this.xuatphat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.xuatphat.Location = new System.Drawing.Point(53, 29);
+            this.xuatphat.Name = "xuatphat";
+            this.xuatphat.Size = new System.Drawing.Size(51, 15);
+            this.xuatphat.TabIndex = 3;
+            this.xuatphat.Text = "Xuất phát";
+            // 
+            // vt2
+            // 
+            this.vt2.AutoEllipsis = true;
+            this.vt2.AutoSize = true;
+            this.vt2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.vt2.Image = ((System.Drawing.Image)(resources.GetObject("vt2.Image")));
+            this.vt2.Location = new System.Drawing.Point(13, 31);
+            this.vt2.Name = "vt2";
+            this.vt2.Size = new System.Drawing.Size(14, 22);
+            this.vt2.TabIndex = 2;
+            this.vt2.Text = " ";
+            // 
+            // vt1
+            // 
+            this.vt1.AutoEllipsis = true;
+            this.vt1.AutoSize = true;
+            this.vt1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.vt1.Image = ((System.Drawing.Image)(resources.GetObject("vt1.Image")));
+            this.vt1.Location = new System.Drawing.Point(33, 31);
+            this.vt1.Name = "vt1";
+            this.vt1.Size = new System.Drawing.Size(14, 22);
+            this.vt1.TabIndex = 1;
+            this.vt1.Text = " ";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 25);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(905, 433);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
+            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
+            this.pictureBox1.ParentChanged += new System.EventHandler(this.pictureBox1_ParentChanged);
+            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -205,7 +271,7 @@
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(262, 11);
+            this.button6.Location = new System.Drawing.Point(336, 11);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(116, 25);
             this.button6.TabIndex = 17;
@@ -358,83 +424,17 @@
             // button10
             // 
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.Location = new System.Drawing.Point(140, 12);
+            this.button10.Location = new System.Drawing.Point(140, 11);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(116, 25);
+            this.button10.Size = new System.Drawing.Size(190, 25);
             this.button10.TabIndex = 25;
-            this.button10.Text = "Tạo ma trận";
+            this.button10.Text = "Tạo ma trận ngẫu nhiên";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // xuatphat
-            // 
-            this.xuatphat.AutoEllipsis = true;
-            this.xuatphat.AutoSize = true;
-            this.xuatphat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.xuatphat.Font = new System.Drawing.Font("Palatino Linotype", 7.5F, System.Drawing.FontStyle.Bold);
-            this.xuatphat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.xuatphat.Location = new System.Drawing.Point(53, 29);
-            this.xuatphat.Name = "xuatphat";
-            this.xuatphat.Size = new System.Drawing.Size(51, 15);
-            this.xuatphat.TabIndex = 3;
-            this.xuatphat.Text = "Xuất phát";
-            // 
-            // dich
-            // 
-            this.dich.AutoEllipsis = true;
-            this.dich.AutoSize = true;
-            this.dich.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.dich.Font = new System.Drawing.Font("Palatino Linotype", 7.5F, System.Drawing.FontStyle.Bold);
-            this.dich.ForeColor = System.Drawing.Color.Red;
-            this.dich.Location = new System.Drawing.Point(53, 44);
-            this.dich.Name = "dich";
-            this.dich.Size = new System.Drawing.Size(49, 15);
-            this.dich.TabIndex = 4;
-            this.dich.Text = "Đích đến";
-            // 
-            // vt2
-            // 
-            this.vt2.AutoEllipsis = true;
-            this.vt2.AutoSize = true;
-            this.vt2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.vt2.Image = ((System.Drawing.Image)(resources.GetObject("vt2.Image")));
-            this.vt2.Location = new System.Drawing.Point(13, 31);
-            this.vt2.Name = "vt2";
-            this.vt2.Size = new System.Drawing.Size(14, 22);
-            this.vt2.TabIndex = 2;
-            this.vt2.Text = " ";
-            // 
-            // vt1
-            // 
-            this.vt1.AutoEllipsis = true;
-            this.vt1.AutoSize = true;
-            this.vt1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.vt1.Image = ((System.Drawing.Image)(resources.GetObject("vt1.Image")));
-            this.vt1.Location = new System.Drawing.Point(33, 31);
-            this.vt1.Name = "vt1";
-            this.vt1.Size = new System.Drawing.Size(14, 22);
-            this.vt1.TabIndex = 1;
-            this.vt1.Text = " ";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 25);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(905, 433);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
-            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
-            this.pictureBox1.ParentChanged += new System.EventHandler(this.pictureBox1_ParentChanged);
             // 
             // Form1
             // 
@@ -465,13 +465,13 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
