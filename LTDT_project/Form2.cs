@@ -84,7 +84,7 @@ namespace LTDT_project
             {
                 if (!textBox.ReadOnly)
                 {
-                    int trongso = rnd.Next(0, 51);
+                    int trongso = rnd.Next(-50, 51);
                     textBox.Text = trongso.ToString();
                    
                 }
