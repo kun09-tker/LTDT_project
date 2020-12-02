@@ -155,7 +155,7 @@ namespace LTDT_project
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::LTDT_project.Properties.Resources.shinichisaid1;
+            this.pictureBox1.BackgroundImage = global::LTDT_project.Properties.Resources.shinichisaid;
             this.pictureBox1.ErrorImage = null;
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(604, 9);

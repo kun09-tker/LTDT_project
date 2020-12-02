@@ -57,7 +57,7 @@ namespace LTDT_project
                         if (i == j)
                         {
                             a.ReadOnly = true;
-                            a.Text = $"0";
+                            a.Text = $"-1";
                         }
                         if (i> j && j !=0)
                         {
@@ -108,7 +108,7 @@ namespace LTDT_project
                         kt = false;
                         System.Media.SystemSounds.Hand.Play();
                         PictureBox pictureE = new PictureBox();
-                        pictureE.Image = global::LTDT_project.Properties.Resources.Chibi_characters_P3_720x1002;
+                        pictureE.Image = global::LTDT_project.Properties.Resources.Error;
                         pictureE.Location = new Point(12, 12);
                         pictureE.SizeMode = PictureBoxSizeMode.AutoSize;
                         Label labelLoi = new Label();

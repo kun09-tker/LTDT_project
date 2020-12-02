@@ -314,14 +314,14 @@ namespace LTDT_project
                 if (path != "")
                 {
                     System.Media.SystemSounds.Asterisk.Play();
-                    Mess("Đọc file thành công", "Hệ thống", global::LTDT_project.Properties.Resources._6885574_preview, System.Drawing.SystemIcons.Information);
+                    Mess("Đọc file thành công", "Hệ thống", global::LTDT_project.Properties.Resources.Tick, SystemIcons.Information);
                 }
             }
             else
             {
                 //MessageBox.Show("Chỉ đọc được đồ thị đơn vô hướng", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 System.Media.SystemSounds.Hand.Play();
-                Mess("Chỉ đọc được đồ thị đơn vô hướng thôi !!! ", "Hệ thống", global::LTDT_project.Properties.Resources.gian, System.Drawing.SystemIcons.Error);
+                Mess("Chỉ đọc được đồ thị đơn vô hướng thôi !!! ", "Hệ thống", global::LTDT_project.Properties.Resources.Error, System.Drawing.SystemIcons.Error);
                 
             }
         }
@@ -407,6 +407,7 @@ namespace LTDT_project
                                 }
                             }
                             int[] duongdi;
+                            int n = -1;
                             if (timduongdi.Ngan)
                             {
                                 Dijsktra.DuLieu a = new Dijsktra.DuLieu();
@@ -418,7 +419,7 @@ namespace LTDT_project
                                 // MessageBox.Show(x.den.ToString());
                                 duongdi = dijsktra.TimDuong(a);
                             }
-                            else
+                            else if (timduongdi.Dai)
                             {
                                 DijsktraDao.DuLieu a = new DijsktraDao.DuLieu();
                                 DijsktraDao dijsktraDao = new DijsktraDao();
@@ -430,7 +431,14 @@ namespace LTDT_project
                                 duongdi = dijsktraDao.TimDuong(a);
                                 if (duongdi[0] != -1) Array.Reverse(duongdi, 2, duongdi[0] - 2);
                             }
-                            int n = duongdi[0];
+                            else
+                            {
+                                duongdi = null;
+                            }
+                            if (duongdi != null)
+                            {
+                                n = duongdi[0];
+                            }
                             // MessageBox.Show(string.Join("\n",duongdi));
                             if (n > 0)
                             {
@@ -467,8 +475,11 @@ namespace LTDT_project
 
                             else
                             {
-                                System.Media.SystemSounds.Hand.Play();
-                                Mess("Hmm... Chắc không tìm thấy đường đi đâu", "Hệ thống", global::LTDT_project.Properties.Resources.shinichi, SystemIcons.Error);
+                                if (timduongdi.Ngan == true || timduongdi.Dai == true)
+                                {
+                                    System.Media.SystemSounds.Hand.Play();
+                                    Mess("Hmm... Chắc không tìm thấy đường đi đâu", "Hệ thống", global::LTDT_project.Properties.Resources.Error, SystemIcons.Error);
+                                }
                             }
                             x = y = -1;
                         }
@@ -776,7 +787,7 @@ namespace LTDT_project
                     stream.WriteLine(save);
                     stream.Close();
                     System.Media.SystemSounds.Asterisk.Play();
-                    Mess("Lưu file thành công", "Hệ thống", global::LTDT_project.Properties.Resources._6885574_preview, System.Drawing.SystemIcons.Information);
+                    Mess("Lưu file thành công", "Hệ thống", global::LTDT_project.Properties.Resources.Tick, System.Drawing.SystemIcons.Information);
                 }
             }
         }
@@ -793,7 +804,7 @@ namespace LTDT_project
                 {
                     System.Media.SystemSounds.Question.Play();
                     PictureBox pictureE = new PictureBox();
-                    pictureE.Image = global::LTDT_project.Properties.Resources._133_1334519_sticker_emyjvc_kanna_kamui_question_wtf_hein_gne__1_;
+                    pictureE.Image = global::LTDT_project.Properties.Resources.Question;
                     pictureE.Location = new Point(12, 12);
                     pictureE.SizeMode = PictureBoxSizeMode.AutoSize;
                     Label labelLoi = new Label();
@@ -876,7 +887,7 @@ namespace LTDT_project
                 {
                     System.Media.SystemSounds.Question.Play();
                     PictureBox pictureE = new PictureBox();
-                    pictureE.Image = global::LTDT_project.Properties.Resources._133_1334519_sticker_emyjvc_kanna_kamui_question_wtf_hein_gne__1_;
+                    pictureE.Image = global::LTDT_project.Properties.Resources.Question;
                     pictureE.Location = new Point(12, 12);
                     pictureE.SizeMode = PictureBoxSizeMode.AutoSize;
                     Label labelLoi = new Label();
@@ -967,8 +978,8 @@ namespace LTDT_project
                     }
                     else
                     {
-                        System.Media.SystemSounds.Hand.Play();
-                        Mess("Đỉnh này đã tồn tại", "Hệ thống", global::LTDT_project.Properties.Resources.EurekaLoi1, SystemIcons.Error);
+                        System.Media.SystemSounds.Exclamation.Play();
+                        Mess("Đỉnh này đã tồn tại", "Hệ thống", global::LTDT_project.Properties.Resources.warning, SystemIcons.Warning);
                     }
                     CapNhatDS_dinhdi(); 
                     DocCanhMaTran(iDinh);
@@ -977,7 +988,7 @@ namespace LTDT_project
                 else
                 {
                     System.Media.SystemSounds.Hand.Play();
-                    Mess("Chỉ được đổi tên của đối tượng đỉnh thôi !!!", "Hệ thống", global::LTDT_project.Properties.Resources.gian, SystemIcons.Error);
+                    Mess("Chỉ được đổi tên của đối tượng đỉnh thôi !!!", "Hệ thống", global::LTDT_project.Properties.Resources.Error, SystemIcons.Error);
                 }
             }
             catch
@@ -1054,7 +1065,7 @@ namespace LTDT_project
                     else
                     {
                         System.Media.SystemSounds.Exclamation.Play();
-                        Mess("Quá gần !!!", "Thông báo", global::LTDT_project.Properties.Resources.Chibi_characters_P3_720x1002, SystemIcons.Warning);
+                        Mess("Quá gần !!!", "Thông báo", global::LTDT_project.Properties.Resources.warning, SystemIcons.Warning);
 
                     }
                 }
@@ -1062,7 +1073,7 @@ namespace LTDT_project
                 {
                     // MessageBox.Show("Đỉnh này đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     System.Media.SystemSounds.Hand.Play();
-                    Mess("Đỉnh này đã tồn tại", "Hệ thống", global::LTDT_project.Properties.Resources.EurekaLoi1, SystemIcons.Error);
+                    Mess("Đỉnh này đã tồn tại", "Hệ thống", global::LTDT_project.Properties.Resources.Error, SystemIcons.Error);
                 }
             }
             DinhDangLaiMaTran();

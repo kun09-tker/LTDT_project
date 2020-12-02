@@ -42,7 +42,7 @@ namespace LTDT_project
             // pictureBox1
             // 
             this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Image = global::LTDT_project.Properties.Resources._133_1334519_sticker_emyjvc_kanna_kamui_question_wtf_hein_gne__1_;
+            this.pictureBox1.Image = global::LTDT_project.Properties.Resources.Question;
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(72, 109);
@@ -131,7 +131,7 @@ namespace LTDT_project
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Timduongdi";

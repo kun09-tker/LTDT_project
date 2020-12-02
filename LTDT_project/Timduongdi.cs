@@ -18,6 +18,7 @@ namespace LTDT_project
         }
         public bool Ngan = false;
         public bool Dai = false;
+        public bool cancel = false;
         private void Timduongdi_Load(object sender, EventArgs e)
         {
             radioButton1.Checked = true;
@@ -33,7 +34,10 @@ namespace LTDT_project
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Ngan = false;
+            Dai = false;
             this.Close();
+           
         }
     }
 }
