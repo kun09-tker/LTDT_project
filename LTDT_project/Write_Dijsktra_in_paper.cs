@@ -11,15 +11,23 @@ namespace LTDT_project
         const int INF = 100000;
         const int negative_INF = -100000;
         //Trả về ma trận string 2 chiều có chứa bảng viết tay
-        public string[,] Dijsktra(int [,]matran,int sodinh,char c='a')
+        public string[,] Dijsktra(int [,]matran,int sodinh,int start,string[] tendinh) 
         {
             string[,] ketqua = new string[10000, 10000];//kết quả cuối cùng
             bool[] check=new bool[sodinh];//đã có dấu * hay chưa
             int[] cost=new int[sodinh];//tổng trọng số đi mặc định vô cực
             string[] path = new string[sodinh];//đỉnh phải đi qua đầu tiên trong Dijsktra
-            int start = (int)c - 49, k = 0;//mặc định đỉnh a là 0(a=97(ascii)-49=>0) và dòng k=0
+            int k = 0;// dòng k=0
             //Chỉnh dòng 0 đầu tiên
-            for (int i = 0; i < sodinh - 1; i++)
+           /* ketqua[k, 0] = tendinh[start];
+            int tmp = 1;*/
+            for(int i = 0; i < sodinh; i++)
+            {
+             
+                ketqua[k, i] = tendinh[i];
+            }
+            k++;
+            for (int i = 0; i < sodinh; i++)
             {
                 check[i] = false;
                 cost[i] = INF;
@@ -28,17 +36,17 @@ namespace LTDT_project
             }
             cost[start] = 0;
             check[start] = true;
-            ketqua[k, 0] = "0*";
+            ketqua[k, start] = "0*";
             // Xét từ từ dòng 1 trở đi
             for(int i = 0; i < sodinh; i++)
             {
                 //Xét những đỉnh gần kề đỉnh start
                 for(int j = 0; j < sodinh; j++)
                 {
-                    if (cost[j] > cost[start] + matran[start, j]&&!check[j])
+                    if (cost[j] > cost[start] + matran[start, j]&&!check[j]&&matran[start,j]!=int.MinValue)
                     {
                         cost[j] = cost[start] + matran[start, j];
-                        path[j] = ((char)(start+49)).ToString();
+                        path[j] = tendinh[start];
                     }
                 }
                 //Bỏ dòng k vào ma trận kết quả
@@ -83,15 +91,21 @@ namespace LTDT_project
         //
         //Dijktra Đảo
         //
-        public string[,] Dijsktra_Dao(int[,] matran, int sodinh, char c = 'a')
+        public string[,] Dijsktra_Dao(int[,] matran, int sodinh, int start, string[] tendinh)
         {
             string[,] ketqua = new string[10000, 10000];//kết quả cuối cùng
             bool[] check = new bool[sodinh];//đã có dấu * hay chưa
             int[] cost = new int[sodinh];//tổng trọng số đi mặc định âm vô cực
             string[] path = new string[sodinh];//đỉnh phải đi qua đầu tiên trong Dijsktra
-            int start = (int)c - 49, k = 0;//mặc định đỉnh a là 0(a=97(ascii)-49=>0) và dòng k=0
-            //Chỉnh dòng 0 đầu tiên
-            for (int i = 0; i < sodinh - 1; i++)
+            int k = 0;//mặc định đỉnh a là 0(a=97(ascii)-49=>0) và dòng k=0
+                                           //Chỉnh dòng 0 đầu tiên
+            for (int i = 0; i < sodinh; i++)
+            {
+
+                ketqua[k, i] = tendinh[i];
+            }
+            k++;
+            for (int i = 0; i < sodinh ; i++)
             {
                 check[i] = false;
                 cost[i] = negative_INF;
@@ -100,17 +114,17 @@ namespace LTDT_project
             }
             cost[start] = 0;
             check[start] = true;
-            ketqua[k, 0] = "0*";
+            ketqua[k, start] = "0*";
             // Xét từ từ dòng 1 trở đi
             for (int i = 0; i < sodinh; i++)
             {
                 //Xét những đỉnh gần kề đỉnh start
                 for (int j = 0; j < sodinh; j++)
                 {
-                    if (cost[j] < cost[start] + matran[start, j] && !check[j])
+                    if (cost[j] < cost[start] + matran[start, j] && !check[j]&&matran[start,j]!=int.MinValue)
                     {
                         cost[j] = cost[start] + matran[start, j];
-                        path[j] = ((char)(start + 49)).ToString();
+                        path[j] = tendinh[start];
                     }
                 }
                 //Bỏ dòng k vào ma trận kết quả

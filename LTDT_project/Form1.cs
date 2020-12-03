@@ -40,6 +40,7 @@ namespace LTDT_project
         int demNode = 0;
         int demTim = 0;
         int imin = int.MinValue;
+      //  int start = -1;
         int x = -1, y = -1;
         public int[,] Matran = new int [100,100];
         bool[,] luuVetcanh = new bool[100, 100];
@@ -216,6 +217,7 @@ namespace LTDT_project
                 }
             }
             iDinh = SoDinhLienThong = tmp = demNode= demTim = 0;
+          //  start = -1;
             di = den = path = "";
             vertex = edge = dij = OnlyPath = xuatphat.Visible =dich.Visible = vt1.Visible = vt2.Visible = false;
             
@@ -471,8 +473,37 @@ namespace LTDT_project
                                 textBox2.Text = duongdi[1].ToString();
                                 dij = false;
                                 SoDinhLienThong = 0;
-                            }
+                                var xacnhan = MessageBox.Show("Bạn có muốn xem lời giải", "Hệ thống", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                                if (xacnhan == DialogResult.OK)
+                                {
+                                    string[,] loigiai; 
+                                    if (timduongdi.Ngan)
+                                    {
+                                       
+                                        Write_Dijsktra_in_paper in_Paper = new Write_Dijsktra_in_paper();
+                                      
+                                        loigiai = in_Paper.Dijsktra(Matran, iDinh, x, tenDinh);
+                                        
+                                       // MessageBox.Show(iDinh.ToString());
+                                        Loigiai loigiai1 = new Loigiai();
+                                        loigiai1.loigiai = loigiai;
+                                        loigiai1.iDinh = iDinh;
+                                        loigiai1.ShowDialog();
+                                    }
+                                    else if (timduongdi.Dai)
+                                    {
+                                        Write_Dijsktra_in_paper in_Paper = new Write_Dijsktra_in_paper();
 
+                                        loigiai = in_Paper.Dijsktra_Dao(Matran, iDinh, x, tenDinh);
+
+                                        // MessageBox.Show(iDinh.ToString());
+                                        Loigiai loigiai1 = new Loigiai();
+                                        loigiai1.loigiai = loigiai;
+                                        loigiai1.iDinh = iDinh;
+                                        loigiai1.ShowDialog();
+                                    }
+                                }
+                            }
                             else
                             {
                                 if (timduongdi.Ngan == true || timduongdi.Dai == true)
@@ -1026,6 +1057,11 @@ namespace LTDT_project
             CapNhatDS_dinhdi();
             DocCanhMaTran(iDinh);
             DinhDangLaiMaTran();
+        }
+
+        private void button_Giai_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
