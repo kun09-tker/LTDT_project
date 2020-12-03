@@ -84,6 +84,7 @@
     <Compile Include="Timduongdi.Designer.cs">
       <DependentUpon>Timduongdi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Write_Dijsktra_in_paper.cs" />
     <Compile Include="XuatMatranKe.cs">
       <SubType>Form</SubType>
     </Compile>

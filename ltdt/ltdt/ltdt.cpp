@@ -10,7 +10,7 @@ int tmp[MAX];
 int k = 0;
 int viTri = 0;
 int vitricu = 0;
-int min = 100000000;
+int MIN = 1000000;
 using namespace std;
 
 struct Graph {
@@ -79,7 +79,7 @@ int soCanh(Graph g) {
 
 int main() {
 	Graph g;
-	string file = "D:/graph.txt";
+	string file = "D:./graph.txt";
 
 
 	readGraph(file, g);
@@ -93,11 +93,10 @@ int main() {
 		c++;
 	}
 	cout << "\n0* ";
-	for (int i = 0; i < g.soDinh; i++) {
-		cout << "oo" << "   "; tmp[viTri] = -1;
-		if (i != viTri) {
-			tmp[i] = 100000000;
-		}
+	tmp[viTri] = -1;
+	for (int i = 1; i < g.soDinh; i++) {
+		cout << "oo" << "   "; 
+		tmp[i] = 100000000;
 
 	}
 	cout << endl;
@@ -127,14 +126,14 @@ int main() {
 		}
 		vitricu = viTri;
 		for (int j = 0; j < g.soDinh; j++) {
-			if (tmp[j] < min&&tmp[j] != -1) {
-				min = tmp[j];
+			if (tmp[j] < MIN && tmp[j] != -1) {
+				MIN = tmp[j];
 				viTri = j;
 			}
 		}
 		tmp[viTri] = -1;
-		k = min;
-		min = 100000000;
+		k = MIN;
+		MIN = 100000000;
 		c = 'a';
 		cout << endl;
 	}
@@ -142,5 +141,5 @@ int main() {
 
 	cout << endl;
 
-
+	//cin.get();
 }

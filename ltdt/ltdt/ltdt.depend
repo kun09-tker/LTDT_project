@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1606974589 source:d:\project\ltdt_project\ltdt\ltdt\ltdt.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<iomanip>
+
