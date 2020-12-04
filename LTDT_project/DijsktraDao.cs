@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +8,7 @@ namespace LTDT_project
 {
     class DijsktraDao
     {
+        const int negative_INF = -100000;
         public struct DuLieu
         {
             public int sodinh;
@@ -15,7 +16,111 @@ namespace LTDT_project
             public int di, den;
         }
 
+        //
+        //Dijktra Đảo
+        //Trả về mảng 1 chiều
+        public string[] Dijsktra_Dao(int[,] matran, int sodinh, int start,int end, string[] tendinh)
+        {
+            string[,] ketqua = new string[10000, 10000];//kết quả cuối cùng
+            bool[] check = new bool[sodinh];//đã có dấu * hay chưa
+            int[] cost = new int[sodinh];//tổng trọng số đi mặc định âm vô cực
+            string[] path = new string[sodinh];//đỉnh phải đi qua đầu tiên trong Dijsktra
+            int k = 0;//mặc định đỉnh a là 0(a=97(ascii)-49=>0) và dòng k=0
+                      //Chỉnh dòng 0 đầu tiên
+            for (int i = 0; i < sodinh; i++)
+            {
 
+                ketqua[k, i] = tendinh[i];
+            }
+            k++;
+            for (int i = 0; i < sodinh; i++)
+            {
+                check[i] = false;
+                cost[i] = negative_INF;
+                path[i] = "__";
+                ketqua[k, i] = "(oo,__)";
+            }
+            cost[start] = 0;
+            check[start] = true;
+            ketqua[k, start] = "0*";
+            // Xét từ từ dòng 1 trở đi
+            for (int i = 0; i < sodinh; i++)
+            {
+                //Xét những đỉnh gần kề đỉnh start
+                for (int j = 0; j < sodinh; j++)
+                {
+                    if (cost[j] < cost[start] + matran[start, j] && !check[j] && matran[start, j] != int.MinValue)
+                    {
+                        cost[j] = cost[start] + matran[start, j];
+                        path[j] = tendinh[start];
+                    }
+                }
+                //Bỏ dòng k vào ma trận kết quả
+                k++;
+                for (int j = 0; j < sodinh; j++)
+                {
+                    if (check[j])
+                    {
+                        ketqua[k, j] = "__";
+                    }
+                    else
+                    {
+                        if (cost[j] != negative_INF)
+                        {
+                            ketqua[k, j] = $"({cost[j]},{path[j]})";
+                        }
+                        else
+                        {
+                            ketqua[k, j] = "(oo,__)";
+                        }
+                    }
+                }
+                //Tìm đỉnh lớn nhất tiếp theo
+                int MAX = negative_INF;
+                for (int j = 0; j < sodinh; j++)
+                {
+                    if (MAX < cost[j] && !check[j])
+                    {
+                        MAX = cost[j];
+                        start = j;
+                    }
+                }
+                check[start] = true;
+                ketqua[k, start] += "*";
+            }
+            for (int i = 0; i < sodinh; i++)
+            {
+                ketqua[sodinh + 1, i] = "__";
+            }
+            //Lấy xét từ cột đỉnh kết thúc
+            string temp = tendinh[end];
+            string[] ketqua_chinhthuc = new string[10000];
+            ketqua_chinhthuc.Append(temp);
+            //Cho tới khi temp chạm tới đỉnh start là ngừng
+            while (temp != tendinh[start])
+            {
+                for (int i = 0; i < sodinh; i++)
+                {
+                    //xét cột nào là đỉnh kết thúc
+                    if (ketqua[0, i] == temp)
+                    {
+                        for (int j = 0; j < sodinh; j++)
+                        {   //xét trong cột đỉnh kết thúc có đường đi dài nhất
+                            if (ketqua[j, i].Contains("*"))
+                            {
+                                //tiếp tục đỉnh nối với đỉnh kết thúc có đường đi dài nhất sẽ là đỉnh kết thúc và chèn vào đỉnh đó vào kết quả chính thức
+                                temp = ketqua[j, i].Substring(ketqua[j, i].IndexOf(","), ketqua[j, i].IndexOf(")") - ketqua[j, i].IndexOf(","));
+                                ketqua_chinhthuc.Append(temp);
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            //Sẽ trả về từ đỉnh end -> đỉnh start
+            return ketqua_chinhthuc;
+        }
 
         public int[] TimDuong(DuLieu x)
         {
