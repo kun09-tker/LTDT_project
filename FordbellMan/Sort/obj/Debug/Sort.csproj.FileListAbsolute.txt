@@ -12,3 +12,10 @@ D:\NganNhat\Sort\Sort\obj\Debug\Sort.csprojAssemblyReference.cache
 D:\NganNhat\Sort\Sort\obj\Debug\Sort.csproj.CoreCompileInputs.cache
 D:\NganNhat\Sort\Sort\obj\Debug\Sort.exe
 D:\NganNhat\Sort\Sort\obj\Debug\Sort.pdb
+D:\FordbellMan\Sort\bin\Debug\Sort.exe.config
+D:\FordbellMan\Sort\bin\Debug\Sort.exe
+D:\FordbellMan\Sort\bin\Debug\Sort.pdb
+D:\FordbellMan\Sort\obj\Debug\Sort.csprojAssemblyReference.cache
+D:\FordbellMan\Sort\obj\Debug\Sort.csproj.CoreCompileInputs.cache
+D:\FordbellMan\Sort\obj\Debug\Sort.exe
+D:\FordbellMan\Sort\obj\Debug\Sort.pdb
