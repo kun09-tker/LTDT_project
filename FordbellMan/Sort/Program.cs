@@ -13,8 +13,9 @@ namespace Sort
         static void Main(string[] args)
         {
             FordBellMan.DuLieu x = new FordBellMan.DuLieu();
-            string[] temp = File.ReadAllLines("D:/DoThi.txt");
+            string[] temp = File.ReadAllLines("D:/graph.txt");
             x.sodinh = int.Parse(temp[0]);
+
             int dong = 0;
             int[,] MaTran = new int[100, 100];
             for (int i = 1; i <= x.sodinh; i++)
@@ -32,11 +33,13 @@ namespace Sort
             x.mt = MaTran;
 
             x.di = 0;
-            x.den = 2;
+            x.den = 3;
 
             FordBellMan g = new FordBellMan();
             int[] a = g.TimDuong(x);
-            for (int i = 0; i < a[0] + 2; i++)
+
+
+            for (int i = 0; i < a.Length; i++)
             {
                 Console.Write(a[i].ToString());
             }
@@ -59,74 +62,84 @@ namespace Sort
 
         public int[] TimDuong(DuLieu x)
         {
+            int[] data;
             int[,] maTran = x.mt;
-            int[] Truoc = new int[100];
-            int[] khoangCach = new int[100];
-            int[] duongDi = new int[100];
-            int count = 0;
-            int[] data = new int[100];
+            int[] P = new int[100];
+            int[] L = new int[100];
 
-            for (int k = 0; k < x.sodinh; k++)
+
+            for (int i = 0; i < x.sodinh; i++)
             {
-                for (int l = 0; l < x.sodinh; l++)
+                for (int j = 0; j < x.sodinh; j++)
                 {
-                    if (maTran[k, l] == 0)
+
+                    if (maTran[i, j] == 0)
                     {
-                        maTran[k, l] = 999999;
+                        maTran[i, j] = int.MaxValue;
                     }
                 }
             }
 
-            for (int k = 0; k < x.sodinh; k++)
+            for (int i = 0; i < L.Length; i++)
             {
-                khoangCach[k] = maTran[x.di, k];
-                Truoc[k] = x.di;
+                L[i] = int.MaxValue;
             }
 
-            for (int k = 0; k < x.sodinh - 2; k++)
+            L[x.di] = 0;
+
+            bool stop = false;
+            int k = 0;
+
+            while (!stop)
             {
-                for (int u = 0; u < x.sodinh; u++)
+                stop = true;
+                k = k + 1;
+
+                for (int i = 0; i < L.Length; i++)
                 {
-                    for (int v = 0; v < x.sodinh; v++)
+                    for (int j = 0; j < L.Length; j++)
                     {
-                        int tmp = khoangCach[u] + maTran[u, v];
-                        if (khoangCach[v] > tmp)
+                        if (maTran[i, j] > 0 && maTran[i, j] < int.MaxValue)
                         {
-                            khoangCach[v] = tmp;
-                            Truoc[v] = u;
+                            if (L[j] > L[i] + maTran[i, j])
+                            {
+                                L[j] = L[i] + maTran[i, j];
+                                P[j] = i;
+                                stop = false;
+                            }
                         }
                     }
                 }
+
+                if (k > 100)
+                {
+                    if (stop == false)
+                    {
+                        stop = true;
+                    }
+                }
             }
 
-           
+            int den = x.den;
+            int count = 0;
+            string str = "";
 
-            int i, j = 0;
-            duongDi[j] = x.den;
-            i = Truoc[x.den];
-
-            while (i != x.di)
-            {
-                duongDi[++j] = i;
-                i = Truoc[i];
-            }
-
-            duongDi[j + 1] = x.di;
-            int size = 2;
-            for (int k = j + 1; k >= 0; k--)
+            while (den != x.di)
             {
                 count++;
-                data[size++] = duongDi[k];
+                den = P[den];
+                str = den + str;
             }
 
-            data[0] = count;
-            if (khoangCach[x.den] == 999999)
+            count++;
+            str += x.den;
+            str = count.ToString() + L[x.den].ToString() + str;
+
+            data = new int[str.Length];
+            for (int i = 0; i < data.Length; i++)
             {
-                data[0] = -1;
+                data[i] = int.Parse(str[i].ToString());
             }
-
-            data[1] = khoangCach[x.den];
-
             return data;
         }
     }
