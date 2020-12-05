@@ -21,6 +21,7 @@ namespace LTDT_project
         int h = 20, m = 3;
         int[] tmp = new int[10000];
         int chisotmp = 0;
+        public bool am = false;
         private void button1_Click(object sender, EventArgs e)
         {
             chisotmp = 0;
@@ -57,7 +58,7 @@ namespace LTDT_project
                         if (i == j)
                         {
                             a.ReadOnly = true;
-                            a.Text = $"-1";
+                            a.Text = $"∞";
                         }
                         if (i> j && j !=0)
                         {
@@ -84,8 +85,9 @@ namespace LTDT_project
             {
                 if (!textBox.ReadOnly)
                 {
-                    int trongso = rnd.Next(-50, 51);
-                    textBox.Text = trongso.ToString();
+                    int trongso = rnd.Next(-9999, 9999);
+                    if (trongso > 5000 || trongso < -5000) textBox.Text = "∞";
+                    else textBox.Text = trongso.ToString();
                    
                 }
             }
@@ -96,11 +98,14 @@ namespace LTDT_project
             bool kt = true;
             foreach(TextBox textBox in panel1.Controls)
             {
+                int trongso;
                 if (!textBox.ReadOnly)
                 {
                     try
                     {
-                        int trongso = int.Parse(textBox.Text);
+
+                        if (textBox.Text == "∞") trongso = int.MinValue;
+                        else trongso = int.Parse(textBox.Text);
                         tmp[chisotmp++] = trongso;
                     }
                     catch
@@ -150,8 +155,12 @@ namespace LTDT_project
                     {
                         if (i != j)
                         {
-                            if (tmp[chisotmp] < 0) mt[i, j] = mt[j, i] = int.MinValue;
-                            else mt[i, j] = mt[j, i] = tmp[chisotmp];
+                            if (tmp[chisotmp] == int.MinValue) mt[i, j] = mt[j, i] = int.MinValue;
+                            else
+                            {
+                                if (tmp[chisotmp] < 0) am = true;
+                                mt[i, j] = mt[j, i] = tmp[chisotmp];
+                            }
                             chisotmp++;
                         }
                     }

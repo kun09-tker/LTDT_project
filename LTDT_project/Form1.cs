@@ -51,6 +51,7 @@ namespace LTDT_project
         bool edge = false;
         bool dij = false;
         bool OnlyPath = false;
+        bool am = false;
         string di="";
         string den="";
         string path="";
@@ -219,7 +220,7 @@ namespace LTDT_project
             iDinh = SoDinhLienThong = tmp = demNode= demTim = 0;
           //  start = -1;
             di = den = path = "";
-            vertex = edge = dij = OnlyPath = xuatphat.Visible =dich.Visible = vt1.Visible = vt2.Visible = false;
+            vertex = edge = dij = OnlyPath = xuatphat.Visible =dich.Visible = vt1.Visible = vt2.Visible = am =  false;
             
             pictureBox1.Refresh();
              
@@ -260,7 +261,7 @@ namespace LTDT_project
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+            radioDij.Checked = true; 
             vt1.Visible = vt2.Visible = xuatphat.Visible = dich.Visible= false;
            // button3.Enabled = false;
             //MessageBox.Show(int.MinValue.ToString());
@@ -283,8 +284,12 @@ namespace LTDT_project
                     for(int j = 0;j< soDinh; j++)
                     {
                         if (weight[j] == "∞") Matran[i, j] = int.MinValue;
-                       // else if (int.Parse(weight[j]) == 0) Matran[i, j] = int.MinValue;
-                        else Matran[i, j] = int.Parse(weight[j]);
+                        // else if (int.Parse(weight[j]) == 0) Matran[i, j] = int.MinValue;
+                        else
+                        {
+                            if (int.Parse(weight[j]) < 0) am = true;
+                            Matran[i, j] = int.Parse(weight[j]);
+                        }
                     }
                 }
                 for (int j = 0; j < soDinh; j++)
@@ -362,7 +367,8 @@ namespace LTDT_project
                                
                                 Cập_nhật_trọng_số cập_Nhật_Trọng_Số = new Cập_nhật_trọng_số();
                                 cập_Nhật_Trọng_Số.ShowDialog();
-                                if (cập_Nhật_Trọng_Số.trongso != -1) Matran[xx, yy] = Matran[yy, xx] = cập_Nhật_Trọng_Số.trongso;
+                                if (cập_Nhật_Trọng_Số.trongso != int.MinValue) Matran[xx, yy] = Matran[yy, xx] = cập_Nhật_Trọng_Số.trongso;
+                                if (cập_Nhật_Trọng_Số.trongso < 0) am = true;
                             }
                             demNode = 0;
                             vt1.Visible = vt2.Visible = false;
@@ -396,6 +402,7 @@ namespace LTDT_project
                         }
                         if (x != -1 && y != -1)
                         {
+                            bool chua = true;
                             Timduongdi timduongdi = new Timduongdi();
                             timduongdi.ShowDialog();
                             richTextBox1.Text = "";
@@ -410,32 +417,42 @@ namespace LTDT_project
                             }
                             int[] duongdi;
                             int n = -1;
-                            if (timduongdi.Ngan)
+                            if (radioDij.Checked&&!am)
                             {
-                                Dijsktra.DuLieu a = new Dijsktra.DuLieu();
-                                Dijsktra dijsktra = new Dijsktra();
-                                a.sodinh = iDinh;
-                                a.mt = Matran;
-                                a.di = x + 1;
-                                a.den = y + 1;
-                                // MessageBox.Show(x.den.ToString());
-                                duongdi = dijsktra.TimDuong(a);
-                            }
-                            else if (timduongdi.Dai)
-                            {
-                                DijsktraDao.DuLieu a = new DijsktraDao.DuLieu();
-                                DijsktraDao dijsktraDao = new DijsktraDao();
-                                a.sodinh = iDinh;
-                                a.mt = Matran;
-                                a.di = x + 1;
-                                a.den = y + 1;
-                                // MessageBox.Show(x.den.ToString());
-                                duongdi = dijsktraDao.TimDuong(a);
-                                if (duongdi[0] != -1) Array.Reverse(duongdi, 2, duongdi[0] - 2);
+                                if (timduongdi.Ngan)
+                                {
+                                    Dijsktra.DuLieu a = new Dijsktra.DuLieu();
+                                    Dijsktra dijsktra = new Dijsktra();
+                                    a.sodinh = iDinh;
+                                    a.mt = Matran;
+                                    a.di = x + 1;
+                                    a.den = y + 1;
+                                    // MessageBox.Show(x.den.ToString());
+                                    duongdi = dijsktra.TimDuong(a);
+                                }
+                                else if (timduongdi.Dai)
+                                {
+                                    DijsktraDao.DuLieu a = new DijsktraDao.DuLieu();
+                                    DijsktraDao dijsktraDao = new DijsktraDao();
+                                    a.sodinh = iDinh;
+                                    a.mt = Matran;
+                                    a.di = x + 1;
+                                    a.den = y + 1;
+                                    // MessageBox.Show(x.den.ToString());
+                                    duongdi = dijsktraDao.TimDuong(a);
+                                    if (duongdi[0] != -1) Array.Reverse(duongdi, 2, duongdi[0] - 2);
+                                }
+                                else
+                                {
+                                    duongdi = null;
+                                }
                             }
                             else
                             {
+                                chua = false;
                                 duongdi = null;
+                                System.Media.SystemSounds.Exclamation.Play();
+                                Mess("Thuật toán Dijkstra không xử lý số âm được", "Thông báo", global::LTDT_project.Properties.Resources.warning, SystemIcons.Warning);
                             }
                             if (duongdi != null)
                             {
@@ -506,7 +523,7 @@ namespace LTDT_project
                             }
                             else
                             {
-                                if (timduongdi.Ngan == true || timduongdi.Dai == true)
+                                if ((timduongdi.Ngan == true || timduongdi.Dai == true)&&chua)
                                 {
                                     System.Media.SystemSounds.Hand.Play();
                                     Mess("Hmm... Chắc không tìm thấy đường đi đâu", "Hệ thống", global::LTDT_project.Properties.Resources.Error, SystemIcons.Error);
@@ -1045,6 +1062,7 @@ namespace LTDT_project
             form2.ShowDialog();
             iDinh = form2.Sodinh;
             Matran = form2.mt;
+            am = form2.am;
             int sodinh = iDinh;
             iDinh = 0;
             for(int i = 0; i < sodinh; i++)
@@ -1058,12 +1076,6 @@ namespace LTDT_project
             DocCanhMaTran(iDinh);
             DinhDangLaiMaTran();
         }
-
-        private void button_Giai_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             tmp = 0;

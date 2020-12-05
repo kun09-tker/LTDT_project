@@ -16,7 +16,7 @@ namespace LTDT_project
         {
             InitializeComponent();
         }
-        public int trongso = -1;
+        public int trongso = int.MinValue;
         private void Cập_nhật_trọng_số_Load(object sender, EventArgs e)
         {
 
