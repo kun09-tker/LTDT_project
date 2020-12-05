@@ -1,0 +1,14 @@
+D:\Sort\Sort\obj\Debug\Sort.csprojAssemblyReference.cache
+D:\Sort\Sort\obj\Debug\Sort.csproj.CoreCompileInputs.cache
+D:\Sort\Sort\bin\Debug\Sort.exe.config
+D:\Sort\Sort\bin\Debug\Sort.exe
+D:\Sort\Sort\bin\Debug\Sort.pdb
+D:\Sort\Sort\obj\Debug\Sort.exe
+D:\Sort\Sort\obj\Debug\Sort.pdb
+D:\NganNhat\Sort\Sort\bin\Debug\Sort.exe.config
+D:\NganNhat\Sort\Sort\bin\Debug\Sort.exe
+D:\NganNhat\Sort\Sort\bin\Debug\Sort.pdb
+D:\NganNhat\Sort\Sort\obj\Debug\Sort.csprojAssemblyReference.cache
+D:\NganNhat\Sort\Sort\obj\Debug\Sort.csproj.CoreCompileInputs.cache
+D:\NganNhat\Sort\Sort\obj\Debug\Sort.exe
+D:\NganNhat\Sort\Sort\obj\Debug\Sort.pdb
