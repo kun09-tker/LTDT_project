@@ -108,7 +108,7 @@ namespace LTDT_project
             string temp = x.den.ToString();
             int[] ketqua_chinhthuc = new int[10000];
             ketqua_chinhthuc.Append(int.Parse(temp));
-            int trongso = 0;
+            int trongso = 0, dem1 = 1, dem2 = 2;
             //Cho tới khi temp chạm tới đỉnh x.di là ngừng
             while (temp != x.di.ToString())
             {
@@ -118,14 +118,16 @@ namespace LTDT_project
                     if (ketqua[0, i] == temp)
                     {
                         for (int j = 0; j < x.sodinh; j++)
-                        {   //xét trong cột đỉnh kết thúc có đường đi dài nhất
+                        {   
                             if (ketqua[j, i].Contains("*"))
                             {
                                 //tiếp tục đỉnh nối với đỉnh kết thúc có đường đi dài nhất sẽ là đỉnh kết thúc và chèn vào đỉnh đó vào kết quả chính thức
-                                temp = ketqua[j, i].Substring(ketqua[j, i].IndexOf(",")+1 , ketqua[j, i].IndexOf(")") - ketqua[j, i].IndexOf(",")-1);
-                                ketqua_chinhthuc.Append(int.Parse(temp));
-                                string trongso_cua_dainhat = ketqua[j, i].Substring(ketqua[j, i].IndexOf("(")+1, ketqua[j, i].IndexOf(",") - ketqua[j, i].IndexOf("(")-1);
-                                trongso += int.Parse(trongso_cua_dainhat);
+                                temp =new string( ketqua[j, i].Substring(ketqua[j, i].IndexOf(",")+1).Where(Char.IsDigit).ToArray());
+                                ketqua_chinhthuc[dem2]=Int32.Parse(temp);
+                                string trongso_cua_dainhat =new string( ketqua[j, i].Substring(ketqua[j, i].IndexOf("(")+1, ketqua[j, i].IndexOf(",") - ketqua[j, i].IndexOf("(")).Where(Char.IsDigit).ToArray());
+                                trongso += Int32.Parse(trongso_cua_dainhat);
+                                dem1++;
+                                dem2++;
                                 break;
                             }
                         }
@@ -133,9 +135,8 @@ namespace LTDT_project
                     }
                 }
             }
-            ketqua_chinhthuc.Append(trongso);
-            ketqua_chinhthuc.Append(ketqua_chinhthuc.Count());
-            Array.Reverse(ketqua_chinhthuc);
+            ketqua_chinhthuc[1] = (trongso);
+            ketqua_chinhthuc[0]=dem1;
             return ketqua_chinhthuc;
         }
 

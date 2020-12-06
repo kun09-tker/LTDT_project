@@ -443,6 +443,7 @@ namespace LTDT_project
                                         // MessageBox.Show(x.den.ToString());
                                         duongdi = dijsktraDao.Dijsktra_Dao(a);
                                         if (duongdi[0] != -1) Array.Reverse(duongdi, 2, duongdi[0] - 2);
+                                        //Array.Reverse()
                                     }
                                     else
                                     {
