@@ -417,48 +417,71 @@ namespace LTDT_project
                             }
                             int[] duongdi;
                             int n = -1;
-                            if (radioDij.Checked&&!am)
+                            if (radioDij.Checked)
                             {
-                                if (timduongdi.Ngan)
+                                if (!am)
                                 {
-                                    Dijsktra.DuLieu a = new Dijsktra.DuLieu();
-                                    Dijsktra dijsktra = new Dijsktra();
-                                    a.sodinh = iDinh;
-                                    a.mt = Matran;
-                                    a.di = x + 1;
-                                    a.den = y + 1;
-                                    // MessageBox.Show(x.den.ToString());
-                                    duongdi = dijsktra.TimDuong(a);
+                                    if (timduongdi.Ngan)
+                                    {
+                                        Dijsktra.DuLieu a = new Dijsktra.DuLieu();
+                                        Dijsktra dijsktra = new Dijsktra();
+                                        a.sodinh = iDinh;
+                                        a.mt = Matran;
+                                        a.di = x + 1;
+                                        a.den = y + 1;
+                                        // MessageBox.Show(x.den.ToString());
+                                        duongdi = dijsktra.TimDuong(a);
+                                    }
+                                    else if (timduongdi.Dai)
+                                    {
+                                        DijsktraDao.DuLieu a = new DijsktraDao.DuLieu();
+                                        DijsktraDao dijsktraDao = new DijsktraDao();
+                                        a.sodinh = iDinh;
+                                        a.mt = Matran;
+                                        a.di = x + 1;
+                                        a.den = y + 1;
+                                        // MessageBox.Show(x.den.ToString());
+                                        duongdi = dijsktraDao.Dijsktra_Dao(a);
+                                        if (duongdi[0] != -1) Array.Reverse(duongdi, 2, duongdi[0] - 2);
+                                    }
+                                    else
+                                    {
+                                        duongdi = null;
+                                    }
                                 }
-                                else if (timduongdi.Dai)
+                                else
                                 {
-                                    DijsktraDao.DuLieu a = new DijsktraDao.DuLieu();
-                                    DijsktraDao dijsktraDao = new DijsktraDao();
-                                    a.sodinh = iDinh;
-                                    a.mt = Matran;
-                                    a.di = x + 1;
+                                    chua = false;
+                                    
+                                    duongdi = null;
+                                    System.Media.SystemSounds.Exclamation.Play();
+                                    if (timduongdi.Ngan == true || timduongdi.Dai == true)
+                                    {
+                                        Mess("Thuật toán Dijkstra không xử lý số âm được", "Thông báo", global::LTDT_project.Properties.Resources.warning, SystemIcons.Warning);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (timduongdi.Ngan) {
+                                    Ford_Bellman.DuLieu a = new Ford_Bellman.DuLieu();
+                                    Ford_Bellman ford_Bellman = new Ford_Bellman();
                                     a.den = y + 1;
-                                    // MessageBox.Show(x.den.ToString());
-                                    duongdi = dijsktraDao.TimDuong(a);
-                                    if (duongdi[0] != -1) Array.Reverse(duongdi, 2, duongdi[0] - 2);
+                                    a.di = x + 1;
+                                    a.mt = Matran;
+                                    a.sodinh = iDinh;
+                                    duongdi = ford_Bellman.TimDuong(a);
                                 }
                                 else
                                 {
                                     duongdi = null;
                                 }
                             }
-                            else
-                            {
-                                chua = false;
-                                duongdi = null;
-                                System.Media.SystemSounds.Exclamation.Play();
-                                Mess("Thuật toán Dijkstra không xử lý số âm được", "Thông báo", global::LTDT_project.Properties.Resources.warning, SystemIcons.Warning);
-                            }
                             if (duongdi != null)
                             {
                                 n = duongdi[0];
                             }
-                            // MessageBox.Show(string.Join("\n",duongdi));
+                             MessageBox.Show(string.Join(" ",duongdi));
                             if (n > 0)
                             {
                                 dij = true;

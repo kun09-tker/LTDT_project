@@ -85,8 +85,8 @@ namespace LTDT_project
             {
                 if (!textBox.ReadOnly)
                 {
-                    int trongso = rnd.Next(-9999, 9999);
-                    if (trongso > 5000 || trongso < -5000) textBox.Text = "∞";
+                    int trongso = rnd.Next(-999, 9999);
+                    if (trongso > 5000 || trongso < -500) textBox.Text = "∞";
                     else textBox.Text = trongso.ToString();
                    
                 }
@@ -104,7 +104,7 @@ namespace LTDT_project
                     try
                     {
 
-                        if (textBox.Text == "∞") trongso = int.MinValue;
+                        if (textBox.Text == "∞"|| int.Parse(textBox.Text) > 5000 || int.Parse(textBox.Text) < -500 ) trongso = int.MinValue;
                         else trongso = int.Parse(textBox.Text);
                         tmp[chisotmp++] = trongso;
                     }

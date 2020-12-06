@@ -14,14 +14,45 @@ namespace LTDT_project
             public int[,] mt;
             public int di, den;
         }
-        public int[] TimDuong(DuLieu x,bool type)
+        public int[] TimDuong(DuLieu x)
         {
-            x.den = x.den - 1;
             x.di = x.di - 1;
+            x.den = x.den - 1;
             int[] data = new int[100];
             int[,] maTran = x.mt;
-            int[] P = new int[100];
-            int[] L = new int[100];
+            int[,] maTran2 = new int[x.sodinh, x.sodinh];
+            int[] P = new int[x.sodinh];
+            int[] L = new int[x.sodinh];
+
+            for (int f = 0; f < x.sodinh; f++)
+            {
+                for (int v = 0; v < x.sodinh; v++)
+                {
+                    maTran2[f, v] = maTran[f, v];
+                }
+            }
+
+
+            for (int f = 0; f < x.sodinh; f++)
+            {
+                for (int v = 0; v < x.sodinh; v++)
+                {
+                    for (int u = 0; u < x.sodinh; u++)
+                    {
+                        if (maTran2[v, f] != int.MinValue && maTran2[f, u] != int.MinValue
+                            && maTran2[v, f] + maTran2[f, u] < maTran2[v, u])
+                        {
+                            maTran2[v, u] = maTran2[v, f] + maTran2[f, u];
+                        }
+                    }
+
+                    if (maTran2[v, v] < 0)
+                    {
+                        data[0] = -1;
+                        return data;
+                    }
+                }
+            }
 
 
             for (int i = 0; i < x.sodinh; i++)
@@ -29,16 +60,9 @@ namespace LTDT_project
                 for (int j = 0; j < x.sodinh; j++)
                 {
 
-                    if (maTran[i, j] == int.MinValue)
+                    if (maTran[i, j] == 0)
                     {
                         maTran[i, j] = int.MaxValue;
-                    }
-                    else
-                    {
-                        if (!type)
-                        {
-                            maTran[i, j] *= -1;
-                        }
                     }
                 }
             }
@@ -58,12 +82,13 @@ namespace LTDT_project
                 stop = true;
                 k = k + 1;
 
-                for (int i = 0; i < L.Length; i++)
+                for (int i = 0; i < x.sodinh; i++)
                 {
-                    for (int j = 0; j < L.Length; j++)
+                    for (int j = 0; j < x.sodinh; j++)
                     {
                         if (maTran[i, j] > 0 && maTran[i, j] < int.MaxValue)
                         {
+
                             if (L[j] > L[i] + maTran[i, j])
                             {
                                 L[j] = L[i] + maTran[i, j];
@@ -74,7 +99,24 @@ namespace LTDT_project
                     }
                 }
 
-                if (k > 100)
+                for (int i = 0; i < x.sodinh; i++)
+                {
+                    for (int j = 0; j < x.sodinh; j++)
+                    {
+                        if (maTran[i, j] > 0 && maTran[i, j] < int.MaxValue)
+                        {
+
+                            if (L[j] > L[i] + maTran[i, j])
+                            {
+                                L[j] = L[i] + maTran[i, j];
+                                P[j] = i;
+                                stop = false;
+                            }
+                        }
+                    }
+                }
+
+                if (k > x.sodinh)
                 {
                     if (stop == false)
                     {
@@ -85,20 +127,26 @@ namespace LTDT_project
 
             int den = x.den;
             int count = 0;
-            int size = 2;
-          
+            string str = "";
 
-            while (den != x.di)
+            while (den != x.di && den < x.sodinh && den != P[den])
             {
                 count++;
                 den = P[den];
-                // str = (den+1).ToString() + str;
-                data[size++] = den + 1;
+                str = (den+1).ToString() + str;
             }
+
             count++;
-            data[size] = x.di + 1;
-            data[0] = count + 2;
-            data[1] = L[x.den];
+            str += x.den;
+            str = (count+2).ToString() + L[x.den].ToString() + str;
+
+            data = new int[str.Length];
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                data[i] = int.Parse(str[i].ToString());
+            }
+
             return data;
         }
     }

@@ -30,7 +30,6 @@ namespace LTDT_project
                 for(int j = 1; j <= x.sodinh; j++)
                 {
                     mts[i, j] = x.mt[i - 1, j - 1];
-                  
                 }
             }
             for (int i = 1; i <= x.sodinh; i++)

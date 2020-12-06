@@ -450,7 +450,6 @@
             this.radioDij.TabStop = true;
             this.radioDij.Text = "Dijkstra";
             this.radioDij.UseVisualStyleBackColor = true;
-            this.radioDij.CheckedChanged += new System.EventHandler(this.radioDij_CheckedChanged);
             // 
             // radioF
             // 
