@@ -8,137 +8,82 @@ namespace LTDT_project
 {
     class DijsktraDao
     {
-        const int negative_INF = -100000;
         public struct DuLieu
         {
             public int sodinh;
+            public int di;
+            public int den;
             public int[,] mt;
-            public int di, den;
-        }
+        };
 
-        //
-        //Dijktra Đảo
-        //Trả về mảng 1 chiều
-        public int[] Dijsktra_Dao(DuLieu x)
+        public int[] TimDuong(DuLieu x)
         {
-            x.den = x.den - 1;
-            x.di = x.di - 1;
-            XetLienThong cmd = new XetLienThong();
-            XetLienThong.DoThi X;
-            X.iMaTran = x.mt;
-            X.iSoDinh = x.sodinh;
-            if (!cmd.xetLienThong(X))
+            int max;
+            int[] nhan = new int[100];
+            int[] daDuyet = new int[100];
+            int[] kq = new int[100];
+            int dem = 0;
+            int[,] mts = new int[100, 100];
+            int[] s = new int[1000];
+            for (int i = 1; i <= x.sodinh; i++)
             {
-                int[] a = { -1 };
-                return a;
+                for (int j = 1; j <= x.sodinh; j++)
+                {
+                    mts[i, j] = x.mt[i - 1, j - 1];
+                }
             }
+            for (int i = 1; i <= x.sodinh; i++)
+            {
+                nhan[i] = 0;
+                kq[i] = 0;
+                daDuyet[i] = 0;
+            }
+            int vet = x.di;
+            nhan[vet] = 1;
+            kq[vet] = 0;
+            while (vet != x.den && dem <= x.sodinh)
+            {
+                for (int i = 1; i <= x.sodinh; i++)
+                {
+                    if (mts[vet, i] >= 0 && kq[vet] + mts[vet, i] > kq[i] && nhan[i] == 0)
+                    {
+                        kq[i] = kq[vet] + mts[vet, i];
+                        daDuyet[i] = vet;
+                    }
+                }
+                max = -1;
+                for (int j = 1; j <= x.sodinh; j++)
+                {
+                    if (max < kq[j] && nhan[j] == 0)
+                    {
+                        max = kq[j];
+                        vet = j;
+                    }
+                }
+                nhan[vet] = 1;
+                dem++;
+            }
+            if (dem < x.sodinh)
+            {
+                s[1] = kq[x.den];
+                s[2] = x.den;
+                int index = 3;
+                int tmp = daDuyet[x.den];
 
-            string[,] ketqua = new string[10000, 10000];//kết quả cuối cùng
-            bool[] check = new bool[x.sodinh];//đã có dấu * hay chưa
-            int[] cost = new int[x.sodinh];//tổng trọng số đi mặc định âm vô cực
-            string[] path = new string[x.sodinh];//đỉnh phải đi qua đầu tiên trong Dijsktra
-            int k = 0;//mặc định đỉnh a là 0(a=97(ascii)-49=>0) và dòng k=0
-                      //Chỉnh dòng 0 đầu tiên
-            for (int i = 0; i < x.sodinh; i++)
-            {
-
-                ketqua[k, i] = i.ToString();
-            }
-            k++;
-            for (int i = 0; i < x.sodinh; i++)
-            {
-                check[i] = false;
-                cost[i] = negative_INF;
-                path[i] = "__";
-                ketqua[k, i] = "(oo,__)";
-            }
-            cost[x.di] = 0;
-            check[x.di] = true;
-            ketqua[k, x.di] = "0*";
-            // Xét từ từ dòng 1 trở đi
-            for (int i = 0; i < x.sodinh; i++)
-            {
-                //Xét những đỉnh gần kề đỉnh x.di
-                for (int j = 0; j < x.sodinh; j++)
+                while (tmp != x.di)
                 {
-                    if (cost[j] < cost[x.di] + x.mt[x.di, j] && !check[j] && x.mt[x.di, j] != int.MinValue)
-                    {
-                        cost[j] = cost[x.di] + x.mt[x.di, j];
-                        path[j] = x.di.ToString();
-                    }
+                    // if (tmp == 0) break;
+                    s[index] = tmp;
+                    tmp = daDuyet[tmp];
+                    index++;
+                    //if(tmp==0) break; 
                 }
-                //Bỏ dòng k vào ma trận kết quả
-                k++;
-                for (int j = 0; j < x.sodinh; j++)
-                {
-                    if (check[j])
-                    {
-                        ketqua[k, j] = "__";
-                    }
-                    else
-                    {
-                        if (cost[j] != negative_INF)
-                        {
-                            ketqua[k, j] = $"({cost[j]},{path[j]})";
-                        }
-                        else
-                        {
-                            ketqua[k, j] = "(oo,__)";
-                        }
-                    }
-                }
-                //Tìm đỉnh lớn nhất tiếp theo
-                int MAX = negative_INF;
-                for (int j = 0; j < x.sodinh; j++)
-                {
-                    if (MAX < cost[j] && !check[j])
-                    {
-                        MAX = cost[j];
-                        x.di = j;
-                    }
-                }
-                check[x.di] = true;
-                ketqua[k, x.di] += "*";
+                s[index++] = x.di;
+                s[0] = index;
+                //s[3] = dem;
             }
-            for (int i = 0; i < x.sodinh; i++)
-            {
-                ketqua[x.sodinh + 1, i] = "__";
-            }
-            //Lấy xét từ cột đỉnh kết thúc
-            string temp = x.den.ToString();
-            int[] ketqua_chinhthuc = new int[10000];
-            ketqua_chinhthuc.Append(int.Parse(temp));
-            int trongso = 0, dem1 = 1, dem2 = 2;
-            //Cho tới khi temp chạm tới đỉnh x.di là ngừng
-            while (temp != x.di.ToString())
-            {
-                for (int i = 0; i < x.sodinh; i++)
-                {
-                    //xét cột nào là đỉnh kết thúc
-                    if (ketqua[0, i] == temp)
-                    {
-                        for (int j = 0; j < x.sodinh; j++)
-                        {   
-                            if (ketqua[j, i].Contains("*"))
-                            {
-                                //tiếp tục đỉnh nối với đỉnh kết thúc có đường đi dài nhất sẽ là đỉnh kết thúc và chèn vào đỉnh đó vào kết quả chính thức
-                                temp =new string( ketqua[j, i].Substring(ketqua[j, i].IndexOf(",")+1).Where(Char.IsDigit).ToArray());
-                                ketqua_chinhthuc[dem2]=Int32.Parse(temp);
-                                string trongso_cua_dainhat =new string( ketqua[j, i].Substring(ketqua[j, i].IndexOf("(")+1, ketqua[j, i].IndexOf(",") - ketqua[j, i].IndexOf("(")).Where(Char.IsDigit).ToArray());
-                                trongso += Int32.Parse(trongso_cua_dainhat);
-                                dem1++;
-                                dem2++;
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
-            }
-            ketqua_chinhthuc[1] = (trongso);
-            ketqua_chinhthuc[0]=dem1;
-            return ketqua_chinhthuc;
+            else s[0] = -1;
+            return s;
         }
-
     }
 }
