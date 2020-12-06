@@ -441,8 +441,9 @@ namespace LTDT_project
                                         a.di = x + 1;
                                         a.den = y + 1;
                                         // MessageBox.Show(x.den.ToString());
-                                        duongdi = dijsktraDao.Dijsktra_Dao(a);
-                                        if (duongdi[0] != -1) Array.Reverse(duongdi, 2, duongdi[0]);
+                                        duongdi = dijsktraDao.TimDuong(a);
+                                        //if (duongdi[0] != -1) Array.Reverse(duongdi, 2, duongdi[0] - 2);
+                                        //Array.Reverse()
                                     }
                                     else
                                     {
@@ -481,7 +482,7 @@ namespace LTDT_project
                             {
                                 n = duongdi[0];
                             }
-                             MessageBox.Show(string.Join(" ",duongdi));
+                             //MessageBox.Show(string.Join(" ",duongdi));
                             if (n > 0)
                             {
                                 dij = true;
