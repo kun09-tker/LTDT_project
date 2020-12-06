@@ -172,6 +172,7 @@ namespace LTDT_project
 
         private void button4_Click(object sender, EventArgs e)
         {
+            am = false;
             foreach(TextBox textBox in panel1.Controls)
             {
                 if(!textBox.ReadOnly&&textBox.Text!= "∞")

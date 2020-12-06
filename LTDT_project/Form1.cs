@@ -482,7 +482,7 @@ namespace LTDT_project
                             {
                                 n = duongdi[0];
                             }
-                             MessageBox.Show(string.Join(" ",duongdi));
+                             //MessageBox.Show(string.Join(" ",duongdi));
                             if (n > 0)
                             {
                                 dij = true;
