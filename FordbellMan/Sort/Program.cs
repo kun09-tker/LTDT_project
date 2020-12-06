@@ -13,7 +13,7 @@ namespace Sort
         static void Main(string[] args)
         {
             FordBellMan.DuLieu x = new FordBellMan.DuLieu();
-            string[] temp = File.ReadAllLines("D:/graph.txt");
+            string[] temp = File.ReadAllLines("D:/Trongsoam.txt");
             x.sodinh = int.Parse(temp[0]);
 
             int dong = 0;
@@ -33,16 +33,23 @@ namespace Sort
             x.mt = MaTran;
 
             x.di = 0;
-            x.den = 3;
+            x.den = 4;
 
             FordBellMan g = new FordBellMan();
             int[] a = g.TimDuong(x);
 
-
-            for (int i = 0; i < a.Length; i++)
+            if (a[0] == -1)
             {
-                Console.Write(a[i].ToString());
+                Console.WriteLine("Phat hien chu trinh am");
             }
+            else
+            {
+                for (int i = 0; i < a.Length; i++)
+                {
+                    Console.WriteLine(a[i]);
+                }
+            }
+
 
             Console.ReadKey();
 
@@ -62,10 +69,42 @@ namespace Sort
 
         public int[] TimDuong(DuLieu x)
         {
-            int[] data;
+
+            int[] data = new int[100];
             int[,] maTran = x.mt;
-            int[] P = new int[100];
-            int[] L = new int[100];
+            int[,] maTran2 = new int[x.sodinh, x.sodinh];
+            int[] P = new int[x.sodinh];
+            int[] L = new int[x.sodinh];
+
+            for (int f = 0; f < x.sodinh; f++)
+            {
+                for (int v = 0; v < x.sodinh; v++)
+                {
+                    maTran2[f, v] = maTran[f, v];
+                }
+            }
+
+
+            for (int f = 0; f < x.sodinh; f++)
+            {
+                for (int v = 0; v < x.sodinh; v++)
+                {
+                    for (int u = 0; u < x.sodinh; u++)
+                    {
+                        if (maTran2[v, f] != 0 && maTran2[f, u] != 0
+                            && maTran2[v, f] + maTran2[f, u] < maTran2[v, u])
+                        {
+                            maTran2[v, u] = maTran2[v, f] + maTran2[f, u];
+                        }
+                    }
+
+                    if (maTran2[v, v] < 0)
+                    {
+                        data[0] = -1;
+                        return data;
+                    }
+                }
+            }
 
 
             for (int i = 0; i < x.sodinh; i++)
@@ -95,12 +134,13 @@ namespace Sort
                 stop = true;
                 k = k + 1;
 
-                for (int i = 0; i < L.Length; i++)
+                for (int i = 0; i < x.sodinh; i++)
                 {
-                    for (int j = 0; j < L.Length; j++)
+                    for (int j = 0; j < x.sodinh; j++)
                     {
                         if (maTran[i, j] > 0 && maTran[i, j] < int.MaxValue)
                         {
+
                             if (L[j] > L[i] + maTran[i, j])
                             {
                                 L[j] = L[i] + maTran[i, j];
@@ -111,7 +151,24 @@ namespace Sort
                     }
                 }
 
-                if (k > 100)
+                for (int i = 0; i < x.sodinh; i++)
+                {
+                    for (int j = 0; j < x.sodinh; j++)
+                    {
+                        if (maTran[i, j] > 0 && maTran[i, j] < int.MaxValue)
+                        {
+
+                            if (L[j] > L[i] + maTran[i, j])
+                            {
+                                L[j] = L[i] + maTran[i, j];
+                                P[j] = i;
+                                stop = false;
+                            }
+                        }
+                    }
+                }
+
+                if (k > x.sodinh)
                 {
                     if (stop == false)
                     {
@@ -124,7 +181,7 @@ namespace Sort
             int count = 0;
             string str = "";
 
-            while (den != x.di)
+            while (den != x.di && den < x.sodinh && den != P[den])
             {
                 count++;
                 den = P[den];
@@ -136,10 +193,12 @@ namespace Sort
             str = count.ToString() + L[x.den].ToString() + str;
 
             data = new int[str.Length];
+
             for (int i = 0; i < data.Length; i++)
             {
                 data[i] = int.Parse(str[i].ToString());
             }
+
             return data;
         }
     }
