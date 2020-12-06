@@ -104,12 +104,11 @@ namespace LTDT_project
             {
                 ketqua[x.sodinh + 1, i] = "__";
             }
-            int dem1 = 1, dem2 = 3,C=x.den,trongso=0;
+            int dem1 = 1, dem2 = 3,C=x.den,trongso=cost[C];
             int[] ketqua_chinhthuc = new int[1000];
             ketqua_chinhthuc[2] = C;
             while (C != x.di)
             {
-                trongso += cost[C];
                 C = Int32.Parse(path[C]);
                 ketqua_chinhthuc[dem2] = C;
                 dem2++;

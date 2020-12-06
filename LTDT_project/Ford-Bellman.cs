@@ -149,5 +149,54 @@ namespace LTDT_project
 
             return data;
         }
+        public int[] FordBellman_Dao(DuLieu X)
+        {
+            int[] ketqua = new int[1000];
+            int[] cost = new int[1000];
+            int[] path = new int[1000];
+            for(int i = 0; i < X.sodinh; i++)
+            {
+                cost[i] = int.MinValue;
+            }
+            cost[0] = 0;
+            for (int k = 0; k < X.sodinh - 1; k++)
+            {
+                for (int i = 0; i < X.sodinh; i++)
+                {
+                    for (int j = 0; j < X.sodinh; j++)
+                    {
+                        if (cost[i] != int.MinValue && cost[i] + X.mt[i, j] > cost[j] && X.mt[i, j] != 0)
+                        {
+                            cost[j] = cost[i] + X.mt[i, j];
+                            path[j] = i;
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < X.sodinh; i++)
+            {
+                for (int j = 0; j < X.sodinh; j++)
+                {
+                    if (cost[i] != int.MaxValue && cost[i] + X.mt[i, j] < cost[j] && X.mt[i, j] != 0)
+                    {
+                        int[] a = { -1 };
+                        return a;
+                    }
+                }
+            }
+            int A = X.den, dem1 = 2, dem2 = 3;
+            ketqua[2] = A;
+            ketqua[1] = cost[A];
+            while (A != X.di)
+            {
+                A = path[A];
+                ketqua[dem2] = A;
+                dem1++;
+                dem2++;
+            }
+            ketqua[0] = dem1;
+            Array.Reverse(ketqua, 2, dem1 - 2);
+            return ketqua;
+        }
     }
 }
