@@ -37,7 +37,7 @@ namespace LTDT_project
             bool[] check = new bool[x.sodinh];//đã có dấu * hay chưa
             int[] cost = new int[x.sodinh];//tổng trọng số đi mặc định âm vô cực
             string[] path = new string[x.sodinh];//đỉnh phải đi qua đầu tiên trong Dijsktra
-            int k = 0;//mặc định đỉnh a là 0(a=97(ascii)-49=>0) và dòng k=0
+            int k = 0,A=x.di,B=x.den;//mặc định đỉnh a là 0(a=97(ascii)-49=>0) và dòng k=0
                       //Chỉnh dòng 0 đầu tiên
             for (int i = 0; i < x.sodinh; i++)
             {
@@ -52,19 +52,19 @@ namespace LTDT_project
                 path[i] = "__";
                 ketqua[k, i] = "(oo,__)";
             }
-            cost[x.di] = 0;
-            check[x.di] = true;
-            ketqua[k, x.di] = "0*";
+            cost[A] = 0;
+            check[A] = true;
+            ketqua[k, A] = "0*";
             // Xét từ từ dòng 1 trở đi
             for (int i = 0; i < x.sodinh; i++)
             {
                 //Xét những đỉnh gần kề đỉnh x.di
                 for (int j = 0; j < x.sodinh; j++)
                 {
-                    if (cost[j] < cost[x.di] + x.mt[x.di, j] && !check[j] && x.mt[x.di, j] != int.MinValue)
+                    if (cost[j] < cost[A] + x.mt[A, j] && !check[j] && x.mt[A, j] != int.MinValue)
                     {
-                        cost[j] = cost[x.di] + x.mt[x.di, j];
-                        path[j] = x.di.ToString();
+                        cost[j] = cost[A] + x.mt[A, j];
+                        path[j] = A.ToString();
                     }
                 }
                 //Bỏ dòng k vào ma trận kết quả
@@ -94,49 +94,30 @@ namespace LTDT_project
                     if (MAX < cost[j] && !check[j])
                     {
                         MAX = cost[j];
-                        x.di = j;
+                        A = j;
                     }
                 }
-                check[x.di] = true;
-                ketqua[k, x.di] += "*";
+                check[A] = true;
+                ketqua[k, A] += "*";
             }
             for (int i = 0; i < x.sodinh; i++)
             {
                 ketqua[x.sodinh + 1, i] = "__";
             }
-            //Lấy xét từ cột đỉnh kết thúc
-            string temp = x.den.ToString();
-            int[] ketqua_chinhthuc = new int[10000];
-            ketqua_chinhthuc.Append(int.Parse(temp));
-            int trongso = 0, dem1 = 1, dem2 = 2;
-            //Cho tới khi temp chạm tới đỉnh x.di là ngừng
-            while (temp != x.di.ToString())
+            int dem1 = 1, dem2 = 3,C=x.den,trongso=0;
+            int[] ketqua_chinhthuc = new int[1000];
+            ketqua_chinhthuc[2] = C;
+            while (C != x.di)
             {
-                for (int i = 0; i < x.sodinh; i++)
-                {
-                    //xét cột nào là đỉnh kết thúc
-                    if (ketqua[0, i] == temp)
-                    {
-                        for (int j = 0; j < x.sodinh; j++)
-                        {   
-                            if (ketqua[j, i].Contains("*"))
-                            {
-                                //tiếp tục đỉnh nối với đỉnh kết thúc có đường đi dài nhất sẽ là đỉnh kết thúc và chèn vào đỉnh đó vào kết quả chính thức
-                                temp =new string( ketqua[j, i].Substring(ketqua[j, i].IndexOf(",")+1).Where(Char.IsDigit).ToArray());
-                                ketqua_chinhthuc[dem2]=Int32.Parse(temp);
-                                string trongso_cua_dainhat =new string( ketqua[j, i].Substring(ketqua[j, i].IndexOf("(")+1, ketqua[j, i].IndexOf(",") - ketqua[j, i].IndexOf("(")).Where(Char.IsDigit).ToArray());
-                                trongso += Int32.Parse(trongso_cua_dainhat);
-                                dem1++;
-                                dem2++;
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                }
+                trongso += cost[C];
+                C = Int32.Parse(path[C]);
+                ketqua_chinhthuc[dem2] = C;
+                dem2++;
+                dem1++;
             }
-            ketqua_chinhthuc[1] = (trongso);
-            ketqua_chinhthuc[0]=dem1;
+            ketqua_chinhthuc[0] = dem1+2;
+            ketqua_chinhthuc[1] = trongso;
+            Array.Reverse(ketqua_chinhthuc, 2, dem1);
             return ketqua_chinhthuc;
         }
 
