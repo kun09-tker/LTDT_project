@@ -170,6 +170,55 @@ namespace LTDT_project
             }
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            foreach(TextBox textBox in panel1.Controls)
+            {
+                if(!textBox.ReadOnly&&textBox.Text!= "∞")
+                {
+                    try {
+                        int trongso = int.Parse(textBox.Text);
+                        if (trongso < 0) textBox.Text = (trongso * -1).ToString();
+                    }
+                    catch
+                    {
+                        System.Media.SystemSounds.Hand.Play();
+                        PictureBox pictureE = new PictureBox();
+                        pictureE.Image = global::LTDT_project.Properties.Resources.Error;
+                        pictureE.Location = new Point(12, 12);
+                        pictureE.SizeMode = PictureBoxSizeMode.AutoSize;
+                        Label labelLoi = new Label();
+                        labelLoi.Font = new System.Drawing.Font("Palatino Linotype", 10, FontStyle.Bold);
+                        labelLoi.Text = "Ma trận không phù hợp";
+                        labelLoi.Location = new Point(100, 50);
+                        labelLoi.AutoSize = true;
+                        Form Loi = new Form();
+                        Loi.Text = "Lỗi nhập liệu";
+                        Loi.Icon = System.Drawing.SystemIcons.Error;
+                        Loi.Controls.Add(pictureE);
+                        Loi.Controls.Add(labelLoi);
+                        Loi.BackColor = Color.White;
+                        Loi.Height = 180;
+                        Loi.AutoSize = true;
+                        Loi.StartPosition = FormStartPosition.CenterScreen;
+                        Loi.MinimizeBox = false;
+                        Loi.MaximizeBox = false;
+                        Button OkLoi = new Button();
+                        OkLoi.Text = "OK";
+                        OkLoi.TextAlign = ContentAlignment.MiddleCenter;
+                        OkLoi.Location = new Point(Loi.Width - (Loi.Width / 3), 100);
+                        Loi.Controls.Add(OkLoi);
+                        Loi.Show();
+                        OkLoi.Click += (sen, args) =>
+                        {
+                            Loi.Close();
+                        };
+                        break;
+                    }
+                }
+            }
+        }
+
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             sodinh.Text = trackBar1.Value.ToString();
