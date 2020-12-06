@@ -38,17 +38,12 @@ namespace Sort
             FordBellMan g = new FordBellMan();
             int[] a = g.TimDuong(x);
 
-            if (a[0] == -1)
+
+            for (int i = 0; i < a.Length; i++)
             {
-                Console.WriteLine("Phat hien chu trinh am");
+                Console.WriteLine(a[i]);
             }
-            else
-            {
-                for (int i = 0; i < a.Length; i++)
-                {
-                    Console.WriteLine(a[i]);
-                }
-            }
+
 
 
             Console.ReadKey();
@@ -75,37 +70,6 @@ namespace Sort
             int[,] maTran2 = new int[x.sodinh, x.sodinh];
             int[] P = new int[x.sodinh];
             int[] L = new int[x.sodinh];
-
-            for (int f = 0; f < x.sodinh; f++)
-            {
-                for (int v = 0; v < x.sodinh; v++)
-                {
-                    maTran2[f, v] = maTran[f, v];
-                }
-            }
-
-
-            for (int f = 0; f < x.sodinh; f++)
-            {
-                for (int v = 0; v < x.sodinh; v++)
-                {
-                    for (int u = 0; u < x.sodinh; u++)
-                    {
-                        if (maTran2[v, f] != 0 && maTran2[f, u] != 0
-                            && maTran2[v, f] + maTran2[f, u] < maTran2[v, u])
-                        {
-                            maTran2[v, u] = maTran2[v, f] + maTran2[f, u];
-                        }
-                    }
-
-                    if (maTran2[v, v] < 0)
-                    {
-                        data[0] = -1;
-                        return data;
-                    }
-                }
-            }
-
 
             for (int i = 0; i < x.sodinh; i++)
             {
