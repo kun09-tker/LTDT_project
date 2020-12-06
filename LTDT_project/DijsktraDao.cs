@@ -19,8 +19,18 @@ namespace LTDT_project
         //
         //Dijktra Đảo
         //Trả về mảng 1 chiều
-        public string[] Dijsktra_Dao(int[,] matran, int sodinh, int start,int end, string[] tendinh)
+        public int[] Dijsktra_Dao(int[,] matran, int sodinh, int start,int end)
         {
+            XetLienThong cmd=new XetLienThong();
+            XetLienThong.DoThi X;
+            X.iMaTran = matran;
+            X.iSoDinh = sodinh;
+            if (!cmd.xetLienThong(X))
+            {
+                int[] a = { -1};
+                return a;
+            }
+
             string[,] ketqua = new string[10000, 10000];//kết quả cuối cùng
             bool[] check = new bool[sodinh];//đã có dấu * hay chưa
             int[] cost = new int[sodinh];//tổng trọng số đi mặc định âm vô cực
@@ -30,7 +40,7 @@ namespace LTDT_project
             for (int i = 0; i < sodinh; i++)
             {
 
-                ketqua[k, i] = tendinh[i];
+                ketqua[k, i] = i.ToString();
             }
             k++;
             for (int i = 0; i < sodinh; i++)
@@ -52,7 +62,7 @@ namespace LTDT_project
                     if (cost[j] < cost[start] + matran[start, j] && !check[j] && matran[start, j] != int.MinValue)
                     {
                         cost[j] = cost[start] + matran[start, j];
-                        path[j] = tendinh[start];
+                        path[j] = start.ToString();
                     }
                 }
                 //Bỏ dòng k vào ma trận kết quả
@@ -93,11 +103,12 @@ namespace LTDT_project
                 ketqua[sodinh + 1, i] = "__";
             }
             //Lấy xét từ cột đỉnh kết thúc
-            string temp = tendinh[end];
-            string[] ketqua_chinhthuc = new string[10000];
-            ketqua_chinhthuc.Append(temp);
+            string temp = end.ToString();
+            int[] ketqua_chinhthuc = new int[10000];
+            ketqua_chinhthuc.Append(Int32.Parse(temp));
+            int trongso = 0;
             //Cho tới khi temp chạm tới đỉnh start là ngừng
-            while (temp != tendinh[start])
+            while (temp != start.ToString())
             {
                 for (int i = 0; i < sodinh; i++)
                 {
@@ -109,8 +120,10 @@ namespace LTDT_project
                             if (ketqua[j, i].Contains("*"))
                             {
                                 //tiếp tục đỉnh nối với đỉnh kết thúc có đường đi dài nhất sẽ là đỉnh kết thúc và chèn vào đỉnh đó vào kết quả chính thức
-                                temp = ketqua[j, i].Substring(ketqua[j, i].IndexOf(","), ketqua[j, i].IndexOf(")") - ketqua[j, i].IndexOf(","));
-                                ketqua_chinhthuc.Append(temp);
+                                temp = ketqua[j, i].Substring(ketqua[j, i].IndexOf(",")+1, ketqua[j, i].IndexOf(")") - ketqua[j, i].IndexOf(","));
+                                ketqua_chinhthuc.Append(Int32.Parse(temp));
+                                string trongso_cua_dainhat = ketqua[j, i].Substring(ketqua[j, i].IndexOf("(") + 1, ketqua[j, i].IndexOf(",") - ketqua[j, i].IndexOf("("));
+                                trongso += Int32.Parse(trongso_cua_dainhat);
                                 break;
                             }
                         }
@@ -118,7 +131,9 @@ namespace LTDT_project
                     }
                 }
             }
-            //Sẽ trả về từ đỉnh end -> đỉnh start
+            ketqua_chinhthuc.Append(trongso);
+            ketqua_chinhthuc.Append(ketqua_chinhthuc.Count());
+            Array.Reverse(ketqua_chinhthuc);
             return ketqua_chinhthuc;
         }
 
