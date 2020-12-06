@@ -55,6 +55,15 @@ namespace LTDT_project
 				}
 			}
 		}
+		public bool xetLienThong(DoThi g)
+        {
+			LienThong(g);
+            if (nSoMienLienThong == 1)
+            {
+				return true;
+            }
+			return false;
+        }
 		public string[] xuatMienLienThong(DoThi g)
 		{
 			LienThong(g);

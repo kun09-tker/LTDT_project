@@ -41,3 +41,4 @@ D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.CopyComplete
 D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.exe
 D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.pdb
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Loigiai.resources
+D:\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Loigiai.resources
