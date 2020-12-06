@@ -122,9 +122,9 @@ namespace LTDT_project
                             if (ketqua[j, i].Contains("*"))
                             {
                                 //tiếp tục đỉnh nối với đỉnh kết thúc có đường đi dài nhất sẽ là đỉnh kết thúc và chèn vào đỉnh đó vào kết quả chính thức
-                                temp = ketqua[j, i].Substring(ketqua[j, i].IndexOf(",") + 1, ketqua[j, i].IndexOf(")") - ketqua[j, i].IndexOf(","));
-                                ketqua_chinhthuc.Append(int.Parse(temp)+1);
-                                string trongso_cua_dainhat = ketqua[j, i].Substring(ketqua[j, i].IndexOf("(") + 1, ketqua[j, i].IndexOf(",") - ketqua[j, i].IndexOf("("));
+                                temp = ketqua[j, i].Substring(ketqua[j, i].IndexOf(",")+1 , ketqua[j, i].IndexOf(")") - ketqua[j, i].IndexOf(",")-1);
+                                ketqua_chinhthuc.Append(int.Parse(temp));
+                                string trongso_cua_dainhat = ketqua[j, i].Substring(ketqua[j, i].IndexOf("(")+1, ketqua[j, i].IndexOf(",") - ketqua[j, i].IndexOf("(")-1);
                                 trongso += int.Parse(trongso_cua_dainhat);
                                 break;
                             }
