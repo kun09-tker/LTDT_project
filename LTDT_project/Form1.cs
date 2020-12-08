@@ -34,6 +34,7 @@ namespace LTDT_project
         Point[] Dinh = new Point[100];
         Color color = Color.Black;
         string[] tenDinh = new string[100];
+        string[] Duyet = new string[100];
         public int iDinh = 0;
         int SoDinhLienThong = 0;
         int tmp = 0;
@@ -203,6 +204,7 @@ namespace LTDT_project
             {
                 luuVetdinh[i] = false;                  
                 luuVetdinh1[i] = false;
+                Duyet[i] = "";
                // luuVetdinh2[i] = false;
                 for (int j = 0; j < iDinh; j++)
                 {
@@ -560,6 +562,51 @@ namespace LTDT_project
                         }
                     }
                     break;
+                case MouseButtons.Right:
+                    {
+                        int sDc;
+                        vt1.Visible = vt2.Visible = xuatphat.Visible = dich.Visible = false;
+                        demTim = demTim = 0;
+                        for (int i = 0; i < iDinh; i++)
+                        {
+                            luuVetdinh1[i] = false;
+                        }
+                        if (XetToaDo(e.X, e.Y) != -1)
+                        {
+                            sDc = XetToaDo(e.X, e.Y);
+                            DFS_BFS dFS_BFS = new DFS_BFS();
+                            dFS_BFS.ShowDialog();
+                            if (dFS_BFS.BFS)
+                            {
+                                
+                                DuyetCay.GRAPH gRAPH = new DuyetCay.GRAPH();
+                                DuyetCay.QUEUE qUEUE = new DuyetCay.QUEUE();
+                                gRAPH.A = Matran;
+                                gRAPH.sodinh = iDinh;
+                                //qUEUE.size = 0;
+                                //qUEUE.a.DefaultIfEmpty(0);
+                                int[] visit = new int[101];
+                                int[] luuvet = new int[101];
+                                for (int i = 0; i < 100; i++)
+                                {
+                                    visit[i] = 0;
+                                    luuvet[i] = -1;
+                                }
+                                gRAPH.LuuVet = luuvet;
+                                gRAPH.visited = visit;
+                                //qUEUE.a = visit;
+                               // qUEUE.a.DefaultIfEmpty(0);
+                                DuyetCay duyetCay = new DuyetCay();
+                                Duyet = duyetCay.BFS(gRAPH, sDc);
+                                MessageBox.Show(string.Join("\n", Duyet));
+                            }
+                            else if (dFS_BFS.DFS)
+                            {
+
+                            }
+                        }
+                        break;
+                    }
             }
            
         }

@@ -49,6 +49,7 @@ namespace LTDT_project
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label2
             // 
@@ -59,6 +60,7 @@ namespace LTDT_project
             this.label2.Size = new System.Drawing.Size(239, 18);
             this.label2.TabIndex = 7;
             this.label2.Text = "Bạn muốn tìm đường đi như thế nào ?";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -69,6 +71,7 @@ namespace LTDT_project
             this.label1.Size = new System.Drawing.Size(54, 18);
             this.label1.TabIndex = 6;
             this.label1.Text = "Trả lời :";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // radioButton1
             // 
@@ -82,6 +85,7 @@ namespace LTDT_project
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Ngắn nhất";
             this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -95,6 +99,7 @@ namespace LTDT_project
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Dài nhất";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // button2
             // 

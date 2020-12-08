@@ -1,7 +1,0 @@
-D:\Giay\Giay\obj\Debug\Giay.csprojAssemblyReference.cache
-D:\Giay\Giay\obj\Debug\Giay.csproj.CoreCompileInputs.cache
-D:\Giay\Giay\bin\Debug\Giay.exe.config
-D:\Giay\Giay\bin\Debug\Giay.exe
-D:\Giay\Giay\bin\Debug\Giay.pdb
-D:\Giay\Giay\obj\Debug\Giay.exe
-D:\Giay\Giay\obj\Debug\Giay.pdb

@@ -63,6 +63,12 @@
     <Compile Include="Cập nhật trọng số.Designer.cs">
       <DependentUpon>Cập nhật trọng số.cs</DependentUpon>
     </Compile>
+    <Compile Include="DFS-BFS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DFS-BFS.Designer.cs">
+      <DependentUpon>DFS-BFS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dijsktra.cs" />
     <Compile Include="DijsktraDao.cs" />
     <Compile Include="DuyetCay.cs" />
@@ -115,6 +121,9 @@
     <Compile Include="XetLienThong.cs" />
     <EmbeddedResource Include="Cập nhật trọng số.resx">
       <DependentUpon>Cập nhật trọng số.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DFS-BFS.resx">
+      <DependentUpon>DFS-BFS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
