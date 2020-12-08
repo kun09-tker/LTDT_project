@@ -1,0 +1,126 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "VisioForge.DotNet.Core.TRIAL/12.0.82": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/VisioForge.Controls.NetCore.dll": {},
+          "lib/netcoreapp3.1/VisioForge.Controls.UI.Dialogs.NetCore.dll": {},
+          "lib/netcoreapp3.1/VisioForge.Controls.UI.NetCore.dll": {},
+          "lib/netcoreapp3.1/VisioForge.MediaFramework.NetCore.dll": {},
+          "lib/netcoreapp3.1/VisioForge.Shared.NetCore.dll": {},
+          "lib/netcoreapp3.1/VisioForge.Tools.NetCore.dll": {},
+          "lib/netcoreapp3.1/VisioForge.Types.NetCore.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/VisioForge.Controls.NetCore.dll": {},
+          "lib/netcoreapp3.1/VisioForge.Controls.UI.Dialogs.NetCore.dll": {},
+          "lib/netcoreapp3.1/VisioForge.Controls.UI.NetCore.dll": {},
+          "lib/netcoreapp3.1/VisioForge.MediaFramework.NetCore.dll": {},
+          "lib/netcoreapp3.1/VisioForge.Shared.NetCore.dll": {},
+          "lib/netcoreapp3.1/VisioForge.Tools.NetCore.dll": {},
+          "lib/netcoreapp3.1/VisioForge.Types.NetCore.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "VisioForge.DotNet.Core.TRIAL/12.0.82": {
+      "sha512": "Z4QULcHNqCgD/IyEEDkm6xGcQ96tmPKNWraj5DgcIkifbTApuci5U1Pbgljq7Ear60vYWGMC4qe/IPNCsTb8uA==",
+      "type": "package",
+      "path": "visioforge.dotnet.core.trial/12.0.82",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net46/VisioForge.Controls.UI.Dialogs.dll",
+        "lib/net46/VisioForge.Controls.UI.dll",
+        "lib/net46/VisioForge.Controls.dll",
+        "lib/net46/VisioForge.MediaFramework.dll",
+        "lib/net46/VisioForge.Shared.dll",
+        "lib/net46/VisioForge.Tools.dll",
+        "lib/net46/VisioForge.Types.dll",
+        "lib/netcoreapp3.1/VisioForge.Controls.NetCore.dll",
+        "lib/netcoreapp3.1/VisioForge.Controls.UI.Dialogs.NetCore.dll",
+        "lib/netcoreapp3.1/VisioForge.Controls.UI.NetCore.dll",
+        "lib/netcoreapp3.1/VisioForge.MediaFramework.NetCore.dll",
+        "lib/netcoreapp3.1/VisioForge.Shared.NetCore.dll",
+        "lib/netcoreapp3.1/VisioForge.Tools.NetCore.dll",
+        "lib/netcoreapp3.1/VisioForge.Types.NetCore.dll",
+        "readme.txt",
+        "tools/VisualStudioToolsManifest.xml",
+        "visioforge.dotnet.core.trial.12.0.82.nupkg.sha512",
+        "visioforge.dotnet.core.trial.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETCoreApp,Version=v3.1": [
+      "VisioForge.DotNet.Core.TRIAL >= 12.0.82"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\LENOVO\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\LTDT_project\\FordWriteOnPaper\\FordWriteOnPaper\\FordWriteOnPaper.csproj",
+      "projectName": "FordWriteOnPaper",
+      "projectPath": "D:\\LTDT_project\\FordWriteOnPaper\\FordWriteOnPaper\\FordWriteOnPaper.csproj",
+      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+      "outputPath": "D:\\LTDT_project\\FordWriteOnPaper\\FordWriteOnPaper\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netcoreapp3.1"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "netcoreapp3.1": {
+        "dependencies": {
+          "VisioForge.DotNet.Core.TRIAL": {
+            "target": "Package",
+            "version": "[12.0.82, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

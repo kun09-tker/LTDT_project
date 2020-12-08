@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "f6fV7YnjyLCUVZ/5Eh0JdnkIBJXPKa1CxjFWeI14Ry6LT6z91Q/Wv6s2V5a4dpWn72HOWyDsLOX7f/j4Avh0ag==",
+  "success": true,
+  "projectFilePath": "D:\\LTDT_project\\FordWriteOnPaper\\FordWriteOnPaper\\FordWriteOnPaper.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\LENOVO\\.nuget\\packages\\visioforge.dotnet.core.trial\\12.0.82\\visioforge.dotnet.core.trial.12.0.82.nupkg.sha512"
+  ],
+  "logs": []
+}
