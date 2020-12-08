@@ -131,16 +131,8 @@ namespace LTDT_project
                         Loi.StartPosition = FormStartPosition.CenterScreen;
                         Loi.MinimizeBox = false;
                         Loi.MaximizeBox = false;
-                        Button OkLoi = new Button();
-                        OkLoi.Text = "OK";
-                        OkLoi.TextAlign = ContentAlignment.MiddleCenter;
-                        OkLoi.Location = new Point(Loi.Width - (Loi.Width / 3), 100);
-                        Loi.Controls.Add(OkLoi);
-                        Loi.Show();
-                        OkLoi.Click += (sen, args) =>
-                        {
-                            Loi.Close();
-                        };
+                        Loi.ShowDialog();
+                      
                         break;
                     }
                 }

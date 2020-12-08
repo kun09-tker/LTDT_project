@@ -29,6 +29,7 @@ namespace LTDT_project
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Loigiai));
             this.listView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
@@ -49,8 +50,9 @@ namespace LTDT_project
             this.ClientSize = new System.Drawing.Size(219, 48);
             this.Controls.Add(this.listView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Loigiai";
-            this.Text = "Loigiai";
+            this.Text = "Lời giải";
             this.Load += new System.EventHandler(this.Loigiai_Load);
             this.ResumeLayout(false);
 

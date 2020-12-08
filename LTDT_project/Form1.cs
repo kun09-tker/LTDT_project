@@ -106,16 +106,9 @@ namespace LTDT_project
             Loi.StartPosition = FormStartPosition.CenterScreen;
             Loi.MinimizeBox = false;
             Loi.MaximizeBox = false;
-            Button OkLoi = new Button();
-            OkLoi.Text = "OK";
-            OkLoi.TextAlign = ContentAlignment.MiddleCenter;
-            OkLoi.Location = new Point(Loi.Width - (Loi.Width / 3), 100);
-            Loi.Controls.Add(OkLoi);
-            Loi.Show();
-            OkLoi.Click += (sen, args) =>
-            {
-                Loi.Close();
-            };
+            //Loi.FormBorderStyle = FormBorderStyle.None;
+            Loi.ShowDialog();
+            
         }
         void DinhDangLaiMaTran()
         {
@@ -316,6 +309,7 @@ namespace LTDT_project
             doThi.iMaTran = Matran;
             if (nghivan)
             {
+                System.Media.SystemSounds.Exclamation.Play();
                 NghiVan nghiVan = new NghiVan();
                 nghiVan.ShowDialog();
                 if (!nghiVan.ok)
@@ -346,6 +340,7 @@ namespace LTDT_project
                     {
                         System.Media.SystemSounds.Exclamation.Play();
                         Mess("Hệ thống nhạy cảm với số âm :(", "Hệ thống", global::LTDT_project.Properties.Resources.warning, SystemIcons.Warning);
+                        LamMoi();
                     }
                     else
                     {
@@ -704,7 +699,14 @@ namespace LTDT_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LamMoi();
+            System.Media.SystemSounds.Question.Play();
+            HeThong heThong = new HeThong();
+            heThong.title = "Bạn có chắc muốn làm mới ?";
+            heThong.ShowDialog();
+            if (heThong.ok)
+            {
+                LamMoi();
+            }
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -878,129 +880,72 @@ namespace LTDT_project
                 if (vertex)
                 {
                     System.Media.SystemSounds.Question.Play();
-                    PictureBox pictureE = new PictureBox();
-                    pictureE.Image = global::LTDT_project.Properties.Resources.Question;
-                    pictureE.Location = new Point(12, 12);
-                    pictureE.SizeMode = PictureBoxSizeMode.AutoSize;
-                    Label labelLoi = new Label();
-                    labelLoi.Font = new System.Drawing.Font("Palatino Linotype", 10, FontStyle.Bold);
-                    labelLoi.Text = "Bạn có chắc muốn xóa ?";
-                    labelLoi.Location = new Point(100, 60);
-                    labelLoi.AutoSize = true;
-                    Form Loi = new Form();
-                    Loi.Text = "Hệ thống";
-                    Loi.Icon = SystemIcons.Question;
-                    Loi.Controls.Add(pictureE);
-                    Loi.Controls.Add(labelLoi);
-                    Loi.BackColor = Color.White;
-                    Loi.Height = 180;
-                    Loi.StartPosition = FormStartPosition.CenterScreen;
-                    Loi.MinimizeBox = false;
-                    Loi.MaximizeBox = false;
-                    Button OkLoi = new Button();
-                    OkLoi.Text = "Yes";
-                    OkLoi.TextAlign = ContentAlignment.MiddleCenter;
-                    OkLoi.Location = new Point(100, 100);
-                    Button OkLoino = new Button();
-                    OkLoino.Text = "No";
-                    OkLoino.TextAlign = ContentAlignment.MiddleCenter;
-                    OkLoino.Location = new Point(200, 100);
-                    Loi.Controls.Add(OkLoi);
-                    Loi.Controls.Add(OkLoino);
-                    Loi.Show();
-                    OkLoino.Click += (sen, args) =>
+                    HeThong heThong = new HeThong();
+                    heThong.ShowDialog();
+                    if (!heThong.ok)
                     {
                         DinhDangLaiMaTran();
                         pictureBox1.Refresh();
                         DocCanhMaTran(iDinh);
                         CapNhatDS_dinhdi();
 
-                        Loi.Close();
-                    };
-                    OkLoi.Click += (sen, args) =>
+                        //Loi.Close();
+                    }
+                    else
                     {
-                    bool duplicate = false;
-                    foreach (var node in listBox1.Items)
-                    {
-                        if (node.ToString() == textBox1.Text.Substring(6))
+                        bool duplicate = false;
+                        foreach (var node in listBox1.Items)
                         {
-                            int index = indexDinh(textBox1.Text.Substring(6));
-                            // MessageBox.Show(index.ToString());
-                            // MessageBox.Show(index.ToString());
-                            duplicate = true;
-                            for (int i = index; i < iDinh - 1; i++)
+                            if (node.ToString() == textBox1.Text.Substring(6))
                             {
-                                Dinh[i] = Dinh[i + 1];
-                                tenDinh[i] = tenDinh[i + 1];
-                            }
-                            for (int i = index; i < iDinh; i++)
-                            {
-                                for (int j = 0; j < iDinh; j++)
+                                int index = indexDinh(textBox1.Text.Substring(6));
+                                // MessageBox.Show(index.ToString());
+                                // MessageBox.Show(index.ToString());
+                                duplicate = true;
+                                for (int i = index; i < iDinh - 1; i++)
                                 {
-                                    Matran[i, j] = Matran[i + 1, j];
-                                    Matran[j, i] = Matran[j, i + 1];
+                                    Dinh[i] = Dinh[i + 1];
+                                    tenDinh[i] = tenDinh[i + 1];
                                 }
+                                for (int i = index; i < iDinh; i++)
+                                {
+                                    for (int j = 0; j < iDinh; j++)
+                                    {
+                                        Matran[i, j] = Matran[i + 1, j];
+                                        Matran[j, i] = Matran[j, i + 1];
+                                    }
+                                }
+                                iDinh--;
+                                listBox1.Items.Remove(node);
+                                break;
                             }
-                            iDinh--;
-                            listBox1.Items.Remove(node);
-                            break;
                         }
-                    }
-                    if (!duplicate)
-                    {
-                        MessageBox.Show("Đỉnh này không tìm thấy để xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    DinhDangLaiMaTran();
-                    pictureBox1.Refresh();
-                    DocCanhMaTran(iDinh);
-                    CapNhatDS_dinhdi();
+                        if (!duplicate)
+                        {
+                            MessageBox.Show("Đỉnh này không tìm thấy để xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        DinhDangLaiMaTran();
+                        pictureBox1.Refresh();
+                        DocCanhMaTran(iDinh);
+                        CapNhatDS_dinhdi();
 
-                    Loi.Close();
-                };
+                    }
                 }
                 else if (edge)
                 {
                     System.Media.SystemSounds.Question.Play();
-                    PictureBox pictureE = new PictureBox();
-                    pictureE.Image = global::LTDT_project.Properties.Resources.Question;
-                    pictureE.Location = new Point(12, 12);
-                    pictureE.SizeMode = PictureBoxSizeMode.AutoSize;
-                    Label labelLoi = new Label();
-                    labelLoi.Font = new System.Drawing.Font("Palatino Linotype", 10, FontStyle.Bold);
-                    labelLoi.Text = "Bạn có chắc muốn xóa ?";
-                    labelLoi.Location = new Point(100, 60);
-                    labelLoi.AutoSize = true;
-                    Form Loi = new Form();
-                    Loi.Text = "Hệ thống";
-                    Loi.Icon = SystemIcons.Question;
-                    Loi.Controls.Add(pictureE);
-                    Loi.Controls.Add(labelLoi);
-                    Loi.BackColor = Color.White;
-                    Loi.Height = 180;
-                    Loi.StartPosition = FormStartPosition.CenterScreen;
-                    Loi.MinimizeBox = false;
-                    Loi.MaximizeBox = false;
-                    Button OkLoi = new Button();
-                    OkLoi.Text = "Yes";
-                    OkLoi.TextAlign = ContentAlignment.MiddleCenter;
-                    OkLoi.Location = new Point(100, 100);
-                    Button OkLoino = new Button();
-                    OkLoino.Text = "No";
-                    OkLoino.TextAlign = ContentAlignment.MiddleCenter;
-                    OkLoino.Location = new Point(200, 100);
-                    Loi.Controls.Add(OkLoi);
-                    Loi.Controls.Add(OkLoino);
-                    Loi.Show();
-                    OkLoino.Click += (sen, args) =>
+                    HeThong heThong = new HeThong();
+                    heThong.ShowDialog();
+                    if(!heThong.ok)
                     {
                         DinhDangLaiMaTran();
                         pictureBox1.Refresh();
                         DocCanhMaTran(iDinh);
                         CapNhatDS_dinhdi();
 
-                        Loi.Close();
-                    };
-                    OkLoi.Click += (sen, args) =>
+                        //Loi.Close();
+                    }
+                    else
                     {
                     try
                     {
@@ -1024,7 +969,7 @@ namespace LTDT_project
                     DocCanhMaTran(iDinh);
                     CapNhatDS_dinhdi();
 
-                    Loi.Close();
+                    //Loi.Close();
                     };
                 }
             }
@@ -1042,29 +987,32 @@ namespace LTDT_project
                     string rename = Interaction.InputBox("Nhập tên mới", "Đổi tên đỉnh");
                     string name = textBox1.Text.Substring(6);
                     rename = rename.Trim();
-                    bool duyet = false;
-                    foreach(var node in listBox1.Items)
+                    if (rename != "")
                     {
-                        if (rename == node.ToString()) duyet = true;
+                        bool duyet = false;
+                        foreach (var node in listBox1.Items)
+                        {
+                            if (rename == node.ToString()) duyet = true;
+                        }
+                        if (!duyet)
+                        {
+                            tenDinh[indexDinh(name)] = rename;
+                        }
+                        else
+                        {
+                            System.Media.SystemSounds.Exclamation.Play();
+                            Mess("Đỉnh này đã tồn tại hoặc têm không hợp hệ", "Hệ thống", global::LTDT_project.Properties.Resources.warning, SystemIcons.Warning);
+                        }
                     }
-                    if (!duyet)
-                    {
-                        tenDinh[indexDinh(name)] = rename;
-                    }
-                    else
-                    {
-                        System.Media.SystemSounds.Exclamation.Play();
-                        Mess("Đỉnh này đã tồn tại", "Hệ thống", global::LTDT_project.Properties.Resources.warning, SystemIcons.Warning);
-                    }
-                    CapNhatDS_dinhdi(); 
-                    DocCanhMaTran(iDinh);
-                    pictureBox1.Refresh();
                 }
                 else
                 {
                     System.Media.SystemSounds.Hand.Play();
                     Mess("Chỉ được đổi tên của đối tượng đỉnh thôi !!!", "Hệ thống", global::LTDT_project.Properties.Resources.Error, SystemIcons.Error);
                 }
+                CapNhatDS_dinhdi();
+                DocCanhMaTran(iDinh);
+                pictureBox1.Refresh();
             }
             catch
             {
