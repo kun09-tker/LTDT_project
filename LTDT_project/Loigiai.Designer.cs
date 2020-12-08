@@ -48,6 +48,7 @@ namespace LTDT_project
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(219, 48);
             this.Controls.Add(this.listView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Loigiai";
             this.Text = "Loigiai";
             this.Load += new System.EventHandler(this.Loigiai_Load);

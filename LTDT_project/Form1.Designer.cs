@@ -64,9 +64,6 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radioDij = new System.Windows.Forms.RadioButton();
-            this.radioF = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -75,7 +72,6 @@
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // button2
@@ -428,46 +424,11 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.radioF);
-            this.groupBox4.Controls.Add(this.radioDij);
-            this.groupBox4.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(1063, 11);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(241, 48);
-            this.groupBox4.TabIndex = 26;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Thuật toán";
-            // 
-            // radioDij
-            // 
-            this.radioDij.AutoSize = true;
-            this.radioDij.Location = new System.Drawing.Point(15, 22);
-            this.radioDij.Name = "radioDij";
-            this.radioDij.Size = new System.Drawing.Size(75, 22);
-            this.radioDij.TabIndex = 0;
-            this.radioDij.TabStop = true;
-            this.radioDij.Text = "Dijkstra";
-            this.radioDij.UseVisualStyleBackColor = true;
-            // 
-            // radioF
-            // 
-            this.radioF.AutoSize = true;
-            this.radioF.Location = new System.Drawing.Point(115, 22);
-            this.radioF.Name = "radioF";
-            this.radioF.Size = new System.Drawing.Size(109, 22);
-            this.radioF.TabIndex = 1;
-            this.radioF.TabStop = true;
-            this.radioF.Text = "Ford Bellman";
-            this.radioF.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1322, 632);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.groupBox8);
@@ -498,8 +459,6 @@
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -539,9 +498,6 @@
         private System.Windows.Forms.Label vt1;
         private System.Windows.Forms.Label dich;
         private System.Windows.Forms.Label xuatphat;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton radioF;
-        private System.Windows.Forms.RadioButton radioDij;
     }
 }
 

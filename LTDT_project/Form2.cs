@@ -21,7 +21,6 @@ namespace LTDT_project
         int h = 20, m = 3;
         int[] tmp = new int[10000];
         int chisotmp = 0;
-        public bool am = false;
         private void button1_Click(object sender, EventArgs e)
         {
             chisotmp = 0;
@@ -85,8 +84,8 @@ namespace LTDT_project
             {
                 if (!textBox.ReadOnly)
                 {
-                    int trongso = rnd.Next(-999, 9999);
-                    if (trongso > 5000 || trongso < -500) textBox.Text = "∞";
+                    int trongso = rnd.Next(-5000, 10001);
+                    if (trongso < 0) textBox.Text = "∞";
                     else textBox.Text = trongso.ToString();
                    
                 }
@@ -104,7 +103,7 @@ namespace LTDT_project
                     try
                     {
 
-                        if (textBox.Text == "∞"|| int.Parse(textBox.Text) > 5000 || int.Parse(textBox.Text) < -500 ) trongso = int.MinValue;
+                        if (textBox.Text == "∞"||int.Parse(textBox.Text) < 0 ) trongso = int.MinValue;
                         else trongso = int.Parse(textBox.Text);
                         tmp[chisotmp++] = trongso;
                     }
@@ -158,7 +157,7 @@ namespace LTDT_project
                             if (tmp[chisotmp] == int.MinValue) mt[i, j] = mt[j, i] = int.MinValue;
                             else
                             {
-                                if (tmp[chisotmp] < 0) am = true;
+                              
                                 mt[i, j] = mt[j, i] = tmp[chisotmp];
                             }
                             chisotmp++;
@@ -170,55 +169,7 @@ namespace LTDT_project
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            am = false;
-            foreach(TextBox textBox in panel1.Controls)
-            {
-                if(!textBox.ReadOnly&&textBox.Text!= "∞")
-                {
-                    try {
-                        int trongso = int.Parse(textBox.Text);
-                        if (trongso < 0) textBox.Text = (trongso * -1).ToString();
-                    }
-                    catch
-                    {
-                        System.Media.SystemSounds.Hand.Play();
-                        PictureBox pictureE = new PictureBox();
-                        pictureE.Image = global::LTDT_project.Properties.Resources.Error;
-                        pictureE.Location = new Point(12, 12);
-                        pictureE.SizeMode = PictureBoxSizeMode.AutoSize;
-                        Label labelLoi = new Label();
-                        labelLoi.Font = new System.Drawing.Font("Palatino Linotype", 10, FontStyle.Bold);
-                        labelLoi.Text = "Ma trận không phù hợp";
-                        labelLoi.Location = new Point(100, 50);
-                        labelLoi.AutoSize = true;
-                        Form Loi = new Form();
-                        Loi.Text = "Lỗi nhập liệu";
-                        Loi.Icon = System.Drawing.SystemIcons.Error;
-                        Loi.Controls.Add(pictureE);
-                        Loi.Controls.Add(labelLoi);
-                        Loi.BackColor = Color.White;
-                        Loi.Height = 180;
-                        Loi.AutoSize = true;
-                        Loi.StartPosition = FormStartPosition.CenterScreen;
-                        Loi.MinimizeBox = false;
-                        Loi.MaximizeBox = false;
-                        Button OkLoi = new Button();
-                        OkLoi.Text = "OK";
-                        OkLoi.TextAlign = ContentAlignment.MiddleCenter;
-                        OkLoi.Location = new Point(Loi.Width - (Loi.Width / 3), 100);
-                        Loi.Controls.Add(OkLoi);
-                        Loi.Show();
-                        OkLoi.Click += (sen, args) =>
-                        {
-                            Loi.Close();
-                        };
-                        break;
-                    }
-                }
-            }
-        }
+      
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {

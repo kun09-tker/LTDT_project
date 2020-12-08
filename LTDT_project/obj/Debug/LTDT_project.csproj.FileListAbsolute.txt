@@ -64,3 +64,4 @@ D:\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.CoreCompileInputs.cac
 D:\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.CopyComplete
 D:\LTDT_project\LTDT_project\obj\Debug\LTDT_project.exe
 D:\LTDT_project\LTDT_project\obj\Debug\LTDT_project.pdb
+C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.NghiVan.resources

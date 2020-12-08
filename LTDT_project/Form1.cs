@@ -51,7 +51,7 @@ namespace LTDT_project
         bool edge = false;
         bool dij = false;
         bool OnlyPath = false;
-        bool am = false;
+        bool am,nghivan = false;
         string di="";
         string den="";
         string path="";
@@ -220,7 +220,7 @@ namespace LTDT_project
             iDinh = SoDinhLienThong = tmp = demNode= demTim = 0;
           //  start = -1;
             di = den = path = "";
-            vertex = edge = dij = OnlyPath = xuatphat.Visible =dich.Visible = vt1.Visible = vt2.Visible = am =  false;
+            vertex = edge = dij = OnlyPath = xuatphat.Visible =dich.Visible = vt1.Visible = vt2.Visible = am = nghivan = false;
             
             pictureBox1.Refresh();
              
@@ -261,7 +261,7 @@ namespace LTDT_project
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            radioDij.Checked = true; 
+           // radioDij.Checked = true; 
             vt1.Visible = vt2.Visible = xuatphat.Visible = dich.Visible= false;
            // button3.Enabled = false;
             //MessageBox.Show(int.MinValue.ToString());
@@ -287,6 +287,7 @@ namespace LTDT_project
                         // else if (int.Parse(weight[j]) == 0) Matran[i, j] = int.MinValue;
                         else
                         {
+                            if (int.Parse(weight[j]) == 0) nghivan = true;
                             if (int.Parse(weight[j]) < 0) am = true;
                             Matran[i, j] = int.Parse(weight[j]);
                         }
@@ -313,23 +314,56 @@ namespace LTDT_project
             XetDoThiHopLe.DoThi doThi = new XetDoThiHopLe.DoThi();
             doThi.iSodinh = iDinh;
             doThi.iMaTran = Matran;
-            if (xet.KiemTraDonDoThiDonVoHuong(doThi)){
-                CapNhatDS_dinhdi();
-                pictureBox1.Refresh();
-                //LamMoi();
-                DocCanhMaTran(iDinh);
+            if (nghivan)
+            {
+                NghiVan nghiVan = new NghiVan();
+                nghiVan.ShowDialog();
+                if (!nghiVan.ok)
+                {
+                    for(int i = 0; i < iDinh; i++)
+                    {
+                        Matran[i, i] = int.MinValue;
+                    }
+                    nghivan = false;
+                }
+                else
+                {
+                    for(int i = 0; i < iDinh; i++)
+                    {
+                        for(int j = 0; j < iDinh; j++)
+                        {
+                            if (Matran[i, j] == 0) Matran[i, j] = int.MinValue;
+                        }
+                    }
+                    nghivan = false;
+                }
+                
+            }
+            if (!nghivan&&xet.KiemTraDonDoThiDonVoHuong(doThi)){
                 if (path != "")
                 {
-                    System.Media.SystemSounds.Asterisk.Play();
-                    Mess("Đọc file thành công", "Hệ thống", global::LTDT_project.Properties.Resources.Tick, SystemIcons.Information);
+                    if (am)
+                    {
+                        System.Media.SystemSounds.Exclamation.Play();
+                        Mess("Hệ thống nhạy cảm với số âm :(", "Hệ thống", global::LTDT_project.Properties.Resources.warning, SystemIcons.Warning);
+                    }
+                    else
+                    {
+                        System.Media.SystemSounds.Asterisk.Play();
+                        Mess("Đọc file thành công", "Hệ thống", global::LTDT_project.Properties.Resources.Tick, SystemIcons.Information);
+                        CapNhatDS_dinhdi();
+                        pictureBox1.Refresh();
+                        //LamMoi();
+                        DocCanhMaTran(iDinh);
+                    }
                 }
             }
             else
             {
                 //MessageBox.Show("Chỉ đọc được đồ thị đơn vô hướng", "Hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                System.Media.SystemSounds.Hand.Play();
-                Mess("Chỉ đọc được đồ thị đơn vô hướng thôi !!! ", "Hệ thống", global::LTDT_project.Properties.Resources.Error, System.Drawing.SystemIcons.Error);
-                
+                System.Media.SystemSounds.Exclamation.Play();
+                Mess("Chỉ đọc được đồ thị đơn vô hướng thôi !!! ", "Hệ thống", global::LTDT_project.Properties.Resources.warning, System.Drawing.SystemIcons.Warning);
+                LamMoi();
             }
         }
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
@@ -368,7 +402,7 @@ namespace LTDT_project
                                 Cập_nhật_trọng_số cập_Nhật_Trọng_Số = new Cập_nhật_trọng_số();
                                 cập_Nhật_Trọng_Số.ShowDialog();
                                 if (cập_Nhật_Trọng_Số.trongso != int.MinValue) Matran[xx, yy] = Matran[yy, xx] = cập_Nhật_Trọng_Số.trongso;
-                                if (cập_Nhật_Trọng_Số.trongso < 0) am = true;
+
                             }
                             demNode = 0;
                             vt1.Visible = vt2.Visible = false;
@@ -402,7 +436,7 @@ namespace LTDT_project
                         }
                         if (x != -1 && y != -1)
                         {
-                            bool chua = true;
+                            //bool chua = true;
                             Timduongdi timduongdi = new Timduongdi();
                             timduongdi.ShowDialog();
                             richTextBox1.Text = "";
@@ -417,67 +451,36 @@ namespace LTDT_project
                             }
                             int[] duongdi;
                             int n = -1;
-                            if (radioDij.Checked)
+                            if (timduongdi.Ngan)
                             {
-                                if (!am)
-                                {
-                                    if (timduongdi.Ngan)
-                                    {
-                                        Dijsktra.DuLieu a = new Dijsktra.DuLieu();
-                                        Dijsktra dijsktra = new Dijsktra();
-                                        a.sodinh = iDinh;
-                                        a.mt = Matran;
-                                        a.di = x + 1;
-                                        a.den = y + 1;
-                                        // MessageBox.Show(x.den.ToString());
-                                        duongdi = dijsktra.TimDuong(a);
-                                    }
-                                    else if (timduongdi.Dai)
-                                    {
-                                        DijsktraDao.DuLieu a = new DijsktraDao.DuLieu();
-                                        DijsktraDao dijsktraDao = new DijsktraDao();
-                                        a.sodinh = iDinh;
-                                        a.mt = Matran;
-                                        a.di = x + 1;
-                                        a.den = y + 1;
-                                        // MessageBox.Show(x.den.ToString());
-                                        duongdi = dijsktraDao.TimDuong(a);
-                                        //if (duongdi[0] != -1) Array.Reverse(duongdi, 2, duongdi[0] - 2);
-                                        //Array.Reverse()
-                                    }
-                                    else
-                                    {
-                                        duongdi = null;
-                                    }
-                                }
-                                else
-                                {
-                                    chua = false;
-                                    
-                                    duongdi = null;
-                                    System.Media.SystemSounds.Exclamation.Play();
-                                    if (timduongdi.Ngan == true || timduongdi.Dai == true)
-                                    {
-                                        Mess("Thuật toán Dijkstra không xử lý số âm được", "Thông báo", global::LTDT_project.Properties.Resources.warning, SystemIcons.Warning);
-                                    }
-                                }
+                                Dijsktra.DuLieu a = new Dijsktra.DuLieu();
+                                Dijsktra dijsktra = new Dijsktra();
+                                a.sodinh = iDinh;
+                                a.mt = Matran;
+                                a.di = x + 1;
+                                a.den = y + 1;
+                                // MessageBox.Show(x.den.ToString());
+                                duongdi = dijsktra.TimDuong(a);
+                            }
+                            else if (timduongdi.Dai)
+                            {
+                                DijsktraDao.DuLieu a = new DijsktraDao.DuLieu();
+                                DijsktraDao dijsktraDao = new DijsktraDao();
+                                a.sodinh = iDinh;
+                                a.mt = Matran;
+                                a.di = x + 1;
+                                a.den = y + 1;
+                                // MessageBox.Show(x.den.ToString());
+                                duongdi = dijsktraDao.TimDuong(a);
+                                //if (duongdi[0] != -1) Array.Reverse(duongdi, 2, duongdi[0] - 2);
+                                //Array.Reverse()
                             }
                             else
                             {
-                                if (timduongdi.Ngan) {
-                                    Ford_Bellman.DuLieu a = new Ford_Bellman.DuLieu();
-                                    Ford_Bellman ford_Bellman = new Ford_Bellman();
-                                    a.den = y + 1;
-                                    a.di = x + 1;
-                                    a.mt = Matran;
-                                    a.sodinh = iDinh;
-                                    duongdi = ford_Bellman.TimDuong(a);
-                                }
-                                else
-                                {
-                                    duongdi = null;
-                                }
+                                duongdi = null;
                             }
+
+
                             if (duongdi != null)
                             {
                                 n = duongdi[0];
@@ -485,7 +488,7 @@ namespace LTDT_project
                              //MessageBox.Show(string.Join(" ",duongdi));
                             if (n > 0)
                             {
-                                dij = true;
+                               dij = true;
                                 SoDinhLienThong = 0;
                                 for (int i = n - 1; i > 1; i--)
                                 {
@@ -517,15 +520,15 @@ namespace LTDT_project
                                 var xacnhan = MessageBox.Show("Bạn có muốn xem lời giải", "Hệ thống", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                                 if (xacnhan == DialogResult.OK)
                                 {
-                                    string[,] loigiai; 
+                                    string[,] loigiai;
                                     if (timduongdi.Ngan)
                                     {
-                                       
+
                                         Write_Dijsktra_in_paper in_Paper = new Write_Dijsktra_in_paper();
-                                      
+
                                         loigiai = in_Paper.Dijsktra(Matran, iDinh, x, tenDinh);
-                                        
-                                       // MessageBox.Show(iDinh.ToString());
+
+                                        // MessageBox.Show(iDinh.ToString());
                                         Loigiai loigiai1 = new Loigiai();
                                         loigiai1.loigiai = loigiai;
                                         loigiai1.iDinh = iDinh;
@@ -547,7 +550,7 @@ namespace LTDT_project
                             }
                             else
                             {
-                                if ((timduongdi.Ngan == true || timduongdi.Dai == true)&&chua)
+                                if ((timduongdi.Ngan == true || timduongdi.Dai == true))
                                 {
                                     System.Media.SystemSounds.Hand.Play();
                                     Mess("Hmm... Chắc không tìm thấy đường đi đâu", "Hệ thống", global::LTDT_project.Properties.Resources.Error, SystemIcons.Error);
@@ -915,7 +918,7 @@ namespace LTDT_project
                         Loi.Close();
                     };
                     OkLoi.Click += (sen, args) =>
-                {
+                    {
                     bool duplicate = false;
                     foreach (var node in listBox1.Items)
                     {
@@ -1086,7 +1089,6 @@ namespace LTDT_project
             form2.ShowDialog();
             iDinh = form2.Sodinh;
             Matran = form2.mt;
-            am = form2.am;
             int sodinh = iDinh;
             iDinh = 0;
             for(int i = 0; i < sodinh; i++)

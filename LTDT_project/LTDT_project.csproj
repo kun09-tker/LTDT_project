@@ -66,7 +66,6 @@
     <Compile Include="Dijsktra.cs" />
     <Compile Include="DijsktraDao.cs" />
     <Compile Include="DuyetCay.cs" />
-    <Compile Include="Ford-Bellman.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +83,12 @@
     </Compile>
     <Compile Include="Loigiai.Designer.cs">
       <DependentUpon>Loigiai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NghiVan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NghiVan.Designer.cs">
+      <DependentUpon>NghiVan.cs</DependentUpon>
     </Compile>
     <Compile Include="Timduongdi.cs">
       <SubType>Form</SubType>
@@ -113,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Loigiai.resx">
       <DependentUpon>Loigiai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NghiVan.resx">
+      <DependentUpon>NghiVan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

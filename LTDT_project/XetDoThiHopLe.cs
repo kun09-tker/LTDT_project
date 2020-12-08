@@ -12,6 +12,7 @@ namespace LTDT_project
         {
 			public int iSodinh;
 			public int[,] iMaTran;
+			
         };
 		bool kiemTraMaTranKeVoHuongHopLe(DoThi dt)
 		{
