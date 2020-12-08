@@ -15,46 +15,46 @@ namespace LTDT_project
             public int[] visited;
             public int[] LuuVet;
         };
-        public struct QUEUE
+        /*public struct QUEUE
         {
             public int size;
             public int[] a;
-        };
+        };*/
 
-        public static void KhoiTao(ref QUEUE q) { q.size = 0; }
-        public static bool Them(int k,ref QUEUE q)
+        public int[] a = new int[100];
+        public int size = 0;
+        public bool Them(int k,int[] a,ref int size)
         {
-            if (q.size + 1 > 100) return false;
-            q.a[q.size] = k;
-            q.size++;
+            if (size + 1 > 100) return false;
+            a[size] = k;
+            size++;
             return true;
         }
-        public static bool KiemTraRong(QUEUE q)
+        public  bool KiemTraRong(int size)
         {
-            return (q.size == 0);
+            return (size == 0);
         }
-        public static void Lay(ref int v, ref QUEUE q)
+        public  void Lay(ref int v, int[] a,ref int size)
         { 
-            v = q.a[0];
-            for (int i = 0; i < q.size - 1; i++)
-                q.a[i] = q.a[i + 1];
-            q.size--;
+            v = a[0];
+            for (int i = 0; i < size - 1; i++)
+                a[i] = a[i + 1];
+            size--;
         }
-        public static void BFS(int s,ref GRAPH g)
+        public void BFS(int s,ref GRAPH g)
         {
-            QUEUE q = new QUEUE();
-            KhoiTao(ref q);
-            Them(s, ref q);
+            // QUEUE q = new QUEUE();
+            Them(s, a, ref size);
             g.visited[s] = 1;
-            while (!KiemTraRong(q))
+            while (!KiemTraRong(size))
             {
-                Lay(ref s,ref q);
+                Lay(ref s,a,ref size);
                 for (int i = 0; i < g.sodinh; i++)
                 {
                     if (g.visited[i] == 0 && g.A[s,i] != int.MinValue)
                     {
                         g.visited[i] = 1;
-                        Them(i,ref q);
+                        Them(i,a,ref size);
                         g.LuuVet[i] = s;
                     }
                 }

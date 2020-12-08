@@ -580,7 +580,7 @@ namespace LTDT_project
                             {
                                 
                                 DuyetCay.GRAPH gRAPH = new DuyetCay.GRAPH();
-                                DuyetCay.QUEUE qUEUE = new DuyetCay.QUEUE();
+                               // DuyetCay.QUEUE qUEUE = new DuyetCay.QUEUE();
                                 gRAPH.A = Matran;
                                 gRAPH.sodinh = iDinh;
                                 //qUEUE.size = 0;
