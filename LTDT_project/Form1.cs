@@ -602,7 +602,12 @@ namespace LTDT_project
                             }
                             else if (dFS_BFS.DFS)
                             {
-
+                                DuyetCay.DO_THI dO_THI = new DuyetCay.DO_THI();
+                                dO_THI.canh = Matran;
+                                dO_THI.sodinh = iDinh;
+                                DuyetCay duyetCay = new DuyetCay();
+                                Duyet = duyetCay.DFSstr(sDc, dO_THI);
+                                MessageBox.Show(string.Join("\n", Duyet));
                             }
                         }
                         break;

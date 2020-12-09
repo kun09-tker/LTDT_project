@@ -103,6 +103,72 @@ namespace LTDT_project
             }
             return all;
         }
+
+
+        public struct DO_THI
+        {
+            public int sodinh;
+            public int[,] canh;
+        }
+        public int[] LuuVet = new int[100];
+        public int[] visited = new int[100];
+        public void DFS(int s, ref DO_THI g)
+        {
+            visited[s] = 1;
+            for (int i = 0; i < g.sodinh; i++)
+            {
+                if (visited[i] == 0 && g.canh[s, i] != int.MinValue)
+                {
+                    LuuVet[i] = s;
+                    DFS(i, ref g);
+                }
+            }
+        }
+        public string duyetDFS(int s, int f, ref DO_THI dt)
+        {
+            string str = "";
+            for (int i = 0; i < dt.sodinh; i++)
+            {
+                visited[i] = 0;   /// chu f t co thay su dung au ?? coi lai di
+
+                LuuVet[i] = -1;
+            }
+            DFS(s, ref dt);
+            if (visited[f] == 1)
+            {
+                int j = f;
+                while (j != s)
+                {
+                    str += j + " ";
+                    j = LuuVet[j];
+                }
+                str += s;
+            }
+            else
+            {
+                str = (-1).ToString();
+            }
+            return str;
+        }
+        public string[] DFSstr(int s, DO_THI g)
+        {
+            string[] str = new string[100];
+            int index = 0;
+            for (int i = 0; i < g.sodinh; i++)
+            {
+                if (i == s) continue;
+                else
+                {
+                    string a = duyetDFS(s, i, ref g);
+                    for (int j = a.Length - 1; j >= 0; j--)
+                    {
+                        str[index] += a[j] + " ";
+                    }
+                    index++;
+                }
+            }
+            return str;
+        }
     }
 
 }       
