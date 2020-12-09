@@ -1,0 +1,65 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "FordWriteOnPaper/1.0.0": {
+        "dependencies": {
+          "VisioForge.DotNet.Core.TRIAL": "12.0.82"
+        },
+        "runtime": {
+          "FordWriteOnPaper.dll": {}
+        }
+      },
+      "VisioForge.DotNet.Core.TRIAL/12.0.82": {
+        "runtime": {
+          "lib/netcoreapp3.1/VisioForge.Controls.NetCore.dll": {
+            "assemblyVersion": "12.0.82.0",
+            "fileVersion": "12.0.82.0"
+          },
+          "lib/netcoreapp3.1/VisioForge.Controls.UI.Dialogs.NetCore.dll": {
+            "assemblyVersion": "12.0.82.0",
+            "fileVersion": "12.0.82.0"
+          },
+          "lib/netcoreapp3.1/VisioForge.Controls.UI.NetCore.dll": {
+            "assemblyVersion": "12.0.82.0",
+            "fileVersion": "12.0.82.0"
+          },
+          "lib/netcoreapp3.1/VisioForge.MediaFramework.NetCore.dll": {
+            "assemblyVersion": "12.0.82.0",
+            "fileVersion": "12.0.82.0"
+          },
+          "lib/netcoreapp3.1/VisioForge.Shared.NetCore.dll": {
+            "assemblyVersion": "12.0.82.0",
+            "fileVersion": "12.0.82.0"
+          },
+          "lib/netcoreapp3.1/VisioForge.Tools.NetCore.dll": {
+            "assemblyVersion": "12.0.82.0",
+            "fileVersion": "12.0.82.0"
+          },
+          "lib/netcoreapp3.1/VisioForge.Types.NetCore.dll": {
+            "assemblyVersion": "12.0.82.0",
+            "fileVersion": "12.0.82.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FordWriteOnPaper/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "VisioForge.DotNet.Core.TRIAL/12.0.82": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Z4QULcHNqCgD/IyEEDkm6xGcQ96tmPKNWraj5DgcIkifbTApuci5U1Pbgljq7Ear60vYWGMC4qe/IPNCsTb8uA==",
+      "path": "visioforge.dotnet.core.trial/12.0.82",
+      "hashPath": "visioforge.dotnet.core.trial.12.0.82.nupkg.sha512"
+    }
+  }
+}
