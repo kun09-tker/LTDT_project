@@ -60,9 +60,9 @@ namespace LTDT_project
                 }
             }
         }
-        public string duyetBFS(int s, int f, ref GRAPH g)
+        public List<int> duyetBFS(int s, int f, ref GRAPH g)
         {
-            string str="";
+            List<int> str = new List<int>();
             for (int i = 0; i < g.sodinh; i++)
             {
                 g.visited[i] = 0;
@@ -75,13 +75,13 @@ namespace LTDT_project
                 while (j != s)
                 {
                     //cout << j;
-                    str += j.ToString() + " ";
+                    str.Add(j);
                     j = g.LuuVet[j];
                 }
                 //cout << s;
-                str+=j.ToString();
+                str.Add(j);
             }
-            else str= (-1).ToString();
+            else str.Add(-1);
             return str;
         }
 
@@ -93,12 +93,13 @@ namespace LTDT_project
             for (int i = 0; i < g.sodinh; i++)
             {
                 if (i == a) continue;
-                string nget = duyetBFS(a, i,ref g);
-                for (int j = nget.Length-1; j >= 0; j--)
+                List<int> nget = duyetBFS(a, i,ref g);
+                for (int j = nget.Count-1; j > 0; j--)
                 {
-                    all[nall] += nget[j];
+                    all[nall] += nget[j].ToString()+" ";
                     //if (j != nget - 1) all[nall] += " ";
                 }
+                all[nall] += nget[0].ToString();
                 nall++;
             }
             return all;
@@ -124,9 +125,9 @@ namespace LTDT_project
                 }
             }
         }
-        public string duyetDFS(int s, int f, ref DO_THI dt)
+        public List<int> duyetDFS(int s, int f, ref DO_THI dt)
         {
-            string str = "";
+            List<int> str = new List<int>();
             for (int i = 0; i < dt.sodinh; i++)
             {
                 visited[i] = 0;   /// chu f t co thay su dung au ?? coi lai di
@@ -139,14 +140,14 @@ namespace LTDT_project
                 int j = f;
                 while (j != s)
                 {
-                    str += j + " ";
+                    str.Add(j);
                     j = LuuVet[j];
                 }
-                str += s;
+                str.Add(s);
             }
             else
             {
-                str = (-1).ToString();
+                str.Add(-1);
             }
             return str;
         }
@@ -159,11 +160,12 @@ namespace LTDT_project
                 if (i == s) continue;
                 else
                 {
-                    string a = duyetDFS(s, i, ref g);
-                    for (int j = a.Length - 1; j >= 0; j--)
+                    List<int> a = duyetDFS(s, i, ref g);
+                    for (int j = a.Count-1; j > 0; j--)
                     {
-                        str[index] += a[j] + " ";
+                        str[index] += a[j].ToString()+" ";
                     }
+                    str[index] += a[0].ToString();
                     index++;
                 }
             }

@@ -84,7 +84,7 @@ namespace LTDT_project
             {
                 if (!textBox.ReadOnly)
                 {
-                    int trongso = rnd.Next(-5000, 10001);
+                    int trongso = rnd.Next(-700, 1001);
                     if (trongso < 0) textBox.Text = "∞";
                     else textBox.Text = trongso.ToString();
                    
