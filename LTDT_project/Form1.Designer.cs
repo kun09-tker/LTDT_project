@@ -61,6 +61,7 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.Tree = new System.Windows.Forms.Label();
             this.vt2 = new System.Windows.Forms.Label();
             this.vt1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -155,6 +156,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.Tree);
             this.groupBox3.Controls.Add(this.dich);
             this.groupBox3.Controls.Add(this.xuatphat);
             this.groupBox3.Controls.Add(this.vt2);
@@ -384,6 +386,18 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // Tree
+            // 
+            this.Tree.AutoEllipsis = true;
+            this.Tree.AutoSize = true;
+            this.Tree.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.Tree.Image = global::LTDT_project.Properties.Resources.muitenduyet;
+            this.Tree.Location = new System.Drawing.Point(110, 31);
+            this.Tree.Name = "Tree";
+            this.Tree.Size = new System.Drawing.Size(14, 22);
+            this.Tree.TabIndex = 5;
+            this.Tree.Text = " ";
+            // 
             // vt2
             // 
             this.vt2.AutoEllipsis = true;
@@ -498,6 +512,7 @@
         private System.Windows.Forms.Label vt1;
         private System.Windows.Forms.Label dich;
         private System.Windows.Forms.Label xuatphat;
+        private System.Windows.Forms.Label Tree;
     }
 }
 

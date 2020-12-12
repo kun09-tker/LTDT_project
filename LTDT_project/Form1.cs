@@ -215,8 +215,9 @@ namespace LTDT_project
             iDinh = SoDinhLienThong = tmp = demNode = demTim = 0;
             //  start = -1;
             di = den = path = "";
-            vertex = edge = dij = OnlyPath = xuatphat.Visible = dich.Visible = vt1.Visible = vt2.Visible = am = nghivan =false;
+            vertex = edge = dij = OnlyPath = xuatphat.Visible = dich.Visible = vt1.Visible = vt2.Visible = Tree.Visible = am = nghivan =false;
             Duyet = null;
+            pictureBox1.Image = null;
             pictureBox1.Refresh();
 
         }
@@ -335,7 +336,7 @@ namespace LTDT_project
         private void Form1_Load(object sender, EventArgs e)
         {
             Duyet = null;
-            vt1.Visible = vt2.Visible = xuatphat.Visible = dich.Visible = false;
+            vt1.Visible = vt2.Visible = xuatphat.Visible = dich.Visible = Tree.Visible = false;
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -440,7 +441,7 @@ namespace LTDT_project
                 case MouseButtons.Left:
                     {
                         Duyet = null;
-                        xuatphat.Visible = dich.Visible = false;
+                        xuatphat.Visible = dich.Visible = Tree.Visible = false ;
                         demTim = 0;
                         int xx = -1, yy = -1;
                         TaoDoDuongDi(e.X, e.Y);
@@ -480,7 +481,7 @@ namespace LTDT_project
                 case MouseButtons.Middle:
                     {
                         Duyet = null;
-                        vt1.Visible = vt2.Visible = false;
+                        vt1.Visible = vt2.Visible = Tree.Visible = false;
                         demNode = 0;
                         for (int i = 0; i < iDinh; i++)
                         {
@@ -646,6 +647,8 @@ namespace LTDT_project
                             if (XetToaDo(e.X, e.Y) != -1)
                             {
                                 sDc = XetToaDo(e.X, e.Y);
+                                Tree.Location = new Point(Dinh[sDc].X, Dinh[sDc].Y);
+                                Tree.Visible = true;
                                 DFS_BFS dFS_BFS = new DFS_BFS();
                                 dFS_BFS.ShowDialog();
                                 if (dFS_BFS.BFS)
@@ -694,6 +697,7 @@ namespace LTDT_project
                                 //Duyet = PhanTang(Duyet);
                                 pictureBox1.Refresh();
                                 Duyet = null;
+                                Tree.Visible = false;
                             }
                         }
                         else
@@ -939,7 +943,8 @@ namespace LTDT_project
 
         private void button4_Click(object sender, EventArgs e)
         {
-            xuatphat.Visible = dich.Visible = vt1.Visible = vt2.Visible = false;
+            xuatphat.Visible = dich.Visible = vt1.Visible = vt2.Visible =Tree.Visible= false;
+            demTim = demNode = 0;
             for (int i = 0; i < iDinh; i++)
             {
                 Random rnd = new Random();
@@ -975,6 +980,8 @@ namespace LTDT_project
 
         private void lienthong_kt_Click(object sender, EventArgs e)
         {
+            vt1.Visible = vt2.Visible = xuatphat.Visible = dich.Visible = Tree.Visible = false;
+            demNode = demTim = 0;
             tmp = 0;
             richTextBox1.Text = "";
             string[] tp_lienThong = new string[100];
@@ -1033,6 +1040,8 @@ namespace LTDT_project
 
         private void button7_Click(object sender, EventArgs e)
         {
+            vt1.Visible = vt2.Visible = xuatphat.Visible = dich.Visible = Tree.Visible = false;
+            demNode = demTim = 0;
             if (tmp > 0)
             {
                 richTextBox1.Text = "";
@@ -1078,6 +1087,8 @@ namespace LTDT_project
 
         private void button3_Click_1(object sender, EventArgs e)
         {
+            vt1.Visible = vt2.Visible = xuatphat.Visible = dich.Visible = Tree.Visible = false;
+            demNode = demTim = 0;
             tmp = 0;
             richTextBox1.Text = "";
             if (textBox1.Text != "")
@@ -1183,6 +1194,8 @@ namespace LTDT_project
 
         private void DoitenDinh_Click_1(object sender, EventArgs e)
         {
+            vt1.Visible = vt2.Visible = xuatphat.Visible = dich.Visible = Tree.Visible = false;
+            demNode = demTim = 0;
             tmp = 0;
             richTextBox1.Text = "";
             try
@@ -1227,6 +1240,8 @@ namespace LTDT_project
 
         private void button9_Click(object sender, EventArgs e)
         {
+            vt1.Visible = vt2.Visible = xuatphat.Visible = dich.Visible = Tree.Visible = false;
+            demNode = demTim = 0;
             XuatMatranKe matranKe = new XuatMatranKe();
             matranKe.mt = Matran;
             matranKe.sodinh = iDinh;

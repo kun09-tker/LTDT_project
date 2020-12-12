@@ -244,5 +244,8 @@
   <ItemGroup>
     <None Include="Resources\warning.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\muitenduyet.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
