@@ -141,6 +141,7 @@ namespace LTDT_project
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Timduongdi";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tìm đường đi";
             this.Load += new System.EventHandler(this.Timduongdi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

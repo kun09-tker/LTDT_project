@@ -53,6 +53,7 @@ namespace LTDT_project
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "XuatMatranKe";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ma trận kề";
             this.Load += new System.EventHandler(this.XuatMatranKe_Load);
             this.ResumeLayout(false);

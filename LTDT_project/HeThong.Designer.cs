@@ -95,6 +95,7 @@ namespace LTDT_project
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "HeThong";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hệ thống";
             this.Load += new System.EventHandler(this.HeThong_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

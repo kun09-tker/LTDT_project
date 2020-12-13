@@ -136,6 +136,7 @@ namespace LTDT_project
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "DFS_BFS";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DFS_BFS";
             this.Load += new System.EventHandler(this.DFS_BFS_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

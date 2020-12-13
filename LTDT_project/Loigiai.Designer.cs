@@ -52,6 +52,7 @@ namespace LTDT_project
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Loigiai";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lời giải";
             this.Load += new System.EventHandler(this.Loigiai_Load);
             this.ResumeLayout(false);
