@@ -529,13 +529,16 @@ namespace LTDT_project
                             }
                             else if (timduongdi.Dai)
                             {
-                                DijsktraDao.DuLieu a = new DijsktraDao.DuLieu();
-                                DijsktraDao dijsktraDao = new DijsktraDao();
+                                DeQuy.DuLieu a = new DeQuy.DuLieu();
+                                DeQuy dq = new DeQuy();
                                 a.sodinh = iDinh;
                                 a.mt = Matran;
                                 a.di = x + 1;
                                 a.den = y + 1;
-                                duongdi = dijsktraDao.TimDuong(a);
+                                duongdi = dq.TimDuong(a);
+                                
+                                if(duongdi[0] > 2) Array.Reverse(duongdi, 2, duongdi[0]-2);
+                                //MessageBox.Show(string.Join(" ", duongdi));
                             }
                             else
                             {
@@ -579,28 +582,16 @@ namespace LTDT_project
                                 textBox2.Text = duongdi[1].ToString();
                                 dij = false;
                                 SoDinhLienThong = 0;
-                                var xacnhan = MessageBox.Show("Bạn có muốn xem lời giải", "Hệ thống", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                                if (xacnhan == DialogResult.OK)
+                                if (timduongdi.Ngan)
                                 {
-                                    string[,] loigiai;
-                                    if (timduongdi.Ngan)
+                                    var xacnhan = MessageBox.Show("Bạn có muốn xem lời giải", "Hệ thống", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                                    if (xacnhan == DialogResult.OK)
                                     {
+                                        string[,] loigiai;
 
                                         Write_Dijsktra_in_paper in_Paper = new Write_Dijsktra_in_paper();
 
                                         loigiai = in_Paper.Dijsktra(Matran, iDinh, x, tenDinh);
-
-                                        // MessageBox.Show(iDinh.ToString());
-                                        Loigiai loigiai1 = new Loigiai();
-                                        loigiai1.loigiai = loigiai;
-                                        loigiai1.iDinh = iDinh;
-                                        loigiai1.ShowDialog();
-                                    }
-                                    else if (timduongdi.Dai)
-                                    {
-                                        Write_Dijsktra_in_paper in_Paper = new Write_Dijsktra_in_paper();
-
-                                        loigiai = in_Paper.Dijsktra_Dao(Matran, iDinh, x, tenDinh);
 
                                         // MessageBox.Show(iDinh.ToString());
                                         Loigiai loigiai1 = new Loigiai();

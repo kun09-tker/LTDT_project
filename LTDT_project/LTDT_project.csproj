@@ -70,7 +70,7 @@
       <DependentUpon>DFS-BFS.cs</DependentUpon>
     </Compile>
     <Compile Include="Dijsktra.cs" />
-    <Compile Include="DijsktraDao.cs" />
+    <Compile Include="DeQuy.cs" />
     <Compile Include="DuyetCay.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
