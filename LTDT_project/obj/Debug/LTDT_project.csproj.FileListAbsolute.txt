@@ -67,3 +67,28 @@ D:\LTDT_project\LTDT_project\obj\Debug\LTDT_project.pdb
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.NghiVan.resources
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.HeThong.resources
 C:\Users\kun\source\repos\LTDT_project\LTDT_project\obj\Debug\LTDT_project.DFS_BFS.resources
+D:\IT thing\Project\LTDT_project\LTDT_project\bin\Debug\LTDT_project.exe.config
+D:\IT thing\Project\LTDT_project\LTDT_project\bin\Debug\LTDT_project.exe
+D:\IT thing\Project\LTDT_project\LTDT_project\bin\Debug\LTDT_project.pdb
+D:\IT thing\Project\LTDT_project\LTDT_project\bin\Debug\BouncyCastle.Crypto.dll
+D:\IT thing\Project\LTDT_project\LTDT_project\bin\Debug\itextsharp.dll
+D:\IT thing\Project\LTDT_project\LTDT_project\bin\Debug\WebDriver.dll
+D:\IT thing\Project\LTDT_project\LTDT_project\bin\Debug\itextsharp.xml
+D:\IT thing\Project\LTDT_project\LTDT_project\bin\Debug\WebDriver.xml
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csprojAssemblyReference.cache
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.ResolveComReference.cache
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Cập_nhật_trọng_số.resources
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.DFS_BFS.resources
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Form1.resources
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Form2.resources
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.HeThong.resources
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Loigiai.resources
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.NghiVan.resources
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Properties.Resources.resources
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.Timduongdi.resources
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.XuatMatranKe.resources
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.GenerateResource.cache
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.CoreCompileInputs.cache
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.csproj.CopyComplete
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.exe
+D:\IT thing\Project\LTDT_project\LTDT_project\obj\Debug\LTDT_project.pdb

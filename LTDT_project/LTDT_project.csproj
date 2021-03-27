@@ -90,6 +90,7 @@
     <Compile Include="HeThong.Designer.cs">
       <DependentUpon>HeThong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kruskal.cs" />
     <Compile Include="Loigiai.cs">
       <SubType>Form</SubType>
     </Compile>

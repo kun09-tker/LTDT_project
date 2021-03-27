@@ -1,0 +1,16 @@
+D:\IT thing\Project\LTDT_project\TestingPlace\bin\Debug\net5.0\TestingPlace.exe
+D:\IT thing\Project\LTDT_project\TestingPlace\bin\Debug\net5.0\TestingPlace.deps.json
+D:\IT thing\Project\LTDT_project\TestingPlace\bin\Debug\net5.0\TestingPlace.runtimeconfig.json
+D:\IT thing\Project\LTDT_project\TestingPlace\bin\Debug\net5.0\TestingPlace.runtimeconfig.dev.json
+D:\IT thing\Project\LTDT_project\TestingPlace\bin\Debug\net5.0\TestingPlace.dll
+D:\IT thing\Project\LTDT_project\TestingPlace\bin\Debug\net5.0\ref\TestingPlace.dll
+D:\IT thing\Project\LTDT_project\TestingPlace\bin\Debug\net5.0\TestingPlace.pdb
+D:\IT thing\Project\LTDT_project\TestingPlace\obj\Debug\net5.0\TestingPlace.csprojAssemblyReference.cache
+D:\IT thing\Project\LTDT_project\TestingPlace\obj\Debug\net5.0\TestingPlace.GeneratedMSBuildEditorConfig.editorconfig
+D:\IT thing\Project\LTDT_project\TestingPlace\obj\Debug\net5.0\TestingPlace.AssemblyInfoInputs.cache
+D:\IT thing\Project\LTDT_project\TestingPlace\obj\Debug\net5.0\TestingPlace.AssemblyInfo.cs
+D:\IT thing\Project\LTDT_project\TestingPlace\obj\Debug\net5.0\TestingPlace.csproj.CoreCompileInputs.cache
+D:\IT thing\Project\LTDT_project\TestingPlace\obj\Debug\net5.0\TestingPlace.dll
+D:\IT thing\Project\LTDT_project\TestingPlace\obj\Debug\net5.0\ref\TestingPlace.dll
+D:\IT thing\Project\LTDT_project\TestingPlace\obj\Debug\net5.0\TestingPlace.pdb
+D:\IT thing\Project\LTDT_project\TestingPlace\obj\Debug\net5.0\TestingPlace.genruntimeconfig.cache
